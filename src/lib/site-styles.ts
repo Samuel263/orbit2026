@@ -62,9 +62,10 @@ export const siteStyles = `
     will-change: transform;
   }
   .btn-sweep:hover .btn-sweep-label {
-    transform: scale(0.88);
-    letter-spacing: -0.01em;
+    transform: scaleX(0.86);
+    letter-spacing: -0.04em;
   }
+
 
   /* ---------- Animated noise overlay (site-wide) ---------- */
   @keyframes noiseShift {
