@@ -137,34 +137,17 @@ export const siteStyles = `
     border-radius: 14px;
     overflow: hidden;
     color: #fff;
-    background:
-      linear-gradient(135deg, rgba(255,255,255,0.22), rgba(255,255,255,0.06) 55%, rgba(255,255,255,0.02)),
-      rgba(13,16,28,0.78);
-    border: 1px solid rgba(255,255,255,0.14);
-    box-shadow:
-      0 30px 60px -20px rgba(0,0,0,0.55),
-      0 8px 24px -12px rgba(0,0,0,0.4),
-      inset 0 1px 0 rgba(255,255,255,0.14);
-    animation: heroTrailFade 2200ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    background: rgba(20, 18, 40, 0.55);
+    border: none;
+    box-shadow: none;
+    animation: heroTrailFade 2400ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
     pointer-events: none;
-    will-change: transform, opacity, filter;
-    transform-origin: center 65%;
+    will-change: transform, opacity;
+    transform-origin: center 60%;
   }
-  .hero-trail-card::after {
-    content: "";
-    position: absolute;
-    width: 120px;
-    height: 120px;
-    right: -34px;
-    bottom: -38px;
-    border-radius: 9999px;
-    background: radial-gradient(circle at 30% 30%, currentColor, transparent 70%);
-    opacity: 0.35;
-    filter: blur(2px);
-  }
-  .hero-trail-card--pink { color: #EC4392; }
-  .hero-trail-card--green { color: #7EE640; }
-  .hero-trail-card--white { color: #FFFFFF; }
+  .hero-trail-card--pink { }
+  .hero-trail-card--green { }
+  .hero-trail-card--white { }
   .hero-trail-card__eyebrow {
     color: rgba(255,255,255,0.72);
     font-size: 11px;
@@ -199,7 +182,7 @@ export const siteStyles = `
     max-height: 170px;
     padding: 0;
     display: inline-flex;
-    background: rgba(13,16,28,0.4);
+    background: transparent;
   }
   .hero-trail-card--image .hero-trail-card__image {
     position: static;
@@ -209,33 +192,38 @@ export const siteStyles = `
     max-width: 260px;
     max-height: 170px;
     object-fit: contain;
+    border-radius: 14px;
   }
 
+  /* Spring-y, physics-inspired entrance with a subtle settle wobble */
   @keyframes heroTrailFade {
     0% {
       opacity: 0;
-      transform: translate3d(0, 22px, 0) scale(0.6) rotate(calc(var(--card-rotate, 0deg) * 0.2));
-      filter: blur(14px);
+      transform: translate3d(0, 28px, 0) scale(0.55) rotate(calc(var(--card-rotate, 0deg) * 0.1));
     }
-    22% {
+    18% {
       opacity: 1;
-      transform: translate3d(0, -4px, 0) scale(1.06) rotate(var(--card-rotate, 0deg));
-      filter: blur(0);
+      transform: translate3d(0, -6px, 0) scale(1.09) rotate(calc(var(--card-rotate, 0deg) * 1.1));
     }
-    36% {
-      transform: translate3d(0, 1px, 0) scale(0.985) rotate(var(--card-rotate, 0deg));
+    30% {
+      transform: translate3d(0, 3px, 0) scale(0.97) rotate(calc(var(--card-rotate, 0deg) * 0.92));
     }
-    55% {
+    42% {
+      transform: translate3d(0, -2px, 0) scale(1.02) rotate(calc(var(--card-rotate, 0deg) * 1.03));
+    }
+    54% {
+      transform: translate3d(0, 1px, 0) scale(0.995) rotate(var(--card-rotate, 0deg));
+    }
+    68% {
       opacity: 1;
-      transform: translate3d(0, -3px, 0) scale(1) rotate(var(--card-rotate, 0deg));
-      filter: blur(0);
+      transform: translate3d(0, 0, 0) scale(1) rotate(var(--card-rotate, 0deg));
     }
     100% {
       opacity: 0;
-      transform: translate3d(0, -34px, 0) scale(0.94) rotate(calc(var(--card-rotate, 0deg) * 0.6));
-      filter: blur(12px);
+      transform: translate3d(0, -40px, 0) scale(0.9) rotate(calc(var(--card-rotate, 0deg) * 0.4));
     }
   }
+
   @media (max-width: 768px) {
     .hero-stage { min-height: 590px; }
     .hero-trail-card { width: 178px; min-height: 98px; padding: 14px; border-radius: 20px; }
