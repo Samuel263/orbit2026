@@ -1,4 +1,4 @@
-import { Link } from "@tanstack/react-router";
+import { Link, useLocation } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import logoAsset from "@/assets/logo.png";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
