@@ -145,10 +145,7 @@ function Index() {
                 <span className="text-white hero-line hero-line-1">
                   Sitios web que{" "}
                 </span>
-                <span
-                  className="bg-clip-text text-transparent hero-line hero-line-2 overflow-visible"
-                  style={{ backgroundImage: "linear-gradient(90deg, #7ee640 0%, #8a7a3a 40%, #b34a6a 70%, #ec3c92 100%)" }}
-                >
+                <span className="hero-line hero-line-2 overflow-visible" style={{ color: "#EC4392" }}>
                   convierten visitantes en clientes
                 </span>
                 <span className="text-[#EC4392] hero-line hero-line-3">.</span>
