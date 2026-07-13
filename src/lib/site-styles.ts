@@ -39,7 +39,7 @@ export const siteStyles = `
     position: relative;
     overflow: hidden;
     isolation: isolate;
-    transition: color 300ms ease, box-shadow 300ms ease, transform 300ms cubic-bezier(0.22, 1, 0.36, 1);
+    transition: color 300ms ease, box-shadow 300ms ease;
   }
   .btn-sweep::before {
     content: "";
@@ -54,13 +54,16 @@ export const siteStyles = `
   .btn-sweep:hover::before { transform: translateX(0); }
   .btn-sweep:hover {
     color: var(--sweep-fg, #000000);
-    transform: translateY(-1px);
   }
   .btn-sweep-label {
     display: inline-block;
-    transition: transform 300ms cubic-bezier(0.22, 1, 0.36, 1);
+    transition: transform 380ms cubic-bezier(0.22, 1, 0.36, 1), letter-spacing 380ms cubic-bezier(0.22, 1, 0.36, 1);
     transform-origin: center;
     will-change: transform;
+  }
+  .btn-sweep:hover .btn-sweep-label {
+    transform: scale(0.88);
+    letter-spacing: -0.01em;
   }
 
   /* ---------- Animated noise overlay (site-wide) ---------- */
