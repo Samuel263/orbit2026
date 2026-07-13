@@ -11,6 +11,8 @@ type Props = {
 
 export function SiteNav({ language, onLanguageChange }: Props) {
   const [scrolled, setScrolled] = useState(false);
+  const location = useLocation();
+  const isHome = location.pathname === "/";
   const t = navCopy[language] ?? navCopy.es;
 
   useEffect(() => {
@@ -21,9 +23,9 @@ export function SiteNav({ language, onLanguageChange }: Props) {
   }, []);
 
   return (
-    <div className={`fixed left-0 right-0 z-40 px-3 sm:px-6 md:px-10 transition-all duration-300 ${scrolled ? "top-3 sm:top-4" : "top-6 sm:top-8"}`}>
+    <div className={`fixed left-0 right-0 z-40 px-3 sm:px-6 md:px-10 transition-all duration-300 ${scrolled ? "top-3 sm:top-4" : "top-3 sm:top-6 md:top-8"}`}>
      <header
-  className={`mx-auto max-w-3xl flex items-center justify-between gap-2 sm:gap-3 pl-2 pr-1.5 sm:pl-3 sm:pr-2 py-1.5 sm:py-2 rounded-full border border-white/10 backdrop-blur-xl transition-all duration-300 ${
+  className={`mx-auto ${isHome ? "max-w-3xl" : "max-w-xl"} flex items-center justify-between gap-2 sm:gap-3 pl-2 pr-1.5 sm:pl-3 sm:pr-2 py-1.5 sm:py-2 rounded-full border border-white/10 backdrop-blur-xl transition-all duration-300 ${
     scrolled
       ? "bg-[#1A1A1A]/80 shadow-[0_8px_30px_rgba(0,0,0,0.35)]"
       : "bg-[#1A1A1A]/80"
