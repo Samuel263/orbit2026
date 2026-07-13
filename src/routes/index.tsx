@@ -76,7 +76,7 @@ function Index() {
     if ((event.target as Element).closest(".hero-no-trail")) return;
 
     const now = Date.now();
-    if (now - lastTrailAtRef.current < 180) return;
+    if (now - lastTrailAtRef.current < 260) return;
     lastTrailAtRef.current = now;
 
     const rect = event.currentTarget.getBoundingClientRect();
@@ -91,11 +91,11 @@ function Index() {
     const rotate = ((sequence % 7) - 3) * 2.5;
 
     trailSequenceRef.current = sequence + 1;
-    setHeroTrail((items) => [...items.slice(-8), { id, x, y, rotate, card }]);
+    setHeroTrail((items) => [...items.slice(-5), { id, x, y, rotate, card }]);
 
     window.setTimeout(() => {
       setHeroTrail((items) => items.filter((item) => item.id !== id));
-    }, 2600);
+    }, 2200);
   }, []);
 
   return (
