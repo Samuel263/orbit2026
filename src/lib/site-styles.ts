@@ -133,36 +133,45 @@ export const siteStyles = `
     justify-content: space-between;
     gap: 18px;
     padding: 18px;
-    border-radius: 10px;
+    border-radius: 14px;
     overflow: hidden;
     color: #fff;
     background:
-      linear-gradient(135deg, rgba(255,255,255,0.20), rgba(255,255,255,0.07)),
-      rgba(13,16,28,0.62);
-    backdrop-filter: blur(18px) saturate(150%);
-    animation: heroTrailFade 2600ms cubic-bezier(0.22,1,0.36,1) forwards;
+      linear-gradient(135deg, rgba(255,255,255,0.22), rgba(255,255,255,0.06) 55%, rgba(255,255,255,0.02)),
+      rgba(13,16,28,0.78);
+    border: 1px solid rgba(255,255,255,0.14);
+    box-shadow:
+      0 30px 60px -20px rgba(0,0,0,0.55),
+      0 8px 24px -12px rgba(0,0,0,0.4),
+      inset 0 1px 0 rgba(255,255,255,0.14);
+    animation: heroTrailFade 2200ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
     pointer-events: none;
+    will-change: transform, opacity, filter;
+    transform-origin: center 65%;
   }
   .hero-trail-card::after {
     content: "";
     position: absolute;
-    width: 82px;
-    height: 82px;
-    right: -22px;
-    bottom: -26px;
+    width: 120px;
+    height: 120px;
+    right: -34px;
+    bottom: -38px;
     border-radius: 9999px;
-    background: currentColor;
-    opacity: 0.18;
+    background: radial-gradient(circle at 30% 30%, currentColor, transparent 70%);
+    opacity: 0.35;
+    filter: blur(2px);
   }
   .hero-trail-card--pink { color: #EC4392; }
   .hero-trail-card--green { color: #7EE640; }
   .hero-trail-card--white { color: #FFFFFF; }
   .hero-trail-card__eyebrow {
-    color: rgba(255,255,255,0.68);
+    color: rgba(255,255,255,0.72);
     font-size: 11px;
     font-weight: 700;
     letter-spacing: 0.16em;
     text-transform: uppercase;
+    position: relative;
+    z-index: 1;
   }
   .hero-trail-card__title {
     color: #ffffff;
@@ -170,6 +179,8 @@ export const siteStyles = `
     font-size: 25px;
     line-height: 1.02;
     letter-spacing: 0;
+    position: relative;
+    z-index: 1;
   }
   .hero-trail-card__image {
     position: absolute;
@@ -187,6 +198,7 @@ export const siteStyles = `
     max-height: 170px;
     padding: 0;
     display: inline-flex;
+    background: rgba(13,16,28,0.4);
   }
   .hero-trail-card--image .hero-trail-card__image {
     position: static;
@@ -199,10 +211,29 @@ export const siteStyles = `
   }
 
   @keyframes heroTrailFade {
-    0% { opacity: 0; transform: translateY(10px) scale(0.94) rotate(var(--card-rotate, 0deg)); filter: blur(8px); }
-    12% { opacity: 1; transform: translateY(0) scale(1) rotate(var(--card-rotate, 0deg)); filter: blur(0); }
-    72% { opacity: 1; transform: translateY(-6px) scale(1) rotate(var(--card-rotate, 0deg)); filter: blur(0); }
-    100% { opacity: 0; transform: translateY(-22px) scale(0.96) rotate(var(--card-rotate, 0deg)); filter: blur(10px); }
+    0% {
+      opacity: 0;
+      transform: translate3d(0, 22px, 0) scale(0.6) rotate(calc(var(--card-rotate, 0deg) * 0.2));
+      filter: blur(14px);
+    }
+    22% {
+      opacity: 1;
+      transform: translate3d(0, -4px, 0) scale(1.06) rotate(var(--card-rotate, 0deg));
+      filter: blur(0);
+    }
+    36% {
+      transform: translate3d(0, 1px, 0) scale(0.985) rotate(var(--card-rotate, 0deg));
+    }
+    55% {
+      opacity: 1;
+      transform: translate3d(0, -3px, 0) scale(1) rotate(var(--card-rotate, 0deg));
+      filter: blur(0);
+    }
+    100% {
+      opacity: 0;
+      transform: translate3d(0, -34px, 0) scale(0.94) rotate(calc(var(--card-rotate, 0deg) * 0.6));
+      filter: blur(12px);
+    }
   }
   @media (max-width: 768px) {
     .hero-stage { min-height: 590px; }
