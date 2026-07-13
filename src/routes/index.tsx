@@ -76,7 +76,7 @@ function Index() {
     if ((event.target as Element).closest(".hero-no-trail")) return;
 
     const now = Date.now();
-    if (now - lastTrailAtRef.current < 180) return;
+    if (now - lastTrailAtRef.current < 260) return;
     lastTrailAtRef.current = now;
 
     const rect = event.currentTarget.getBoundingClientRect();
@@ -91,11 +91,11 @@ function Index() {
     const rotate = ((sequence % 7) - 3) * 2.5;
 
     trailSequenceRef.current = sequence + 1;
-    setHeroTrail((items) => [...items.slice(-8), { id, x, y, rotate, card }]);
+    setHeroTrail((items) => [...items.slice(-5), { id, x, y, rotate, card }]);
 
     window.setTimeout(() => {
       setHeroTrail((items) => items.filter((item) => item.id !== id));
-    }, 2600);
+    }, 2200);
   }, []);
 
   return (
@@ -145,10 +145,7 @@ function Index() {
                 <span className="text-white hero-line hero-line-1">
                   Sitios web que{" "}
                 </span>
-                <span
-                  className="bg-clip-text text-transparent hero-line hero-line-2 overflow-visible"
-                  style={{ backgroundImage: "linear-gradient(90deg, #7ee640 0%, #8a7a3a 40%, #b34a6a 70%, #ec3c92 100%)" }}
-                >
+                <span className="hero-line hero-line-2 overflow-visible" style={{ color: "#EC4392" }}>
                   convierten visitantes en clientes
                 </span>
                 <span className="text-[#EC4392] hero-line hero-line-3">.</span>

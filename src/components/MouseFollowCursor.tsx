@@ -51,7 +51,7 @@ export function MouseFollowCursor() {
   const target = useRef({ x: 0, y: 0 });
   const dotPos = useRef({ x: 0, y: 0 });
   const ringPos = useRef({ x: 0, y: 0 });
-  const rafId = useRef<number>();
+  const rafId = useRef<number | undefined>(undefined);
   const hasMoved = useRef(false);
 
   useEffect(() => {
