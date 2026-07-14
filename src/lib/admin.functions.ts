@@ -56,7 +56,7 @@ export const adminListAll = createServerFn({ method: "GET" })
       : sb.from(data.table).select("*").order("position", { ascending: true, nullsFirst: false });
     const { data: rows, error } = await q;
     if (error) throw new Error(error.message);
-    return { rows: (rows ?? []) as Array<Record<string, unknown>> };
+    return { rows: JSON.parse(JSON.stringify(rows ?? [])) as unknown };
   });
 
 export const adminUpsertRow = createServerFn({ method: "POST" })
