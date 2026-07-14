@@ -71,7 +71,7 @@ export const adminUpsertRow = createServerFn({ method: "POST" })
     if (data.table === "site_settings") row.id = 1;
     const { data: upserted, error } = await sb.from(data.table).upsert(row, { onConflict: conflictCol }).select().maybeSingle();
     if (error) throw new Error(error.message);
-    return { row: upserted };
+    return { row: JSON.parse(JSON.stringify(upserted ?? null)) as Record<string, string | number | boolean | null | object> | null };
   });
 
 export const adminDeleteRow = createServerFn({ method: "POST" })
