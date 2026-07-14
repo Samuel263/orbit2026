@@ -3,9 +3,12 @@ import { supabaseAnon, publicUrl } from "./supabase.server";
 
 export type Lang = "es" | "en" | "pt" | "fr" | "de" | "it";
 
+// JSON-serializable primitive; used so TanStack accepts the server fn return.
+type Json = string | number | boolean | null | { [k: string]: Json } | Json[];
+
 export type SiteContent = {
   lang: Lang;
-  blocks: Record<string, Record<Lang, unknown>>;
+  blocks: { [key: string]: Json };
   projects: Array<{ id: string; name: string; url: string; domain: string; image_url: string | null; featured: boolean }>;
   reviews: Array<{ id: string; name: string; initial: string; color: string; date_label: string; text_body: string }>;
   clients: Array<{ id: string; name: string; logo_url: string | null }>;
@@ -14,8 +17,8 @@ export type SiteContent = {
   faq: Array<{ id: string; question: string; answer: string }>;
   socials: Array<{ id: string; platform: string; url: string; icon: string }>;
   contact_info: Array<{ id: string; kind: string; label: string; value: string }>;
-  seo: Record<string, { title: string; description: string; og_image_url?: string | null }>;
-  settings: Record<string, unknown>;
+  seo: { [path: string]: { title: string; description: string; og_image_url: string | null } };
+  settings: { [k: string]: Json };
 };
 
 function pickLang<T>(i18n: Record<string, T> | null | undefined, lang: Lang): T | undefined {
