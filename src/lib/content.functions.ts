@@ -90,6 +90,6 @@ export const getSiteContent = createServerFn({ method: "GET" })
       socials: (socialsRes.data ?? []).map((s) => ({ id: s.id, platform: s.platform, url: s.url, icon: s.icon ?? "" })),
       contact_info: (contactRes.data ?? []).map((c) => ({ id: c.id, kind: c.kind, label: c.label ?? "", value: c.value })),
       seo,
-      settings: (settingsRes.data?.data ?? {}) as Record<string, unknown>,
+      settings: (settingsRes.data?.data ?? {}) as { [k: string]: Json },
     };
   });
