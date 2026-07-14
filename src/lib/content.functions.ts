@@ -50,9 +50,9 @@ export const getSiteContent = createServerFn({ method: "GET" })
       sb.from("site_settings").select("data").eq("id", 1).maybeSingle(),
     ]);
 
-    const blocks: Record<string, Record<Lang, unknown>> = {};
+    const blocks: { [key: string]: Json } = {};
     for (const row of blocksRes.data ?? []) {
-      blocks[row.key] = (row.data ?? {}) as Record<Lang, unknown>;
+      blocks[row.key] = (row.data ?? {}) as Json;
     }
 
     const seo: SiteContent["seo"] = {};
