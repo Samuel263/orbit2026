@@ -57,7 +57,7 @@ export const seedSiteSettings = {
   default_lang: "es",
 };
 
-export const seedSeoPages = [
+export const seedSeoPages: Array<{ path: string; i18n: Record<string, { title: string; description: string }> }> = [
   {
     path: "/",
     i18n: {

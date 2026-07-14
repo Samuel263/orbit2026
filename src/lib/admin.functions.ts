@@ -45,7 +45,7 @@ export const getAdminStatus = createServerFn({ method: "GET" }).handler(async ()
 // -------- generic CRUD (admin only) --------
 export const adminListAll = createServerFn({ method: "GET" })
   .inputValidator((data: { table: string }) => data)
-  .handler(async ({ data }) => {
+  .handler(async ({ data }): Promise<{ rows: Array<Record<string, string | number | boolean | null | object>> }> => {
     await requireAdmin();
     if (!validTable(data.table)) throw new Error("Invalid table");
     const sb = supabaseAdmin();
@@ -56,7 +56,7 @@ export const adminListAll = createServerFn({ method: "GET" })
       : sb.from(data.table).select("*").order("position", { ascending: true, nullsFirst: false });
     const { data: rows, error } = await q;
     if (error) throw new Error(error.message);
-    return { rows: JSON.parse(JSON.stringify(rows ?? [])) as unknown };
+    return { rows: JSON.parse(JSON.stringify(rows ?? [])) };
   });
 
 export const adminUpsertRow = createServerFn({ method: "POST" })
