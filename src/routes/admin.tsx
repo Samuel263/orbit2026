@@ -213,7 +213,7 @@ function SectionEditor({ table }: { table: string }) {
 function tableColumns(table: string): string[] {
   switch (table) {
     case "content_blocks": return ["key"];
-    case "projects": return ["name", "url", "domain", "position", "featured"];
+    case "projects": return ["name", "position", "featured"];
     case "reviews": return ["name", "initial", "date_label", "position"];
     case "clients": return ["name", "position"];
     case "solutions": return ["position", "icon_svg_path"];
