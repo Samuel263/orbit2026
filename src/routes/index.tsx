@@ -175,58 +175,36 @@ function Index() {
         </section>
       </div>
 
-      {/* CLIENTS */}
-      <section className="relative z-10 bg-[#F7F6F4] text-neutral-900 py-14 sm:py-16 overflow-hidden">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 md:px-10">
-          <div className="flex justify-center" data-reveal>
-            <span className="inline-flex items-center gap-2 rounded-full bg-[#EC4392]/10 px-3.5 py-1 text-[10px] font-bold tracking-[0.24em] text-[#EC4392]">
-              <span aria-hidden="true">✦</span>{tcl?.kicker}
-            </span>
-          </div>
-          <h2 data-reveal style={{ transitionDelay: "100ms" }} className="mt-4 text-center font-mammoth leading-[1.05] tracking-tight text-[26px] sm:text-[32px] md:text-[38px] lg:text-[42px]">
-            <span style={{ color: "#EC4392" }}>{tcl?.t1}</span> <span className="text-neutral-900">{tcl?.t2}</span>
+      {/* CLIENTS — minimal, single strip */}
+      <section className="relative z-10 bg-[#F7F6F4] text-neutral-900 py-16 sm:py-20 overflow-hidden">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 md:px-10 text-center">
+          <span data-reveal className="inline-flex items-center gap-2 text-[10px] font-bold tracking-[0.28em] text-neutral-500 uppercase">
+            <span className="h-px w-8 bg-neutral-300" />{tcl?.kicker}<span className="h-px w-8 bg-neutral-300" />
+          </span>
+          <h2 data-reveal style={{ transitionDelay: "80ms" }} className="mt-5 font-mammoth leading-[1.05] tracking-tight text-[26px] sm:text-[34px] md:text-[42px]">
+            <span className="text-neutral-900">{tcl?.t1}</span> <span style={{ color: "#EC4392" }}>{tcl?.t2}</span>
           </h2>
         </div>
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 md:px-10 mt-8 sm:mt-10 space-y-3 sm:space-y-4">
-          {[0, 1].map((row) => {
-            const dup = Array.from({ length: 6 }, () => content.clients).flat();
-            return (
-              <div key={row} className="client-strip overflow-hidden">
-                <div className={`${row === 0 ? "client-marquee" : "client-marquee-reverse"} flex w-max items-center gap-3 sm:gap-4`}>
-                  {dup.map((c, i) => (
-                    <div key={`r${row}-${i}`} className="flex h-14 sm:h-16 w-36 sm:w-44 md:w-48 shrink-0 items-center justify-center rounded-xl bg-[#1A1A1A]">
-                      {c.logo_url ? (
-                        <img src={c.logo_url} alt={`${t?.clientAlt ?? ""}: ${c.name}`} className="max-h-8 sm:max-h-10 max-w-[70%] object-contain client-logo-white" loading="lazy" />
-                      ) : (
-                        <span className="text-white/60 text-xs font-semibold">{c.name}</span>
-                      )}
-                    </div>
-                  ))}
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 md:px-10 mt-10 sm:mt-14">
+          <div className="client-strip overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_12%,black_88%,transparent)]">
+            <div className="client-marquee flex w-max items-center gap-10 sm:gap-14">
+              {Array.from({ length: 6 }, () => content.clients).flat().map((c, i) => (
+                <div key={`c-${i}`} className="flex h-10 sm:h-12 shrink-0 items-center justify-center">
+                  {c.logo_url ? (
+                    <img src={c.logo_url} alt={`${t?.clientAlt ?? ""}: ${c.name}`} className="max-h-8 sm:max-h-10 max-w-[140px] object-contain client-logo-dark" loading="lazy" />
+                  ) : (
+                    <span className="text-neutral-700 text-sm font-semibold tracking-wide">{c.name}</span>
+                  )}
                 </div>
-              </div>
-            );
-          })}
-        </div>
-
-        {tst && (
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 md:px-10 mt-8 sm:mt-10 grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
-            {[
-              { n: tst.items?.[1]?.n, l: tst.items?.[1]?.l, bg: "#EC4392", fg: "#ffffff", accent: "#ffffff" },
-              { n: tst.items?.[0]?.n, l: tst.items?.[0]?.l, bg: "#1A1A1A", fg: "#ffffff", accent: "#ffffff" },
-              { n: tst.items?.[3]?.n, l: tst.items?.[3]?.l, bg: "#ffffff", fg: "#1A1A1A", accent: "#EC4392" },
-            ].map((s, i) => (
-              <div key={i} data-reveal style={{ transitionDelay: `${i * 100}ms`, backgroundColor: s.bg, color: s.fg }} className="rounded-3xl px-6 sm:px-7 py-5 sm:py-6">
-                <p className="font-mammoth text-3xl sm:text-4xl md:text-5xl leading-none" style={{ color: s.accent }}>{s.n}</p>
-                <p className="mt-1.5 text-xs sm:text-sm opacity-90">{s.l}</p>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        )}
+        </div>
       </section>
 
-      {/* CASES */}
-      <section id="portafolio" className="relative z-10 px-4 sm:px-6 md:px-12 py-20 sm:py-28 bg-[#1A1A1A]">
-        <div className="max-w-7xl mx-auto">
+      {/* PROJECTS — vertical infinite carousel, non-interactive */}
+      <section id="portafolio" className="relative z-10 py-20 sm:py-28 bg-[#1A1A1A] overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12">
           <div className="text-left max-w-3xl">
             <h2 data-reveal className="font-mammoth leading-[1.05] tracking-tight text-[34px] sm:text-[44px] md:text-[54px] lg:text-[64px]">
               <span className="block text-white text-[0.92em]">{tc?.t1}</span>
@@ -234,134 +212,194 @@ function Index() {
             </h2>
             <p data-reveal style={{ transitionDelay: "120ms" }} className="mt-5 text-base sm:text-lg text-white/85 leading-relaxed">{tc?.desc}</p>
           </div>
+        </div>
 
-          <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-[1fr_1.4fr_1fr] lg:items-center">
-            {featuredProjects.map((p, i) => (
-              <div key={p.id} data-reveal style={{ transitionDelay: `${i * 140}ms` }} className={i === 1 ? "lg:z-10" : ""}>
-                <a href={p.url} target="_blank" rel="noopener noreferrer" className="project-card mac-window group relative block rounded-2xl overflow-hidden border border-white/10 bg-[#0e0b1a]">
-                  <div className="flex items-center gap-2 px-3 py-2 border-b border-white/10 bg-white/[0.04]">
-                    <span className="size-3 rounded-full bg-[#ff5f57]" />
-                    <span className="size-3 rounded-full bg-[#febc2e]" />
-                    <span className="size-3 rounded-full bg-[#28c840]" />
-                    <div className="ml-3 flex-1 h-6 rounded-md bg-white/[0.06] border border-white/10 px-3 flex items-center text-[11px] text-white/60 truncate">{p.domain}</div>
-                  </div>
-                  <div className="relative aspect-[16/10] bg-[#0a0814] overflow-hidden">
-                    <img src={p.image_url ?? `https://image.thum.io/get/width/1200/crop/750/noanimate/${p.url}`} alt={`${p.name} preview`} className="project-card-img absolute inset-0 w-full h-full object-cover object-top" loading="lazy" />
-                    <div className="absolute inset-0 flex items-center justify-center bg-[rgba(5,12,31,0.55)] opacity-0 group-hover:opacity-100 transition-opacity duration-[600ms] ease-[cubic-bezier(0.22,1,0.36,1)]">
-                      <span className="bg-[var(--pink)] text-white px-6 py-3 text-sm font-medium translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-[600ms] ease-[cubic-bezier(0.22,1,0.36,1)]" style={{ borderRadius: "18px" }}>
-                        {tc?.view} →
-                      </span>
-                    </div>
-                  </div>
-                </a>
-              </div>
-            ))}
+        <div className="relative mt-14 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_6%,black_94%,transparent)]">
+          <div className="proj-marquee flex w-max gap-6 sm:gap-8">
+            {(() => {
+              const src = content.projects.length > 0 ? content.projects : [];
+              const loop = [...src, ...src, ...src, ...src];
+              return loop.map((p, i) => (
+                <div
+                  key={`p-${i}`}
+                  className="shrink-0 overflow-hidden rounded-2xl bg-[#0e0b1a] border border-white/5"
+                  style={{ width: "clamp(200px, 22vw, 315px)", aspectRatio: "630 / 1650" }}
+                  aria-hidden="true"
+                >
+                  {p.image_url ? (
+                    <img
+                      src={p.image_url}
+                      alt=""
+                      className="w-full h-full object-cover pointer-events-none select-none"
+                      draggable={false}
+                      loading="lazy"
+                    />
+                  ) : (
+                    <div className="w-full h-full bg-gradient-to-b from-[#1a1230] to-[#0a0814]" />
+                  )}
+                </div>
+              ));
+            })()}
           </div>
+        </div>
 
-          <div className="mt-14 flex justify-center" data-reveal>
-            <Link to="/portafolio" className="btn-sweep bg-[var(--pink)] transition px-8 py-4 text-sm font-semibold tracking-[0.18em] text-white" style={{ borderRadius: "18px", ["--sweep-bg" as string]: "#ffffff", ["--sweep-fg" as string]: "#000000" }}>
-              <span className="btn-sweep-label">{tc?.more}</span>
-            </Link>
-          </div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 mt-14 flex justify-center" data-reveal>
+          <Link to="/portafolio" className="btn-sweep bg-[var(--pink)] transition px-8 py-4 text-sm font-semibold tracking-[0.18em] text-white" style={{ borderRadius: "18px", ["--sweep-bg" as string]: "#ffffff", ["--sweep-fg" as string]: "#000000" }}>
+            <span className="btn-sweep-label">{tc?.more}</span>
+          </Link>
         </div>
       </section>
 
-      {/* REVIEWS */}
-      <section id="opiniones" className="relative z-10 bg-[#F7F6F4] text-neutral-900 px-4 sm:px-6 md:px-12 py-20 sm:py-28">
-        <div className="max-w-7xl mx-auto grid gap-12 lg:gap-16 lg:grid-cols-[minmax(0,1fr)_minmax(0,2fr)]">
-          <div data-reveal>
-            <div className="flex flex-col items-start gap-3">
-              <div className="flex gap-1 text-[#F0AD4E] text-2xl">{"★★★★★".split("").map((s, i) => <span key={i}>{s}</span>)}</div>
-              <p className="text-3xl sm:text-4xl font-black tracking-tight">{tr?.excellent}</p>
-              <p className="text-sm text-neutral-600">{tr?.basedOn}</p>
+      {/* REVIEWS — interactive 3D tilt cards on dark canvas */}
+      <section id="opiniones" className="relative z-10 px-4 sm:px-6 md:px-12 py-24 sm:py-32 bg-[#0B0A14] text-white overflow-hidden">
+        <div className="absolute inset-0 pointer-events-none opacity-40" aria-hidden="true" style={{
+          backgroundImage: "radial-gradient(circle at 20% 20%, rgba(236,67,146,0.25), transparent 40%), radial-gradient(circle at 80% 70%, rgba(120,60,200,0.2), transparent 45%)"
+        }} />
+        <div className="relative max-w-7xl mx-auto">
+          <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8" data-reveal>
+            <div>
+              <p className="text-xs sm:text-sm tracking-[0.28em] font-bold text-[#EC4392] uppercase">{tr?.kicker}</p>
+              <h2 className="mt-4 font-mammoth leading-[0.98] tracking-tight text-[42px] sm:text-[56px] md:text-[72px] lg:text-[88px]">
+                <span className="block text-white">{tr?.title1}</span>
+                <span className="block" style={{ color: "#EC4392" }}>{tr?.title2}</span>
+              </h2>
             </div>
-            <div className="my-8 h-px w-full bg-neutral-200" />
-            <p className="text-xs sm:text-sm tracking-[0.2em] font-bold text-neutral-900">{tr?.kicker}</p>
-            <h2 className="mt-3 font-mammoth leading-[1.05] tracking-tight text-[36px] sm:text-[44px] md:text-[52px] lg:text-[60px]">
-              <span className="block text-neutral-900">{tr?.title1}</span>
-              <span className="block" style={{ color: "#EC4392" }}>{tr?.title2}</span>
-            </h2>
-            <Link to="/opiniones" className="btn-sweep mt-8 inline-block border border-neutral-900 transition px-6 py-3 text-xs sm:text-sm font-semibold tracking-[0.18em] text-neutral-900" style={{ borderRadius: "18px", ["--sweep-bg" as string]: "#0a0a0a", ["--sweep-fg" as string]: "#ffffff" }}>
-              <span className="btn-sweep-label">{tr?.cta}</span>
-            </Link>
+            <div className="flex flex-col items-start lg:items-end gap-2">
+              <div className="flex gap-1 text-[#F0AD4E] text-xl">{"★★★★★".split("").map((s, i) => <span key={i}>{s}</span>)}</div>
+              <p className="text-3xl sm:text-4xl font-black tracking-tight">{tr?.excellent}</p>
+              <p className="text-xs text-white/60">{tr?.basedOn}</p>
+              <Link to="/opiniones" className="btn-sweep mt-4 inline-block border border-white/40 transition px-6 py-3 text-xs font-semibold tracking-[0.18em] text-white" style={{ borderRadius: "18px", ["--sweep-bg" as string]: "#ffffff", ["--sweep-fg" as string]: "#000000" }}>
+                <span className="btn-sweep-label">{tr?.cta}</span>
+              </Link>
+            </div>
           </div>
-          <div className="columns-1 sm:columns-2 lg:columns-3 gap-5 [column-fill:_balance]">
+
+          <div className="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6" style={{ perspective: "1200px" }}>
             {featuredReviews.map((r, i) => (
-              <article key={r.id} data-reveal style={{ transitionDelay: `${i * 80}ms` }} className="mb-5 break-inside-avoid rounded-2xl border border-neutral-200 bg-white p-5">
-                <header className="flex items-center gap-3">
-                  <div className="grid size-11 shrink-0 place-items-center rounded-full text-white text-sm font-semibold" style={{ backgroundColor: r.color }}>{r.initial}</div>
-                  <div className="min-w-0 flex-1">
-                    <div className="flex gap-0.5 text-[#F0AD4E] text-sm">{"★★★★★".split("").map((s, j) => <span key={j}>{s}</span>)}</div>
-                    <p className="mt-1 font-semibold text-neutral-900 truncate">{r.name}</p>
-                    <p className="text-xs text-neutral-500">{r.date_label}</p>
+              <article
+                key={r.id}
+                data-reveal
+                style={{ transitionDelay: `${(i % 6) * 90}ms` }}
+                className="review-card relative rounded-3xl border border-white/10 bg-gradient-to-br from-white/[0.06] to-white/[0.02] backdrop-blur-sm p-6 sm:p-7"
+              >
+                <div className="review-card__badge absolute inset-0 rounded-3xl pointer-events-none" aria-hidden="true" />
+                <div className="relative">
+                  <svg width="34" height="26" viewBox="0 0 34 26" fill="none" className="text-[#EC4392] mb-4">
+                    <path d="M0 26V16C0 7.163 5.82 0.5 14 0V6c-4.418 0-8 4.03-8 10h8v10H0zm20 0V16c0-8.837 5.82-15.5 14-16v6c-4.418 0-8 4.03-8 10h8v10H20z" fill="currentColor"/>
+                  </svg>
+                  <p className="review-card__quote text-base sm:text-lg leading-relaxed text-white/90 font-medium">{r.text_body}</p>
+                  <div className="review-card__meta mt-6 flex items-center gap-3 pt-6 border-t border-white/10">
+                    <div className="grid size-11 shrink-0 place-items-center rounded-full text-white text-sm font-semibold" style={{ backgroundColor: r.color }}>{r.initial}</div>
+                    <div className="min-w-0 flex-1">
+                      <p className="font-semibold text-white truncate">{r.name}</p>
+                      <div className="flex items-center gap-2 mt-0.5">
+                        <div className="flex gap-0.5 text-[#F0AD4E] text-xs">{"★★★★★".split("").map((s, j) => <span key={j}>{s}</span>)}</div>
+                        <span className="text-xs text-white/50">· {r.date_label}</span>
+                      </div>
+                    </div>
                   </div>
-                </header>
-                <p className="mt-4 text-sm leading-relaxed text-neutral-700">{r.text_body}</p>
+                </div>
               </article>
             ))}
           </div>
         </div>
       </section>
 
-      {/* SOLUTIONS */}
-      <section className="relative z-10 px-4 sm:px-6 md:px-12 py-20 sm:py-28 bg-[#1A1A1A]">
+      {/* SOLUTIONS — asymmetric bento */}
+      <section className="relative z-10 px-4 sm:px-6 md:px-12 py-24 sm:py-32 bg-[#F7F6F4] text-neutral-900 overflow-hidden">
         <div className="max-w-7xl mx-auto">
-          <h2 data-reveal className="text-center font-mammoth leading-[1.05] tracking-tight text-[34px] sm:text-[44px] md:text-[54px] lg:text-[64px]">
-            <span className="block text-white">{ts?.title1}</span>
-            <span className="block" style={{ color: "#EC4392" }}>{ts?.title2}</span>
-          </h2>
-          <p data-reveal style={{ transitionDelay: "120ms" }} className="mt-5 text-center text-base sm:text-lg text-white/80">{ts?.sub}</p>
-          <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {content.solutions.map((s, i) => (
-              <div key={s.id} data-reveal style={{ transitionDelay: `${(i % 4) * 100}ms` }}>
-                <div className="solution-card flex items-start gap-4 rounded-2xl border border-white/10 bg-[#0e0b1a] p-5 h-full">
-                  <div className="grid size-14 shrink-0 place-items-center rounded-xl bg-white/[0.04] border border-white/10" style={{ color: "#F0B68A" }}>
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6" data-reveal>
+            <h2 className="font-mammoth leading-[0.98] tracking-tight text-[42px] sm:text-[56px] md:text-[72px] lg:text-[84px] max-w-3xl">
+              <span className="block text-neutral-900">{ts?.title1}</span>
+              <span className="block" style={{ color: "#EC4392" }}>{ts?.title2}</span>
+            </h2>
+            <p className="max-w-sm text-base sm:text-lg text-neutral-600 leading-relaxed">{ts?.sub}</p>
+          </div>
+
+          <div className="mt-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 auto-rows-[minmax(180px,auto)] gap-4 sm:gap-5">
+            {content.solutions.map((s, i) => {
+              // Bento layout: first item wide, third tall
+              const span = i === 0 ? "sm:col-span-2 lg:col-span-2 lg:row-span-2" : i === 3 ? "lg:row-span-2" : "";
+              const dark = i === 0 || i === 3;
+              return (
+                <div
+                  key={s.id}
+                  data-reveal
+                  style={{ transitionDelay: `${(i % 4) * 100}ms` }}
+                  onMouseMove={(e) => {
+                    const el = e.currentTarget;
+                    const r = el.getBoundingClientRect();
+                    el.style.setProperty("--mx", `${((e.clientX - r.left) / r.width) * 100}%`);
+                    el.style.setProperty("--my", `${((e.clientY - r.top) / r.height) * 100}%`);
+                  }}
+                  className={`bento-card group flex flex-col justify-between rounded-3xl p-6 sm:p-7 border ${dark ? "bg-[#1A1A1A] text-white border-white/10" : "bg-white text-neutral-900 border-neutral-200"} ${span}`}
+                >
+                  <div className={`grid size-14 place-items-center rounded-2xl ${dark ? "bg-white/[0.06] text-[#EC4392]" : "bg-[#EC4392]/10 text-[#EC4392]"}`}>
                     <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
                       <path d={s.icon_svg_path} />
                     </svg>
                   </div>
-                  <div className="min-w-0">
-                    <h3 className="text-sm font-bold tracking-wide text-white">{s.title}</h3>
-                    <p className="mt-1.5 text-xs leading-relaxed text-white/70">{s.description}</p>
+                  <div className="mt-8">
+                    <h3 className={`font-mammoth text-2xl sm:text-3xl leading-tight ${dark ? "text-white" : "text-neutral-900"}`}>{s.title}</h3>
+                    <p className={`mt-3 text-sm leading-relaxed ${dark ? "text-white/70" : "text-neutral-600"}`}>{s.description}</p>
                   </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
 
-      {/* STATS */}
+      {/* STATS — bold ticker band */}
       {tst && (
-        <section className="relative z-10 px-4 sm:px-6 md:px-12 py-16 sm:py-20" style={{ backgroundColor: "#EC4392" }}>
+        <section className="relative z-10 px-4 sm:px-6 md:px-12 py-20 sm:py-28 bg-[#1A1A1A] overflow-hidden">
+          <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#EC4392] to-transparent" />
           <div className="max-w-7xl mx-auto">
-            <h2 data-reveal className="text-center font-mammoth text-white text-[28px] sm:text-[36px] md:text-[44px] tracking-tight">{tst.title}</h2>
-            <div className="mt-12 grid grid-cols-2 lg:grid-cols-4 gap-y-10 text-white">
+            <h2 data-reveal className="text-center font-mammoth leading-[1] tracking-tight text-[32px] sm:text-[44px] md:text-[56px] max-w-4xl mx-auto text-white">{tst.title}</h2>
+            <div className="mt-14 sm:mt-20 grid grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-6">
               {(tst.items ?? []).map((s, i) => (
-                <div key={`${s.l}-${i}`} data-reveal style={{ transitionDelay: `${i * 120}ms` }} className={`text-center ${i > 0 ? "lg:border-l border-white/30" : ""}`}>
-                  <p className="font-mammoth text-5xl sm:text-6xl md:text-7xl">{s.n}</p>
-                  <p className="mt-3 text-sm sm:text-base text-white/90">{s.l}</p>
+                <div key={`${s.l}-${i}`} data-reveal style={{ transitionDelay: `${i * 120}ms` }} className="text-center relative">
+                  <p className="stat-num font-mammoth text-6xl sm:text-7xl md:text-8xl leading-none" style={{ color: i % 2 === 0 ? "#EC4392" : "#ffffff", animationDelay: `${i * 0.4}s` }}>{s.n}</p>
+                  <p className="mt-4 text-xs sm:text-sm tracking-[0.18em] uppercase text-white/60">{s.l}</p>
                 </div>
               ))}
             </div>
           </div>
+          <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[#EC4392] to-transparent" />
         </section>
       )}
 
-      {/* CTA */}
+      {/* CTA — magnetic gradient */}
       {tcta && (
-        <section id="cotizar" className="relative z-10 px-4 sm:px-6 md:px-12 py-24 sm:py-32 bg-[#1A1A1A]">
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 data-reveal className="font-mammoth leading-[1.05] tracking-tight text-[32px] sm:text-[44px] md:text-[54px]" style={{ color: "#EC4392" }}>{tcta.title}</h2>
-            <p data-reveal style={{ transitionDelay: "120ms" }} className="mt-6 text-lg sm:text-xl font-semibold text-white/90">{tcta.sub}</p>
-            <div data-reveal style={{ transitionDelay: "240ms" }} className="mt-10">
-              <a href="#cotizar" className="btn-sweep inline-block text-white px-8 py-4 text-sm font-semibold tracking-[0.12em] transition" style={{ borderRadius: "18px", backgroundColor: "#EC4392", ["--sweep-bg" as string]: "#ffffff", ["--sweep-fg" as string]: "#000000" }}>
+        <section
+          id="cotizar"
+          className="cta-mag relative z-10 px-4 sm:px-6 md:px-12 py-32 sm:py-40 bg-[#0B0A14]"
+          onMouseMove={(e) => {
+            const el = e.currentTarget;
+            const r = el.getBoundingClientRect();
+            el.style.setProperty("--mx", `${e.clientX - r.left}px`);
+            el.style.setProperty("--my", `${e.clientY - r.top}px`);
+          }}
+        >
+          <div className="relative max-w-4xl mx-auto text-center">
+            <div data-reveal className="inline-flex items-center gap-2 text-[10px] font-bold tracking-[0.28em] text-[#EC4392] uppercase mb-6">
+              <span className="h-px w-8 bg-[#EC4392]/50" />
+              <span>{tnav?.quote ?? ""}</span>
+              <span className="h-px w-8 bg-[#EC4392]/50" />
+            </div>
+            <h2 data-reveal className="font-mammoth leading-[0.95] tracking-tight text-[44px] sm:text-[64px] md:text-[88px] lg:text-[108px] text-white">
+              {tcta.title}
+            </h2>
+            <p data-reveal style={{ transitionDelay: "120ms" }} className="mt-8 text-lg sm:text-xl text-white/70 max-w-2xl mx-auto leading-relaxed">{tcta.sub}</p>
+            <div data-reveal style={{ transitionDelay: "240ms" }} className="mt-12">
+              <a href="#cotizar" className="btn-sweep inline-block text-white px-10 py-5 text-sm font-semibold tracking-[0.18em] transition" style={{ borderRadius: "9999px", backgroundColor: "#EC4392", ["--sweep-bg" as string]: "#ffffff", ["--sweep-fg" as string]: "#000000" }}>
                 <span className="btn-sweep-label">{tcta.button}</span>
               </a>
             </div>
           </div>
         </section>
       )}
+
 
       <SiteFooter language={lang} content={content} />
       <WhatsAppButton settings={content.settings} lang={lang} />
