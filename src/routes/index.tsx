@@ -106,14 +106,15 @@ function Index() {
         <div className="absolute inset-0" style={{ backgroundColor: "rgba(11, 18, 38, 0.75)" }} />
       </div>
 
-      <div className="relative z-10 px-2 sm:px-3 md:px-4 pt-2 sm:pt-3 md:pt-4">
+      <div className="relative z-10 bg-[#F7F6F4]">
+        <div className="paper-noise" aria-hidden="true" />
+        <div className="relative px-2 sm:px-3 md:px-4 pt-2 sm:pt-3 md:pt-4">
         <section
           className="relative overflow-hidden rounded-3xl hero-stage"
           onPointerMoveCapture={handleHeroTrailMove}
-          style={{ boxShadow: "0 0 0 100vmax #F7F6F4" }}
         >
-          <div className="hero-noise absolute inset-0 pointer-events-none z-[1]" aria-hidden="true" />
           <div className="hero-trail-hitarea absolute inset-0 z-[2]" aria-hidden="true" />
+
           <div className="hero-trail-layer absolute inset-0 z-[3] pointer-events-none" aria-hidden="true">
             {heroTrail.map((item) => (
               <div
@@ -173,11 +174,15 @@ function Index() {
             </div>
           </main>
         </section>
+        </div>
       </div>
+
 
       {/* CLIENTS — minimal, single strip */}
       <section className="relative z-10 bg-[#F7F6F4] text-neutral-900 py-16 sm:py-20 overflow-hidden">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 md:px-10 text-center">
+        <div className="paper-noise" aria-hidden="true" />
+        <div className="relative max-w-6xl mx-auto px-4 sm:px-6 md:px-10 text-center">
+
           <span data-reveal className="inline-flex items-center gap-2 text-[10px] font-bold tracking-[0.28em] text-neutral-500 uppercase">
             <span className="h-px w-8 bg-neutral-300" />{tcl?.kicker}<span className="h-px w-8 bg-neutral-300" />
           </span>
@@ -231,9 +236,11 @@ function Index() {
                       src={p.image_url}
                       alt=""
                       className="w-full h-full object-cover pointer-events-none select-none"
+                      style={{ objectPosition: "top center" }}
                       draggable={false}
                       loading="lazy"
                     />
+
                   ) : (
                     <div className="w-full h-full bg-gradient-to-b from-[#1a1230] to-[#0a0814]" />
                   )}
@@ -272,39 +279,46 @@ function Index() {
             </div>
           </div>
 
-          <div className="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-            {featuredReviews.map((r, i) => {
-              // scatter rotations for a hand-pinned board feel
-              const rots = [-2.2, 1.6, -1.1, 2.4, -1.8, 1.2];
-              const rot = rots[i % rots.length];
-              return (
-                <article
-                  key={r.id}
-                  data-reveal
-                  style={{ transitionDelay: `${(i % 6) * 80}ms`, ["--rot" as string]: `${rot}deg` }}
-                  className="review-note relative bg-white border border-neutral-200 rounded-[6px] p-6 sm:p-7"
-                >
-                  <span className="review-note__tape" aria-hidden="true" />
-                  <svg width="28" height="22" viewBox="0 0 34 26" fill="none" className="text-[#EC4392] mb-3">
-                    <path d="M0 26V16C0 7.163 5.82 0.5 14 0V6c-4.418 0-8 4.03-8 10h8v10H0zm20 0V16c0-8.837 5.82-15.5 14-16v6c-4.418 0-8 4.03-8 10h8v10H20z" fill="currentColor"/>
-                  </svg>
-                  <p className="text-[15px] sm:text-base leading-relaxed text-neutral-800">{r.text_body}</p>
-                  <div className="mt-6 pt-5 border-t border-dashed border-neutral-300 flex items-center gap-3">
-                    <div className="grid size-10 shrink-0 place-items-center rounded-full text-white text-sm font-semibold" style={{ backgroundColor: r.color }}>{r.initial}</div>
-                    <div className="min-w-0 flex-1">
-                      <p className="font-semibold text-neutral-900 truncate">{r.name}</p>
-                      <div className="flex items-center gap-2 mt-0.5">
-                        <div className="flex gap-0.5 text-[#F0AD4E] text-xs">{"★★★★★".split("").map((s, j) => <span key={j}>{s}</span>)}</div>
-                        <span className="text-xs text-neutral-500">· {r.date_label}</span>
-                      </div>
-                    </div>
-                  </div>
-                </article>
-              );
-            })}
-          </div>
         </div>
+
+        {(() => {
+          const src = content.reviews.length > 0 ? content.reviews : featuredReviews;
+          const half = Math.ceil(src.length / 2);
+          const bandA = src.slice(0, half);
+          const bandB = src.slice(half).length ? src.slice(half) : src.slice(0, half);
+          const Card = ({ r, i }: { r: typeof src[number]; i: number }) => (
+            <article
+              key={`${r.id}-${i}`}
+              className="shrink-0 w-[300px] sm:w-[360px] bg-white border border-neutral-200 rounded-2xl p-6 shadow-[0_1px_0_rgba(0,0,0,0.02)]"
+            >
+              <div className="flex gap-0.5 text-[#F0AD4E] text-sm">{"★★★★★".split("").map((s, j) => <span key={j}>{s}</span>)}</div>
+              <p className="mt-3 text-[15px] leading-relaxed text-neutral-800 line-clamp-5">{r.text_body}</p>
+              <div className="mt-5 pt-4 border-t border-neutral-200 flex items-center gap-3">
+                <div className="grid size-10 shrink-0 place-items-center rounded-full text-white text-sm font-semibold" style={{ backgroundColor: r.color }}>{r.initial}</div>
+                <div className="min-w-0">
+                  <p className="font-semibold text-neutral-900 truncate">{r.name}</p>
+                  <p className="text-xs text-neutral-500">{r.date_label}</p>
+                </div>
+              </div>
+            </article>
+          );
+          return (
+            <div className="relative mt-14 space-y-6">
+              <div className="rev-band overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_6%,black_94%,transparent)]">
+                <div className="rev-marquee-l flex w-max gap-6">
+                  {[...bandA, ...bandA, ...bandA].map((r, i) => <Card key={`a-${i}`} r={r} i={i} />)}
+                </div>
+              </div>
+              <div className="rev-band overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_6%,black_94%,transparent)]">
+                <div className="rev-marquee-r flex w-max gap-6">
+                  {[...bandB, ...bandB, ...bandB].map((r, i) => <Card key={`b-${i}`} r={r} i={i} />)}
+                </div>
+              </div>
+            </div>
+          );
+        })()}
       </section>
+
 
       {/* SOLUTIONS — editorial numbered rows */}
       <section className="relative z-10 px-4 sm:px-6 md:px-12 py-24 sm:py-32 bg-[#1A1A1A] text-white overflow-hidden">
@@ -317,39 +331,40 @@ function Index() {
             <p className="max-w-sm text-base sm:text-lg text-white/60 leading-relaxed">{ts?.sub}</p>
           </div>
 
-          <div className="mt-16 border-t border-white/10">
+          <div className="mt-14 grid grid-cols-1 sm:grid-cols-2 gap-px bg-white/10 border border-white/10 rounded-2xl overflow-hidden">
             {content.solutions.map((s, i) => (
               <div
                 key={s.id}
                 data-reveal
-                className="service-row group grid grid-cols-[auto_1fr_auto] items-center gap-6 sm:gap-10 py-8 sm:py-10 border-b border-white/10"
+                className="group relative bg-[#1A1A1A] hover:bg-[#14102a] transition-colors duration-500 p-6 sm:p-8"
               >
-                <span className="font-mammoth text-3xl sm:text-4xl text-white/30 group-hover:text-[#EC4392] transition-colors duration-500 tabular-nums">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <div className="min-w-0">
-                  <h3 className="font-mammoth text-2xl sm:text-3xl md:text-4xl leading-tight text-white group-hover:translate-x-2 transition-transform duration-500">
-                    {s.title}
-                  </h3>
-                  <p className="service-row__desc mt-3 text-sm sm:text-base text-white/60 leading-relaxed max-w-2xl">
-                    {s.description}
-                  </p>
-                </div>
-                <div className="hidden sm:grid size-12 place-items-center rounded-full border border-white/20 text-white/70 group-hover:border-[#EC4392] group-hover:text-[#EC4392] transition-colors duration-500 shrink-0">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-                    <path d={s.icon_svg_path} />
-                  </svg>
+                <div className="flex items-start gap-4">
+                  <div className="grid size-11 place-items-center rounded-xl border border-white/15 text-white/80 group-hover:border-[#EC4392] group-hover:text-[#EC4392] transition-colors duration-500 shrink-0">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+                      <path d={s.icon_svg_path} />
+                    </svg>
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <div className="flex items-baseline gap-3">
+                      <span className="font-mammoth text-xs text-white/30 tabular-nums">{String(i + 1).padStart(2, "0")}</span>
+                      <h3 className="font-mammoth text-xl sm:text-2xl leading-tight text-white">{s.title}</h3>
+                    </div>
+                    <p className="mt-2 text-sm text-white/60 leading-relaxed line-clamp-3">{s.description}</p>
+                  </div>
                 </div>
               </div>
             ))}
           </div>
+
         </div>
       </section>
 
       {/* STATS — clean typographic band */}
       {tst && (
-        <section className="relative z-10 px-4 sm:px-6 md:px-12 py-20 sm:py-28 bg-[#F7F6F4] text-neutral-900">
-          <div className="max-w-7xl mx-auto">
+        <section className="relative z-10 px-4 sm:px-6 md:px-12 py-20 sm:py-28 bg-[#F7F6F4] text-neutral-900 overflow-hidden">
+          <div className="paper-noise" aria-hidden="true" />
+          <div className="relative max-w-7xl mx-auto">
+
             <h2 data-reveal className="text-center font-mammoth leading-[1] tracking-tight text-[32px] sm:text-[44px] md:text-[56px] max-w-4xl mx-auto">{tst.title}</h2>
             <div className="mt-14 sm:mt-20 grid grid-cols-2 lg:grid-cols-4 gap-y-10 gap-x-6 border-t border-neutral-200">
               {(tst.items ?? []).map((s, i) => (
@@ -372,9 +387,10 @@ function Index() {
               <span>{tnav?.quote ?? ""}</span>
               <span className="h-px w-8 bg-[#EC4392]/50" />
             </div>
-            <h2 data-reveal className="font-mammoth leading-[0.95] tracking-tight text-[44px] sm:text-[64px] md:text-[88px] lg:text-[108px] text-white">
+            <h2 data-reveal className="font-mammoth leading-[1] tracking-tight text-[34px] sm:text-[44px] md:text-[56px] lg:text-[64px] text-white max-w-3xl mx-auto">
               {tcta.title}
             </h2>
+
             <p data-reveal style={{ transitionDelay: "120ms" }} className="mt-8 text-lg sm:text-xl text-white/70 max-w-2xl mx-auto leading-relaxed">{tcta.sub}</p>
             <div data-reveal style={{ transitionDelay: "240ms" }} className="mt-12">
               <a href="#cotizar" className="btn-sweep inline-block text-white px-10 py-5 text-sm font-semibold tracking-[0.18em] transition rounded-full" style={{ backgroundColor: "#EC4392", ["--sweep-bg" as string]: "#ffffff", ["--sweep-fg" as string]: "#000000" }}>
