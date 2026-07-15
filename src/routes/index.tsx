@@ -331,32 +331,31 @@ function Index() {
             <p className="max-w-sm text-base sm:text-lg text-white/60 leading-relaxed">{ts?.sub}</p>
           </div>
 
-          <div className="mt-16 border-t border-white/10">
+          <div className="mt-14 grid grid-cols-1 sm:grid-cols-2 gap-px bg-white/10 border border-white/10 rounded-2xl overflow-hidden">
             {content.solutions.map((s, i) => (
               <div
                 key={s.id}
                 data-reveal
-                className="service-row group grid grid-cols-[auto_1fr_auto] items-center gap-6 sm:gap-10 py-8 sm:py-10 border-b border-white/10"
+                className="group relative bg-[#1A1A1A] hover:bg-[#14102a] transition-colors duration-500 p-6 sm:p-8"
               >
-                <span className="font-mammoth text-3xl sm:text-4xl text-white/30 group-hover:text-[#EC4392] transition-colors duration-500 tabular-nums">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <div className="min-w-0">
-                  <h3 className="font-mammoth text-2xl sm:text-3xl md:text-4xl leading-tight text-white group-hover:translate-x-2 transition-transform duration-500">
-                    {s.title}
-                  </h3>
-                  <p className="service-row__desc mt-3 text-sm sm:text-base text-white/60 leading-relaxed max-w-2xl">
-                    {s.description}
-                  </p>
-                </div>
-                <div className="hidden sm:grid size-12 place-items-center rounded-full border border-white/20 text-white/70 group-hover:border-[#EC4392] group-hover:text-[#EC4392] transition-colors duration-500 shrink-0">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-                    <path d={s.icon_svg_path} />
-                  </svg>
+                <div className="flex items-start gap-4">
+                  <div className="grid size-11 place-items-center rounded-xl border border-white/15 text-white/80 group-hover:border-[#EC4392] group-hover:text-[#EC4392] transition-colors duration-500 shrink-0">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+                      <path d={s.icon_svg_path} />
+                    </svg>
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <div className="flex items-baseline gap-3">
+                      <span className="font-mammoth text-xs text-white/30 tabular-nums">{String(i + 1).padStart(2, "0")}</span>
+                      <h3 className="font-mammoth text-xl sm:text-2xl leading-tight text-white">{s.title}</h3>
+                    </div>
+                    <p className="mt-2 text-sm text-white/60 leading-relaxed line-clamp-3">{s.description}</p>
+                  </div>
                 </div>
               </div>
             ))}
           </div>
+
         </div>
       </section>
 
