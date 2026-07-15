@@ -387,9 +387,10 @@ function Index() {
               <span>{tnav?.quote ?? ""}</span>
               <span className="h-px w-8 bg-[#EC4392]/50" />
             </div>
-            <h2 data-reveal className="font-mammoth leading-[0.95] tracking-tight text-[44px] sm:text-[64px] md:text-[88px] lg:text-[108px] text-white">
+            <h2 data-reveal className="font-mammoth leading-[1] tracking-tight text-[34px] sm:text-[44px] md:text-[56px] lg:text-[64px] text-white max-w-3xl mx-auto">
               {tcta.title}
             </h2>
+
             <p data-reveal style={{ transitionDelay: "120ms" }} className="mt-8 text-lg sm:text-xl text-white/70 max-w-2xl mx-auto leading-relaxed">{tcta.sub}</p>
             <div data-reveal style={{ transitionDelay: "240ms" }} className="mt-12">
               <a href="#cotizar" className="btn-sweep inline-block text-white px-10 py-5 text-sm font-semibold tracking-[0.18em] transition rounded-full" style={{ backgroundColor: "#EC4392", ["--sweep-bg" as string]: "#ffffff", ["--sweep-fg" as string]: "#000000" }}>
