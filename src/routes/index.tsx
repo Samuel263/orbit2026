@@ -180,7 +180,9 @@ function Index() {
 
       {/* CLIENTS — minimal, single strip */}
       <section className="relative z-10 bg-[#F7F6F4] text-neutral-900 py-16 sm:py-20 overflow-hidden">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 md:px-10 text-center">
+        <div className="paper-noise" aria-hidden="true" />
+        <div className="relative max-w-6xl mx-auto px-4 sm:px-6 md:px-10 text-center">
+
           <span data-reveal className="inline-flex items-center gap-2 text-[10px] font-bold tracking-[0.28em] text-neutral-500 uppercase">
             <span className="h-px w-8 bg-neutral-300" />{tcl?.kicker}<span className="h-px w-8 bg-neutral-300" />
           </span>
