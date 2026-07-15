@@ -279,35 +279,45 @@ function Index() {
             </div>
           </div>
 
-          <div className="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-            {featuredReviews.map((r, i) => {
-              // scatter rotations for a hand-pinned board feel
-              const rots = [-2.2, 1.6, -1.1, 2.4, -1.8, 1.2];
-              const rot = rots[i % rots.length];
-              return (
-                <article
-                  key={r.id}
-                  data-reveal
-                  style={{ transitionDelay: `${(i % 6) * 80}ms`, ["--rot" as string]: `${rot}deg` }}
-                  className="review-note relative bg-white border border-neutral-200 rounded-[6px] p-6 sm:p-7"
-                >
-                  <span className="review-note__tape" aria-hidden="true" />
-                  <svg width="28" height="22" viewBox="0 0 34 26" fill="none" className="text-[#EC4392] mb-3">
-                    <path d="M0 26V16C0 7.163 5.82 0.5 14 0V6c-4.418 0-8 4.03-8 10h8v10H0zm20 0V16c0-8.837 5.82-15.5 14-16v6c-4.418 0-8 4.03-8 10h8v10H20z" fill="currentColor"/>
-                  </svg>
-                  <p className="text-[15px] sm:text-base leading-relaxed text-neutral-800">{r.text_body}</p>
-                  <div className="mt-6 pt-5 border-t border-dashed border-neutral-300 flex items-center gap-3">
-                    <div className="grid size-10 shrink-0 place-items-center rounded-full text-white text-sm font-semibold" style={{ backgroundColor: r.color }}>{r.initial}</div>
-                    <div className="min-w-0 flex-1">
-                      <p className="font-semibold text-neutral-900 truncate">{r.name}</p>
-                      <div className="flex items-center gap-2 mt-0.5">
-                        <div className="flex gap-0.5 text-[#F0AD4E] text-xs">{"★★★★★".split("").map((s, j) => <span key={j}>{s}</span>)}</div>
-                        <span className="text-xs text-neutral-500">· {r.date_label}</span>
-                      </div>
-                    </div>
-                  </div>
-                </article>
-              );
+        </div>
+
+        {(() => {
+          const src = content.reviews.length > 0 ? content.reviews : featuredReviews;
+          const half = Math.ceil(src.length / 2);
+          const bandA = src.slice(0, half);
+          const bandB = src.slice(half).length ? src.slice(half) : src.slice(0, half);
+          const Card = ({ r, i }: { r: typeof src[number]; i: number }) => (
+            <article
+              key={`${r.id}-${i}`}
+              className="shrink-0 w-[300px] sm:w-[360px] bg-white border border-neutral-200 rounded-2xl p-6 shadow-[0_1px_0_rgba(0,0,0,0.02)]"
+            >
+              <div className="flex gap-0.5 text-[#F0AD4E] text-sm">{"★★★★★".split("").map((s, j) => <span key={j}>{s}</span>)}</div>
+              <p className="mt-3 text-[15px] leading-relaxed text-neutral-800 line-clamp-5">{r.text_body}</p>
+              <div className="mt-5 pt-4 border-t border-neutral-200 flex items-center gap-3">
+                <div className="grid size-10 shrink-0 place-items-center rounded-full text-white text-sm font-semibold" style={{ backgroundColor: r.color }}>{r.initial}</div>
+                <div className="min-w-0">
+                  <p className="font-semibold text-neutral-900 truncate">{r.name}</p>
+                  <p className="text-xs text-neutral-500">{r.date_label}</p>
+                </div>
+              </div>
+            </article>
+          );
+          return (
+            <div className="relative mt-14 space-y-6">
+              <div className="rev-band overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_6%,black_94%,transparent)]">
+                <div className="rev-marquee-l flex w-max gap-6">
+                  {[...bandA, ...bandA, ...bandA].map((r, i) => <Card key={`a-${i}`} r={r} i={i} />)}
+                </div>
+              </div>
+              <div className="rev-band overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_6%,black_94%,transparent)]">
+                <div className="rev-marquee-r flex w-max gap-6">
+                  {[...bandB, ...bandB, ...bandB].map((r, i) => <Card key={`b-${i}`} r={r} i={i} />)}
+                </div>
+              </div>
+            </div>
+          );
+        })()}
+
             })}
           </div>
         </div>
