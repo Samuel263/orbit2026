@@ -32,12 +32,12 @@ export function SiteNav({ language, onLanguageChange }: Props) {
         <Link to="/" className="flex items-center shrink-0 pl-1">
           <img src={logoAsset} alt="Logo" className="h-7 sm:h-8 md:h-9 w-auto" />
         </Link>
-        <nav className="hidden lg:flex items-center gap-6 text-[11px] tracking-[0.18em] text-white/85 font-sans normal-case">
+        <nav className={`${scrolled ? "hidden" : "hidden lg:flex"} items-center gap-6 text-[11px] tracking-[0.18em] text-white/85 font-sans normal-case`}>
           <Link to="/portafolio" className="hover:text-white transition">{t?.portfolio ?? ""}</Link>
           <a href="/#nosotros" className="hover:text-white transition">{t?.about ?? ""}</a>
           <Link to="/opiniones" className="hover:text-white transition">{t?.reviews ?? ""}</Link>
         </nav>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 shrink-0">
           <LanguageSwitcher value={language} onLanguageChange={onLanguageChange} />
           <a
             href="/#cotizar"
@@ -45,11 +45,16 @@ export function SiteNav({ language, onLanguageChange }: Props) {
             style={{ ["--sweep-bg" as string]: "#EC4392", ["--sweep-fg" as string]: "#ffffff" }}
           >
             <span className="btn-sweep-label">
-              <span className="hidden sm:inline">{t?.quote ?? ""}</span>
-              <span className="sm:hidden">{t?.quoteShort ?? ""}</span>
+              {scrolled ? (t?.quoteShort ?? "") : (
+                <>
+                  <span className="hidden sm:inline">{t?.quote ?? ""}</span>
+                  <span className="sm:hidden">{t?.quoteShort ?? ""}</span>
+                </>
+              )}
             </span>
           </a>
         </div>
+
       </header>
     </div>
   );
