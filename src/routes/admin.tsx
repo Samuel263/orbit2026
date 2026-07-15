@@ -368,10 +368,8 @@ function editableFields(table: string): Field[] {
       ];
     case "projects":
       return [
-        { name: "name", label: "Nombre", type: "text" },
-        { name: "url", label: "URL", type: "text" },
-        { name: "domain", label: "Dominio (visible)", type: "text" },
-        { name: "image_url", label: "Imagen (storage path o URL)", type: "image" },
+        { name: "name", label: "Nombre del proyecto", type: "text" },
+        { name: "image_url", label: "Imagen del proyecto (obligatoria)", type: "image" },
         { name: "position", label: "Orden", type: "number" },
         { name: "featured", label: "Destacado (home)", type: "boolean" },
       ];
