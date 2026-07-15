@@ -26,11 +26,25 @@ export const siteStyles = `
     border-right: 1px dashed rgba(0,0,0,0.08);
     pointer-events: none;
   }
-  .reviews-noise {
-    opacity: 0.5;
+  .reviews-noise, .paper-noise {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.85;
     mix-blend-mode: multiply;
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.55  0 0 0 0 0.55  0 0 0 0 0.55  0 0 0 0.35 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
-    background-size: 220px 220px;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.2  0 0 0 0 0.2  0 0 0 0 0.2  0 0 0 0.55 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    background-size: 240px 240px;
+  }
+
+  /* ---------- Reviews double marquee ---------- */
+  @keyframes revMarqueeL { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  @keyframes revMarqueeR { from { transform: translateX(-50%); } to { transform: translateX(0); } }
+  .rev-marquee-l { animation: revMarqueeL 60s linear infinite; }
+  .rev-marquee-r { animation: revMarqueeR 60s linear infinite; }
+  .rev-band:hover .rev-marquee-l,
+  .rev-band:hover .rev-marquee-r { animation-play-state: paused; }
+  @media (prefers-reduced-motion: reduce) {
+    .rev-marquee-l, .rev-marquee-r { animation: none; }
   }
 
   /* ---------- Editorial service rows ---------- */
