@@ -174,7 +174,9 @@ function Index() {
             </div>
           </main>
         </section>
+        </div>
       </div>
+
 
       {/* CLIENTS — minimal, single strip */}
       <section className="relative z-10 bg-[#F7F6F4] text-neutral-900 py-16 sm:py-20 overflow-hidden">
