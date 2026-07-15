@@ -57,14 +57,11 @@ export const siteStyles = `
   }
   .btn-sweep-label {
     display: inline-block;
-    transition: transform 380ms cubic-bezier(0.22, 1, 0.36, 1), letter-spacing 380ms cubic-bezier(0.22, 1, 0.36, 1);
+    transition: transform 380ms cubic-bezier(0.22, 1, 0.36, 1);
     transform-origin: center;
     will-change: transform;
   }
-  .btn-sweep:hover .btn-sweep-label {
-    transform: scaleX(0.86);
-    letter-spacing: -0.04em;
-  }
+
 
 
   /* ---------- Animated noise overlay (site-wide) ---------- */
