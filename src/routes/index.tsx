@@ -250,137 +250,122 @@ function Index() {
         </div>
       </section>
 
-      {/* REVIEWS — interactive 3D tilt cards on dark canvas */}
-      <section id="opiniones" className="relative z-10 px-4 sm:px-6 md:px-12 py-24 sm:py-32 bg-[#0B0A14] text-white overflow-hidden">
-        <div className="absolute inset-0 pointer-events-none opacity-40" aria-hidden="true" style={{
-          backgroundImage: "radial-gradient(circle at 20% 20%, rgba(236,67,146,0.25), transparent 40%), radial-gradient(circle at 80% 70%, rgba(120,60,200,0.2), transparent 45%)"
-        }} />
+      {/* REVIEWS — wall of notes on a light noisy background */}
+      <section id="opiniones" className="relative z-10 px-4 sm:px-6 md:px-12 py-24 sm:py-32 bg-[#F7F6F4] text-neutral-900 overflow-hidden">
+        <div className="reviews-noise absolute inset-0 pointer-events-none" aria-hidden="true" />
         <div className="relative max-w-7xl mx-auto">
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8" data-reveal>
             <div>
               <p className="text-xs sm:text-sm tracking-[0.28em] font-bold text-[#EC4392] uppercase">{tr?.kicker}</p>
-              <h2 className="mt-4 font-mammoth leading-[0.98] tracking-tight text-[42px] sm:text-[56px] md:text-[72px] lg:text-[88px]">
-                <span className="block text-white">{tr?.title1}</span>
+              <h2 className="mt-4 font-mammoth leading-[0.98] tracking-tight text-[42px] sm:text-[56px] md:text-[72px] lg:text-[84px]">
+                <span className="block text-neutral-900">{tr?.title1}</span>
                 <span className="block" style={{ color: "#EC4392" }}>{tr?.title2}</span>
               </h2>
             </div>
             <div className="flex flex-col items-start lg:items-end gap-2">
               <div className="flex gap-1 text-[#F0AD4E] text-xl">{"★★★★★".split("").map((s, i) => <span key={i}>{s}</span>)}</div>
-              <p className="text-3xl sm:text-4xl font-black tracking-tight">{tr?.excellent}</p>
-              <p className="text-xs text-white/60">{tr?.basedOn}</p>
-              <Link to="/opiniones" className="btn-sweep mt-4 inline-block border border-white/40 transition px-6 py-3 text-xs font-semibold tracking-[0.18em] text-white" style={{ borderRadius: "18px", ["--sweep-bg" as string]: "#ffffff", ["--sweep-fg" as string]: "#000000" }}>
+              <p className="text-3xl sm:text-4xl font-black tracking-tight text-neutral-900">{tr?.excellent}</p>
+              <p className="text-xs text-neutral-500">{tr?.basedOn}</p>
+              <Link to="/opiniones" className="btn-sweep mt-4 inline-block border border-neutral-900 transition px-6 py-3 text-xs font-semibold tracking-[0.18em] text-neutral-900 rounded-full" style={{ ["--sweep-bg" as string]: "#0a0a0a", ["--sweep-fg" as string]: "#ffffff" }}>
                 <span className="btn-sweep-label">{tr?.cta}</span>
               </Link>
             </div>
           </div>
 
-          <div className="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6" style={{ perspective: "1200px" }}>
-            {featuredReviews.map((r, i) => (
-              <article
-                key={r.id}
-                data-reveal
-                style={{ transitionDelay: `${(i % 6) * 90}ms` }}
-                className="review-card relative rounded-3xl border border-white/10 bg-gradient-to-br from-white/[0.06] to-white/[0.02] backdrop-blur-sm p-6 sm:p-7"
-              >
-                <div className="review-card__badge absolute inset-0 rounded-3xl pointer-events-none" aria-hidden="true" />
-                <div className="relative">
-                  <svg width="34" height="26" viewBox="0 0 34 26" fill="none" className="text-[#EC4392] mb-4">
+          <div className="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+            {featuredReviews.map((r, i) => {
+              // scatter rotations for a hand-pinned board feel
+              const rots = [-2.2, 1.6, -1.1, 2.4, -1.8, 1.2];
+              const rot = rots[i % rots.length];
+              return (
+                <article
+                  key={r.id}
+                  data-reveal
+                  style={{ transitionDelay: `${(i % 6) * 80}ms`, ["--rot" as string]: `${rot}deg` }}
+                  className="review-note relative bg-white border border-neutral-200 rounded-[6px] p-6 sm:p-7"
+                >
+                  <span className="review-note__tape" aria-hidden="true" />
+                  <svg width="28" height="22" viewBox="0 0 34 26" fill="none" className="text-[#EC4392] mb-3">
                     <path d="M0 26V16C0 7.163 5.82 0.5 14 0V6c-4.418 0-8 4.03-8 10h8v10H0zm20 0V16c0-8.837 5.82-15.5 14-16v6c-4.418 0-8 4.03-8 10h8v10H20z" fill="currentColor"/>
                   </svg>
-                  <p className="review-card__quote text-base sm:text-lg leading-relaxed text-white/90 font-medium">{r.text_body}</p>
-                  <div className="review-card__meta mt-6 flex items-center gap-3 pt-6 border-t border-white/10">
-                    <div className="grid size-11 shrink-0 place-items-center rounded-full text-white text-sm font-semibold" style={{ backgroundColor: r.color }}>{r.initial}</div>
+                  <p className="text-[15px] sm:text-base leading-relaxed text-neutral-800">{r.text_body}</p>
+                  <div className="mt-6 pt-5 border-t border-dashed border-neutral-300 flex items-center gap-3">
+                    <div className="grid size-10 shrink-0 place-items-center rounded-full text-white text-sm font-semibold" style={{ backgroundColor: r.color }}>{r.initial}</div>
                     <div className="min-w-0 flex-1">
-                      <p className="font-semibold text-white truncate">{r.name}</p>
+                      <p className="font-semibold text-neutral-900 truncate">{r.name}</p>
                       <div className="flex items-center gap-2 mt-0.5">
                         <div className="flex gap-0.5 text-[#F0AD4E] text-xs">{"★★★★★".split("").map((s, j) => <span key={j}>{s}</span>)}</div>
-                        <span className="text-xs text-white/50">· {r.date_label}</span>
+                        <span className="text-xs text-neutral-500">· {r.date_label}</span>
                       </div>
                     </div>
                   </div>
-                </div>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* SOLUTIONS — asymmetric bento */}
-      <section className="relative z-10 px-4 sm:px-6 md:px-12 py-24 sm:py-32 bg-[#F7F6F4] text-neutral-900 overflow-hidden">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6" data-reveal>
-            <h2 className="font-mammoth leading-[0.98] tracking-tight text-[42px] sm:text-[56px] md:text-[72px] lg:text-[84px] max-w-3xl">
-              <span className="block text-neutral-900">{ts?.title1}</span>
-              <span className="block" style={{ color: "#EC4392" }}>{ts?.title2}</span>
-            </h2>
-            <p className="max-w-sm text-base sm:text-lg text-neutral-600 leading-relaxed">{ts?.sub}</p>
-          </div>
-
-          <div className="mt-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 auto-rows-[minmax(180px,auto)] gap-4 sm:gap-5">
-            {content.solutions.map((s, i) => {
-              // Bento layout: first item wide, third tall
-              const span = i === 0 ? "sm:col-span-2 lg:col-span-2 lg:row-span-2" : i === 3 ? "lg:row-span-2" : "";
-              const dark = i === 0 || i === 3;
-              return (
-                <div
-                  key={s.id}
-                  data-reveal
-                  style={{ transitionDelay: `${(i % 4) * 100}ms` }}
-                  onMouseMove={(e) => {
-                    const el = e.currentTarget;
-                    const r = el.getBoundingClientRect();
-                    el.style.setProperty("--mx", `${((e.clientX - r.left) / r.width) * 100}%`);
-                    el.style.setProperty("--my", `${((e.clientY - r.top) / r.height) * 100}%`);
-                  }}
-                  className={`bento-card group flex flex-col justify-between rounded-3xl p-6 sm:p-7 border ${dark ? "bg-[#1A1A1A] text-white border-white/10" : "bg-white text-neutral-900 border-neutral-200"} ${span}`}
-                >
-                  <div className={`grid size-14 place-items-center rounded-2xl ${dark ? "bg-white/[0.06] text-[#EC4392]" : "bg-[#EC4392]/10 text-[#EC4392]"}`}>
-                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-                      <path d={s.icon_svg_path} />
-                    </svg>
-                  </div>
-                  <div className="mt-8">
-                    <h3 className={`font-mammoth text-2xl sm:text-3xl leading-tight ${dark ? "text-white" : "text-neutral-900"}`}>{s.title}</h3>
-                    <p className={`mt-3 text-sm leading-relaxed ${dark ? "text-white/70" : "text-neutral-600"}`}>{s.description}</p>
-                  </div>
-                </div>
+                </article>
               );
             })}
           </div>
         </div>
       </section>
 
-      {/* STATS — bold ticker band */}
+      {/* SOLUTIONS — editorial numbered rows */}
+      <section className="relative z-10 px-4 sm:px-6 md:px-12 py-24 sm:py-32 bg-[#1A1A1A] text-white overflow-hidden">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6" data-reveal>
+            <h2 className="font-mammoth leading-[0.98] tracking-tight text-[42px] sm:text-[56px] md:text-[72px] lg:text-[84px] max-w-3xl">
+              <span className="block text-white">{ts?.title1}</span>
+              <span className="block" style={{ color: "#EC4392" }}>{ts?.title2}</span>
+            </h2>
+            <p className="max-w-sm text-base sm:text-lg text-white/60 leading-relaxed">{ts?.sub}</p>
+          </div>
+
+          <div className="mt-16 border-t border-white/10">
+            {content.solutions.map((s, i) => (
+              <div
+                key={s.id}
+                data-reveal
+                className="service-row group grid grid-cols-[auto_1fr_auto] items-center gap-6 sm:gap-10 py-8 sm:py-10 border-b border-white/10"
+              >
+                <span className="font-mammoth text-3xl sm:text-4xl text-white/30 group-hover:text-[#EC4392] transition-colors duration-500 tabular-nums">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <div className="min-w-0">
+                  <h3 className="font-mammoth text-2xl sm:text-3xl md:text-4xl leading-tight text-white group-hover:translate-x-2 transition-transform duration-500">
+                    {s.title}
+                  </h3>
+                  <p className="service-row__desc mt-3 text-sm sm:text-base text-white/60 leading-relaxed max-w-2xl">
+                    {s.description}
+                  </p>
+                </div>
+                <div className="hidden sm:grid size-12 place-items-center rounded-full border border-white/20 text-white/70 group-hover:border-[#EC4392] group-hover:text-[#EC4392] transition-colors duration-500 shrink-0">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+                    <path d={s.icon_svg_path} />
+                  </svg>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* STATS — clean typographic band */}
       {tst && (
-        <section className="relative z-10 px-4 sm:px-6 md:px-12 py-20 sm:py-28 bg-[#1A1A1A] overflow-hidden">
-          <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#EC4392] to-transparent" />
+        <section className="relative z-10 px-4 sm:px-6 md:px-12 py-20 sm:py-28 bg-[#F7F6F4] text-neutral-900">
           <div className="max-w-7xl mx-auto">
-            <h2 data-reveal className="text-center font-mammoth leading-[1] tracking-tight text-[32px] sm:text-[44px] md:text-[56px] max-w-4xl mx-auto text-white">{tst.title}</h2>
-            <div className="mt-14 sm:mt-20 grid grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-6">
+            <h2 data-reveal className="text-center font-mammoth leading-[1] tracking-tight text-[32px] sm:text-[44px] md:text-[56px] max-w-4xl mx-auto">{tst.title}</h2>
+            <div className="mt-14 sm:mt-20 grid grid-cols-2 lg:grid-cols-4 gap-y-10 gap-x-6 border-t border-neutral-200">
               {(tst.items ?? []).map((s, i) => (
-                <div key={`${s.l}-${i}`} data-reveal style={{ transitionDelay: `${i * 120}ms` }} className="text-center relative">
-                  <p className="stat-num font-mammoth text-6xl sm:text-7xl md:text-8xl leading-none" style={{ color: i % 2 === 0 ? "#EC4392" : "#ffffff", animationDelay: `${i * 0.4}s` }}>{s.n}</p>
-                  <p className="mt-4 text-xs sm:text-sm tracking-[0.18em] uppercase text-white/60">{s.l}</p>
+                <div key={`${s.l}-${i}`} data-reveal style={{ transitionDelay: `${i * 100}ms` }} className="pt-8 text-left border-r border-neutral-200 last:border-r-0 px-4 first:pl-0">
+                  <p className="font-mammoth text-5xl sm:text-6xl md:text-7xl leading-none tracking-tight" style={{ color: i % 2 === 0 ? "#EC4392" : "#1A1A1A" }}>{s.n}</p>
+                  <p className="mt-4 text-[11px] sm:text-xs tracking-[0.18em] uppercase text-neutral-500">{s.l}</p>
                 </div>
               ))}
             </div>
           </div>
-          <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[#EC4392] to-transparent" />
         </section>
       )}
 
-      {/* CTA — magnetic gradient */}
+      {/* CTA — bold, clean, no glow */}
       {tcta && (
-        <section
-          id="cotizar"
-          className="cta-mag relative z-10 px-4 sm:px-6 md:px-12 py-32 sm:py-40 bg-[#0B0A14]"
-          onMouseMove={(e) => {
-            const el = e.currentTarget;
-            const r = el.getBoundingClientRect();
-            el.style.setProperty("--mx", `${e.clientX - r.left}px`);
-            el.style.setProperty("--my", `${e.clientY - r.top}px`);
-          }}
-        >
+        <section id="cotizar" className="relative z-10 px-4 sm:px-6 md:px-12 py-32 sm:py-40 bg-[#0B0A14] overflow-hidden">
           <div className="relative max-w-4xl mx-auto text-center">
             <div data-reveal className="inline-flex items-center gap-2 text-[10px] font-bold tracking-[0.28em] text-[#EC4392] uppercase mb-6">
               <span className="h-px w-8 bg-[#EC4392]/50" />
@@ -392,13 +377,14 @@ function Index() {
             </h2>
             <p data-reveal style={{ transitionDelay: "120ms" }} className="mt-8 text-lg sm:text-xl text-white/70 max-w-2xl mx-auto leading-relaxed">{tcta.sub}</p>
             <div data-reveal style={{ transitionDelay: "240ms" }} className="mt-12">
-              <a href="#cotizar" className="btn-sweep inline-block text-white px-10 py-5 text-sm font-semibold tracking-[0.18em] transition" style={{ borderRadius: "9999px", backgroundColor: "#EC4392", ["--sweep-bg" as string]: "#ffffff", ["--sweep-fg" as string]: "#000000" }}>
+              <a href="#cotizar" className="btn-sweep inline-block text-white px-10 py-5 text-sm font-semibold tracking-[0.18em] transition rounded-full" style={{ backgroundColor: "#EC4392", ["--sweep-bg" as string]: "#ffffff", ["--sweep-fg" as string]: "#000000" }}>
                 <span className="btn-sweep-label">{tcta.button}</span>
               </a>
             </div>
           </div>
         </section>
       )}
+
 
 
       <SiteFooter language={lang} content={content} />

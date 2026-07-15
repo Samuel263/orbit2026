@@ -5,62 +5,62 @@ export const siteStyles = `
   .proj-marquee { animation: projMarquee 55s linear infinite; will-change: transform; }
   @media (prefers-reduced-motion: reduce) { .proj-marquee { animation: none; } }
 
-  /* ---------- Review tilt cards ---------- */
-  .review-card {
-    transition: transform 600ms cubic-bezier(0.22,1,0.36,1), box-shadow 600ms ease, border-color 400ms ease;
-    transform-style: preserve-3d;
-    will-change: transform;
+  /* ---------- Review notes (light, no glow) ---------- */
+  .review-note {
+    transform: rotate(var(--rot, 0deg));
+    transition: transform 500ms cubic-bezier(0.22,1,0.36,1), border-color 400ms ease;
   }
-  .review-card:hover {
-    transform: perspective(1000px) rotateX(3deg) rotateY(-4deg) translateY(-10px) scale(1.02);
-    box-shadow: 0 40px 80px -30px rgba(236, 67, 146, 0.45), 0 20px 40px -20px rgba(0,0,0,0.35);
-    border-color: rgba(236,67,146,0.6);
+  .review-note:hover {
+    transform: rotate(0deg) translateY(-4px);
+    border-color: #EC4392;
   }
-  .review-card__quote { transition: transform 600ms cubic-bezier(0.22,1,0.36,1), opacity 500ms ease; }
-  .review-card:hover .review-card__quote { transform: translateZ(30px); }
-  .review-card__meta { transition: transform 600ms cubic-bezier(0.22,1,0.36,1); }
-  .review-card:hover .review-card__meta { transform: translateZ(20px); }
-  .review-card__badge {
-    background: linear-gradient(135deg, rgba(236,67,146,0.15), rgba(236,67,146,0));
-    opacity: 0;
-    transition: opacity 500ms ease;
-  }
-  .review-card:hover .review-card__badge { opacity: 1; }
-
-  /* ---------- Solution bento cards ---------- */
-  .bento-card {
-    transition: transform 500ms cubic-bezier(0.22,1,0.36,1), background-color 500ms ease, border-color 500ms ease;
-    position: relative;
-    overflow: hidden;
-  }
-  .bento-card::after {
-    content: "";
-    position: absolute; inset: 0;
-    background: radial-gradient(circle at var(--mx,50%) var(--my,50%), rgba(236,67,146,0.18), transparent 55%);
-    opacity: 0;
-    transition: opacity 400ms ease;
-    pointer-events: none;
-  }
-  .bento-card:hover::after { opacity: 1; }
-  .bento-card:hover { transform: translateY(-4px); border-color: rgba(236,67,146,0.35); }
-
-  /* ---------- Ticker stats ---------- */
-  @keyframes tickerFloat { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
-  .stat-num { animation: tickerFloat 4s ease-in-out infinite; display: inline-block; }
-
-  /* ---------- CTA magnetic bg ---------- */
-  .cta-mag { position: relative; overflow: hidden; }
-  .cta-mag::before {
-    content: "";
+  .review-note__tape {
     position: absolute;
-    width: 60vmin; height: 60vmin;
-    left: var(--mx, 50%); top: var(--my, 50%);
-    transform: translate(-50%, -50%);
-    background: radial-gradient(circle, rgba(236,67,146,0.55), transparent 60%);
-    filter: blur(40px);
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%) rotate(-3deg);
+    width: 78px;
+    height: 20px;
+    background: rgba(236, 67, 146, 0.28);
+    border-left: 1px dashed rgba(0,0,0,0.08);
+    border-right: 1px dashed rgba(0,0,0,0.08);
     pointer-events: none;
-    transition: left 400ms ease, top 400ms ease;
   }
+  .reviews-noise {
+    opacity: 0.5;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.55  0 0 0 0 0.55  0 0 0 0 0.55  0 0 0 0.35 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    background-size: 220px 220px;
+  }
+
+  /* ---------- Editorial service rows ---------- */
+  .service-row { transition: background-color 400ms ease; }
+  .service-row:hover { background-color: rgba(255,255,255,0.02); }
+  .service-row__desc {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 500ms cubic-bezier(0.22,1,0.36,1), opacity 400ms ease, margin-top 400ms ease;
+    margin-top: 0;
+  }
+  @media (min-width: 640px) {
+    .service-row .service-row__desc { max-height: 0; margin-top: 0; }
+    .service-row:hover .service-row__desc { max-height: 200px; opacity: 1; margin-top: 12px; }
+  }
+  @media (max-width: 639px) {
+    .service-row__desc { max-height: none; opacity: 1; margin-top: 12px; }
+  }
+
+  /* ---------- Portfolio cards (light) ---------- */
+  .portfolio-item__img { transition: transform 1000ms cubic-bezier(0.22, 1, 0.36, 1); }
+  .portfolio-item:hover .portfolio-item__img { transform: scale(1.04); }
+  .portfolio-item__overlay { opacity: 0; transition: opacity 400ms ease; background: linear-gradient(to top, rgba(0,0,0,0.35), transparent 55%); }
+  .portfolio-item:hover .portfolio-item__overlay { opacity: 1; }
+
+  /* ---------- Portfolio modal ---------- */
+  .portfolio-modal { animation: portfolioModalIn 350ms cubic-bezier(0.22, 1, 0.36, 1); }
+  @keyframes portfolioModalIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
 
 
   @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-12px)} }

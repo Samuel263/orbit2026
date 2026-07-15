@@ -213,7 +213,7 @@ function SectionEditor({ table }: { table: string }) {
 function tableColumns(table: string): string[] {
   switch (table) {
     case "content_blocks": return ["key"];
-    case "projects": return ["name", "url", "domain", "position", "featured"];
+    case "projects": return ["name", "position", "featured"];
     case "reviews": return ["name", "initial", "date_label", "position"];
     case "clients": return ["name", "position"];
     case "solutions": return ["position", "icon_svg_path"];
@@ -230,7 +230,7 @@ function tableColumns(table: string): string[] {
 function defaultRow(table: string): Record<string, unknown> {
   switch (table) {
     case "content_blocks": return { key: "", data: {} };
-    case "projects": return { name: "", url: "https://", domain: "", image_url: null, position: 0, featured: false };
+    case "projects": return { name: "", url: "", domain: "", image_url: null, position: 0, featured: true };
     case "reviews": return { name: "", initial: "", color: "#EC4392", date_label: "", text_body: "", position: 0 };
     case "clients": return { name: "", logo_url: null, position: 0 };
     case "solutions": return { icon_svg_path: "", position: 0, i18n: { es: { title: "", description: "" } } };
@@ -368,10 +368,8 @@ function editableFields(table: string): Field[] {
       ];
     case "projects":
       return [
-        { name: "name", label: "Nombre", type: "text" },
-        { name: "url", label: "URL", type: "text" },
-        { name: "domain", label: "Dominio (visible)", type: "text" },
-        { name: "image_url", label: "Imagen (storage path o URL)", type: "image" },
+        { name: "name", label: "Nombre del proyecto", type: "text" },
+        { name: "image_url", label: "Imagen del proyecto (obligatoria)", type: "image" },
         { name: "position", label: "Orden", type: "number" },
         { name: "featured", label: "Destacado (home)", type: "boolean" },
       ];
