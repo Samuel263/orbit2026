@@ -48,13 +48,14 @@ function PortfolioPage() {
 
       <section className="relative z-10 px-4 sm:px-6 md:px-12 pt-32 sm:pt-40 pb-10 bg-[#F7F6F4]">
         <div className="max-w-7xl mx-auto text-center">
-          <h1 data-reveal className="font-mammoth leading-[1.05] tracking-tight text-[40px] sm:text-[60px] md:text-[72px]">
-            <span className="block text-neutral-900">{tc?.t1}</span>
+          <h1 data-reveal className="font-mammoth leading-[1.15] tracking-tight text-[40px] sm:text-[60px] md:text-[72px]">
+            <span className="block text-neutral-900 pb-[0.06em]">{tc?.t1}</span>
             <span className="block" style={{ color: "#EC4392" }}>{tc?.allTitle}</span>
           </h1>
           <p data-reveal style={{ transitionDelay: "120ms" }} className="mt-5 mx-auto max-w-2xl text-base sm:text-lg text-neutral-600">{tc?.allSubtitle}</p>
         </div>
       </section>
+
 
       <section className="relative z-10 px-4 sm:px-6 md:px-12 py-12 sm:py-16 bg-[#F7F6F4]">
         <div className="max-w-7xl mx-auto grid gap-x-6 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
@@ -119,14 +120,15 @@ function PortfolioPage() {
 
       {open && (
         <div
-          className="fixed inset-0 z-[70] bg-black/70 backdrop-blur-sm p-3 sm:p-6 md:p-10 flex items-start justify-center overflow-y-auto"
+          className="fixed inset-0 z-[70] bg-black/70 backdrop-blur-sm p-3 sm:p-6 md:p-10 flex items-center justify-center"
           onClick={() => setOpen(null)}
         >
           <div
-            className="portfolio-modal w-full max-w-4xl bg-white rounded-2xl overflow-hidden my-auto"
+            className="portfolio-modal w-full max-w-4xl bg-white rounded-2xl overflow-hidden flex flex-col"
+            style={{ maxHeight: "calc(100vh - 24px)" }}
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="sticky top-0 z-10 flex items-center justify-between gap-4 px-5 sm:px-6 py-3 sm:py-4 bg-white border-b border-neutral-200">
+            <div className="flex items-center justify-between gap-4 px-5 sm:px-6 py-3 sm:py-4 bg-white border-b border-neutral-200 shrink-0">
               <div className="min-w-0">
                 <p className="text-sm sm:text-base font-semibold text-neutral-900 truncate">{open.name}</p>
                 <p className="text-[11px] sm:text-xs text-neutral-500 tracking-[0.14em] uppercase">Proyecto</p>
@@ -140,7 +142,7 @@ function PortfolioPage() {
                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round"><path d="M1 1l12 12M13 1L1 13"/></svg>
               </button>
             </div>
-            <div className="bg-neutral-100">
+            <div className="bg-neutral-100 overflow-y-auto flex-1">
               {open.image_url ? (
                 <img src={open.image_url} alt={open.name} className="block w-full h-auto" />
               ) : (
@@ -150,6 +152,7 @@ function PortfolioPage() {
           </div>
         </div>
       )}
+
 
       <style>{siteStyles}</style>
     </div>

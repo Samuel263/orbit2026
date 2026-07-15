@@ -106,9 +106,7 @@ function Index() {
         <div className="absolute inset-0" style={{ backgroundColor: "rgba(11, 18, 38, 0.75)" }} />
       </div>
 
-      <div className="relative z-10 bg-[#F7F6F4]">
-        <div className="paper-noise" aria-hidden="true" />
-        <div className="relative px-2 sm:px-3 md:px-4 pt-2 sm:pt-3 md:pt-4">
+      <div className="relative z-10 px-2 sm:px-3 md:px-4 pt-2 sm:pt-3 md:pt-4">
         <section
           className="relative overflow-hidden rounded-3xl hero-stage"
           onPointerMoveCapture={handleHeroTrailMove}
@@ -174,31 +172,30 @@ function Index() {
             </div>
           </main>
         </section>
-        </div>
       </div>
+
+
 
 
       {/* CLIENTS — minimal, single strip */}
       <section className="relative z-10 bg-[#F7F6F4] text-neutral-900 py-16 sm:py-20 overflow-hidden">
-        <div className="paper-noise" aria-hidden="true" />
         <div className="relative max-w-6xl mx-auto px-4 sm:px-6 md:px-10 text-center">
-
           <span data-reveal className="inline-flex items-center gap-2 text-[10px] font-bold tracking-[0.28em] text-neutral-500 uppercase">
             <span className="h-px w-8 bg-neutral-300" />{tcl?.kicker}<span className="h-px w-8 bg-neutral-300" />
           </span>
-          <h2 data-reveal style={{ transitionDelay: "80ms" }} className="mt-5 font-mammoth leading-[1.05] tracking-tight text-[26px] sm:text-[34px] md:text-[42px]">
+          <h2 data-reveal style={{ transitionDelay: "80ms" }} className="mt-5 font-mammoth leading-[1.15] tracking-tight text-[26px] sm:text-[34px] md:text-[42px]">
             <span className="text-neutral-900">{tcl?.t1}</span> <span style={{ color: "#EC4392" }}>{tcl?.t2}</span>
           </h2>
         </div>
         <div className="max-w-6xl mx-auto px-4 sm:px-6 md:px-10 mt-10 sm:mt-14">
           <div className="client-strip overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_12%,black_88%,transparent)]">
-            <div className="client-marquee flex w-max items-center gap-10 sm:gap-14">
+            <div className="client-marquee flex w-max items-center gap-14 sm:gap-20">
               {Array.from({ length: 6 }, () => content.clients).flat().map((c, i) => (
-                <div key={`c-${i}`} className="flex h-10 sm:h-12 shrink-0 items-center justify-center">
+                <div key={`c-${i}`} className="flex h-16 sm:h-20 shrink-0 items-center justify-center">
                   {c.logo_url ? (
-                    <img src={c.logo_url} alt={`${t?.clientAlt ?? ""}: ${c.name}`} className="max-h-8 sm:max-h-10 max-w-[140px] object-contain client-logo-dark" loading="lazy" />
+                    <img src={c.logo_url} alt={`${t?.clientAlt ?? ""}: ${c.name}`} className="max-h-14 sm:max-h-16 max-w-[200px] object-contain client-logo-dark" loading="lazy" />
                   ) : (
-                    <span className="text-neutral-700 text-sm font-semibold tracking-wide">{c.name}</span>
+                    <span className="text-neutral-700 text-base font-semibold tracking-wide">{c.name}</span>
                   )}
                 </div>
               ))}
@@ -211,9 +208,9 @@ function Index() {
       <section id="portafolio" className="relative z-10 py-20 sm:py-28 bg-[#1A1A1A] overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12">
           <div className="text-left max-w-3xl">
-            <h2 data-reveal className="font-mammoth leading-[1.05] tracking-tight text-[34px] sm:text-[44px] md:text-[54px] lg:text-[64px]">
-              <span className="block text-white text-[0.92em]">{tc?.t1}</span>
-              <span className="block pt-[0.18em] -mt-[0.18em] overflow-visible" style={{ color: "#EC4392" }}>{tc?.t2}</span>
+            <h2 data-reveal className="font-mammoth leading-[1.15] tracking-tight text-[34px] sm:text-[44px] md:text-[54px] lg:text-[64px]">
+              <span className="block text-white text-[0.92em] pb-[0.08em]">{tc?.t1}</span>
+              <span className="block overflow-visible" style={{ color: "#EC4392" }}>{tc?.t2}</span>
             </h2>
             <p data-reveal style={{ transitionDelay: "120ms" }} className="mt-5 text-base sm:text-lg text-white/85 leading-relaxed">{tc?.desc}</p>
           </div>
@@ -240,7 +237,6 @@ function Index() {
                       draggable={false}
                       loading="lazy"
                     />
-
                   ) : (
                     <div className="w-full h-full bg-gradient-to-b from-[#1a1230] to-[#0a0814]" />
                   )}
@@ -251,21 +247,20 @@ function Index() {
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 mt-14 flex justify-center" data-reveal>
-          <Link to="/portafolio" className="btn-sweep bg-[var(--pink)] transition px-8 py-4 text-sm font-semibold tracking-[0.18em] text-white" style={{ borderRadius: "18px", ["--sweep-bg" as string]: "#ffffff", ["--sweep-fg" as string]: "#000000" }}>
+          <Link to="/portafolio" className="btn-sweep bg-[var(--pink)] transition px-8 py-4 text-sm font-semibold tracking-[0.18em] text-white rounded-full" style={{ ["--sweep-bg" as string]: "#ffffff", ["--sweep-fg" as string]: "#000000" }}>
             <span className="btn-sweep-label">{tc?.more}</span>
           </Link>
         </div>
       </section>
 
-      {/* REVIEWS — wall of notes on a light noisy background */}
-      <section id="opiniones" className="relative z-10 px-4 sm:px-6 md:px-12 py-24 sm:py-32 bg-[#F7F6F4] text-neutral-900 overflow-hidden">
-        <div className="reviews-noise absolute inset-0 pointer-events-none" aria-hidden="true" />
+      {/* REVIEWS */}
+      <section id="opiniones" className="relative z-10 px-4 sm:px-6 md:px-12 py-24 sm:py-32 bg-white text-neutral-900 overflow-hidden">
         <div className="relative max-w-7xl mx-auto">
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8" data-reveal>
             <div>
               <p className="text-xs sm:text-sm tracking-[0.28em] font-bold text-[#EC4392] uppercase">{tr?.kicker}</p>
-              <h2 className="mt-4 font-mammoth leading-[0.98] tracking-tight text-[42px] sm:text-[56px] md:text-[72px] lg:text-[84px]">
-                <span className="block text-neutral-900">{tr?.title1}</span>
+              <h2 className="mt-4 font-mammoth leading-[1.1] tracking-tight text-[42px] sm:text-[56px] md:text-[72px] lg:text-[84px]">
+                <span className="block text-neutral-900 pb-[0.06em]">{tr?.title1}</span>
                 <span className="block" style={{ color: "#EC4392" }}>{tr?.title2}</span>
               </h2>
             </div>
@@ -278,7 +273,6 @@ function Index() {
               </Link>
             </div>
           </div>
-
         </div>
 
         {(() => {
@@ -289,7 +283,7 @@ function Index() {
           const Card = ({ r, i }: { r: typeof src[number]; i: number }) => (
             <article
               key={`${r.id}-${i}`}
-              className="shrink-0 w-[300px] sm:w-[360px] bg-white border border-neutral-200 rounded-2xl p-6 shadow-[0_1px_0_rgba(0,0,0,0.02)]"
+              className="shrink-0 w-[300px] sm:w-[360px] bg-[#F7F6F4] border border-neutral-200 rounded-2xl p-6"
             >
               <div className="flex gap-0.5 text-[#F0AD4E] text-sm">{"★★★★★".split("").map((s, j) => <span key={j}>{s}</span>)}</div>
               <p className="mt-3 text-[15px] leading-relaxed text-neutral-800 line-clamp-5">{r.text_body}</p>
@@ -319,58 +313,43 @@ function Index() {
         })()}
       </section>
 
-
-      {/* SOLUTIONS — editorial numbered rows */}
+      {/* SERVICES — simplified single-column editorial list */}
       <section className="relative z-10 px-4 sm:px-6 md:px-12 py-24 sm:py-32 bg-[#1A1A1A] text-white overflow-hidden">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6" data-reveal>
-            <h2 className="font-mammoth leading-[0.98] tracking-tight text-[42px] sm:text-[56px] md:text-[72px] lg:text-[84px] max-w-3xl">
-              <span className="block text-white">{ts?.title1}</span>
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center" data-reveal>
+            <h2 className="font-mammoth leading-[1.1] tracking-tight text-[38px] sm:text-[52px] md:text-[64px]">
+              <span className="block text-white pb-[0.06em]">{ts?.title1}</span>
               <span className="block" style={{ color: "#EC4392" }}>{ts?.title2}</span>
             </h2>
-            <p className="max-w-sm text-base sm:text-lg text-white/60 leading-relaxed">{ts?.sub}</p>
+            <p className="mx-auto mt-6 max-w-xl text-base sm:text-lg text-white/60 leading-relaxed">{ts?.sub}</p>
           </div>
 
-          <div className="mt-14 grid grid-cols-1 sm:grid-cols-2 gap-px bg-white/10 border border-white/10 rounded-2xl overflow-hidden">
+          <div className="mt-16 divide-y divide-white/10 border-y border-white/10">
             {content.solutions.map((s, i) => (
               <div
                 key={s.id}
                 data-reveal
-                className="group relative bg-[#1A1A1A] hover:bg-[#14102a] transition-colors duration-500 p-6 sm:p-8"
+                className="group flex items-center gap-6 py-6 sm:py-7 transition-colors duration-300 hover:bg-white/[0.03] px-2 sm:px-4"
               >
-                <div className="flex items-start gap-4">
-                  <div className="grid size-11 place-items-center rounded-xl border border-white/15 text-white/80 group-hover:border-[#EC4392] group-hover:text-[#EC4392] transition-colors duration-500 shrink-0">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-                      <path d={s.icon_svg_path} />
-                    </svg>
-                  </div>
-                  <div className="min-w-0 flex-1">
-                    <div className="flex items-baseline gap-3">
-                      <span className="font-mammoth text-xs text-white/30 tabular-nums">{String(i + 1).padStart(2, "0")}</span>
-                      <h3 className="font-mammoth text-xl sm:text-2xl leading-tight text-white">{s.title}</h3>
-                    </div>
-                    <p className="mt-2 text-sm text-white/60 leading-relaxed line-clamp-3">{s.description}</p>
-                  </div>
-                </div>
+                <span className="font-mammoth text-sm text-white/30 tabular-nums w-10 shrink-0">{String(i + 1).padStart(2, "0")}</span>
+                <h3 className="font-mammoth text-2xl sm:text-3xl leading-tight text-white flex-1 group-hover:text-[#EC4392] transition-colors">{s.title}</h3>
+                <span className="hidden sm:inline text-white/40 group-hover:text-[#EC4392] transition-colors" aria-hidden="true">→</span>
               </div>
             ))}
           </div>
-
         </div>
       </section>
 
-      {/* STATS — clean typographic band */}
+      {/* STATS — simple centered band */}
       {tst && (
-        <section className="relative z-10 px-4 sm:px-6 md:px-12 py-20 sm:py-28 bg-[#F7F6F4] text-neutral-900 overflow-hidden">
-          <div className="paper-noise" aria-hidden="true" />
-          <div className="relative max-w-7xl mx-auto">
-
-            <h2 data-reveal className="text-center font-mammoth leading-[1] tracking-tight text-[32px] sm:text-[44px] md:text-[56px] max-w-4xl mx-auto">{tst.title}</h2>
-            <div className="mt-14 sm:mt-20 grid grid-cols-2 lg:grid-cols-4 gap-y-10 gap-x-6 border-t border-neutral-200">
+        <section className="relative z-10 px-4 sm:px-6 md:px-12 py-20 sm:py-28 bg-white text-neutral-900 overflow-hidden">
+          <div className="relative max-w-5xl mx-auto text-center">
+            <h2 data-reveal className="font-mammoth leading-[1.1] tracking-tight text-[28px] sm:text-[38px] md:text-[46px] max-w-3xl mx-auto">{tst.title}</h2>
+            <div className="mt-14 grid grid-cols-2 md:grid-cols-4 gap-y-10 gap-x-6">
               {(tst.items ?? []).map((s, i) => (
-                <div key={`${s.l}-${i}`} data-reveal style={{ transitionDelay: `${i * 100}ms` }} className="pt-8 text-left border-r border-neutral-200 last:border-r-0 px-4 first:pl-0">
-                  <p className="font-mammoth text-5xl sm:text-6xl md:text-7xl leading-none tracking-tight" style={{ color: i % 2 === 0 ? "#EC4392" : "#1A1A1A" }}>{s.n}</p>
-                  <p className="mt-4 text-[11px] sm:text-xs tracking-[0.18em] uppercase text-neutral-500">{s.l}</p>
+                <div key={`${s.l}-${i}`} data-reveal style={{ transitionDelay: `${i * 100}ms` }} className="text-center">
+                  <p className="font-mammoth text-5xl sm:text-6xl leading-none tracking-tight" style={{ color: i % 2 === 0 ? "#EC4392" : "#1A1A1A" }}>{s.n}</p>
+                  <p className="mt-3 text-[11px] sm:text-xs tracking-[0.18em] uppercase text-neutral-500">{s.l}</p>
                 </div>
               ))}
             </div>
@@ -387,10 +366,9 @@ function Index() {
               <span>{tnav?.quote ?? ""}</span>
               <span className="h-px w-8 bg-[#EC4392]/50" />
             </div>
-            <h2 data-reveal className="font-mammoth leading-[1] tracking-tight text-[34px] sm:text-[44px] md:text-[56px] lg:text-[64px] text-white max-w-3xl mx-auto">
+            <h2 data-reveal className="font-mammoth leading-[1.1] tracking-tight text-[34px] sm:text-[44px] md:text-[56px] lg:text-[64px] text-white max-w-3xl mx-auto">
               {tcta.title}
             </h2>
-
             <p data-reveal style={{ transitionDelay: "120ms" }} className="mt-8 text-lg sm:text-xl text-white/70 max-w-2xl mx-auto leading-relaxed">{tcta.sub}</p>
             <div data-reveal style={{ transitionDelay: "240ms" }} className="mt-12">
               <a href="#cotizar" className="btn-sweep inline-block text-white px-10 py-5 text-sm font-semibold tracking-[0.18em] transition rounded-full" style={{ backgroundColor: "#EC4392", ["--sweep-bg" as string]: "#ffffff", ["--sweep-fg" as string]: "#000000" }}>
@@ -400,6 +378,7 @@ function Index() {
           </div>
         </section>
       )}
+
 
 
 

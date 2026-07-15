@@ -37,10 +37,11 @@ function ReviewsPage() {
             <div className="flex justify-center gap-1 text-[#F0AD4E] text-2xl">{"★★★★★".split("").map((s, i) => <span key={i}>{s}</span>)}</div>
             <p className="mt-3 text-3xl sm:text-4xl font-black tracking-tight">{tr?.excellent}</p>
             <p className="mt-2 text-sm text-neutral-600">{tr?.basedOn}</p>
-            <h1 className="mt-8 font-mammoth leading-[1.05] tracking-tight text-[36px] sm:text-[52px] md:text-[64px]">
-              <span className="block text-neutral-900">{tr?.title1}</span>
+            <h1 className="mt-8 font-mammoth leading-[1.15] tracking-tight text-[36px] sm:text-[52px] md:text-[64px]">
+              <span className="block text-neutral-900 pb-[0.06em]">{tr?.title1}</span>
               <span className="block" style={{ color: "#EC4392" }}>{tr?.allTitle}</span>
             </h1>
+
             <p className="mt-5 text-base sm:text-lg text-neutral-600">{tr?.allSubtitle}</p>
           </div>
 
@@ -61,9 +62,10 @@ function ReviewsPage() {
           </div>
 
           <div className="mt-14 flex justify-center" data-reveal>
-            <Link to="/" className="btn-sweep border border-neutral-900 transition px-8 py-4 text-xs sm:text-sm font-semibold tracking-[0.18em] text-neutral-900" style={{ borderRadius: "18px", ["--sweep-bg" as string]: "#0a0a0a", ["--sweep-fg" as string]: "#ffffff" }}>
+            <Link to="/" className="btn-sweep border border-neutral-900 transition px-8 py-4 text-xs sm:text-sm font-semibold tracking-[0.18em] text-neutral-900 rounded-full" style={{ ["--sweep-bg" as string]: "#0a0a0a", ["--sweep-fg" as string]: "#ffffff" }}>
               ← Home
             </Link>
+
           </div>
         </div>
       </section>
