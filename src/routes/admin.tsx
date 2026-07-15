@@ -230,7 +230,7 @@ function tableColumns(table: string): string[] {
 function defaultRow(table: string): Record<string, unknown> {
   switch (table) {
     case "content_blocks": return { key: "", data: {} };
-    case "projects": return { name: "", url: "https://", domain: "", image_url: null, position: 0, featured: false };
+    case "projects": return { name: "", url: "", domain: "", image_url: null, position: 0, featured: true };
     case "reviews": return { name: "", initial: "", color: "#EC4392", date_label: "", text_body: "", position: 0 };
     case "clients": return { name: "", logo_url: null, position: 0 };
     case "solutions": return { icon_svg_path: "", position: 0, i18n: { es: { title: "", description: "" } } };
