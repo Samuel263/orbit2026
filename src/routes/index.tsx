@@ -105,8 +105,8 @@ function Index() {
         <div className="absolute inset-0" style={{ backgroundColor: "rgba(11, 18, 38, 0.75)" }} />
       </div>
 
-      <div className="relative z-10 px-2 sm:px-3 md:px-4 pt-2 sm:pt-3 md:pt-4">
-        <section
+<div className="relative z-10 px-4 sm:px-6 lg:px-8 pt-4">
+  <section
           className="relative overflow-hidden rounded-3xl hero-stage"
           onPointerMoveCapture={handleHeroTrailMove}
         >
