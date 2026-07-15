@@ -317,10 +317,8 @@ function Index() {
             </div>
           );
         })()}
-
-
-        </div>
       </section>
+
 
       {/* SOLUTIONS — editorial numbered rows */}
       <section className="relative z-10 px-4 sm:px-6 md:px-12 py-24 sm:py-32 bg-[#1A1A1A] text-white overflow-hidden">
