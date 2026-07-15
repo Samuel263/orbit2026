@@ -106,14 +106,15 @@ function Index() {
         <div className="absolute inset-0" style={{ backgroundColor: "rgba(11, 18, 38, 0.75)" }} />
       </div>
 
-      <div className="relative z-10 px-2 sm:px-3 md:px-4 pt-2 sm:pt-3 md:pt-4">
+      <div className="relative z-10 bg-[#F7F6F4]">
+        <div className="paper-noise" aria-hidden="true" />
+        <div className="relative px-2 sm:px-3 md:px-4 pt-2 sm:pt-3 md:pt-4">
         <section
           className="relative overflow-hidden rounded-3xl hero-stage"
           onPointerMoveCapture={handleHeroTrailMove}
-          style={{ boxShadow: "0 0 0 100vmax #F7F6F4" }}
         >
-          <div className="hero-noise absolute inset-0 pointer-events-none z-[1]" aria-hidden="true" />
           <div className="hero-trail-hitarea absolute inset-0 z-[2]" aria-hidden="true" />
+
           <div className="hero-trail-layer absolute inset-0 z-[3] pointer-events-none" aria-hidden="true">
             {heroTrail.map((item) => (
               <div
