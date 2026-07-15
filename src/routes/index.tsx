@@ -318,8 +318,7 @@ function Index() {
           );
         })()}
 
-            })}
-          </div>
+
         </div>
       </section>
 
