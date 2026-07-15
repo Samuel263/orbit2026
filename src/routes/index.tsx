@@ -9,7 +9,6 @@ import InovepImage from "@/assets/Inovep.png";
 import { SiteNav } from "@/components/SiteNav";
 import { SiteFooter } from "@/components/SiteFooter";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
-import { Signature } from "@/components/Signature";
 import { MouseFollowCursor } from "@/components/MouseFollowCursor";
 import { useSiteLanguage } from "@/hooks/use-site-language";
 import { useRevealOnScroll } from "@/hooks/use-reveal";
@@ -99,7 +98,6 @@ function Index() {
 
   return (
     <div className="relative isolate min-h-screen text-foreground">
-      <div className="site-noise" aria-hidden="true" />
       <SiteNav language={lang} onLanguageChange={onLanguageChange} />
 
       <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none" aria-hidden="true">
@@ -386,7 +384,6 @@ function Index() {
       <SiteFooter language={lang} content={content} />
       <WhatsAppButton settings={content.settings} lang={lang} />
       <MouseFollowCursor />
-      <Signature />
       <style>{siteStyles}</style>
       {/* logo asset only to satisfy import tracking */}
       <img src={logoAsset} alt="" hidden aria-hidden="true" />
