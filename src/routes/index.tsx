@@ -236,9 +236,11 @@ function Index() {
                       src={p.image_url}
                       alt=""
                       className="w-full h-full object-cover pointer-events-none select-none"
+                      style={{ objectPosition: "top center" }}
                       draggable={false}
                       loading="lazy"
                     />
+
                   ) : (
                     <div className="w-full h-full bg-gradient-to-b from-[#1a1230] to-[#0a0814]" />
                   )}
