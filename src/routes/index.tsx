@@ -361,8 +361,10 @@ function Index() {
 
       {/* STATS — clean typographic band */}
       {tst && (
-        <section className="relative z-10 px-4 sm:px-6 md:px-12 py-20 sm:py-28 bg-[#F7F6F4] text-neutral-900">
-          <div className="max-w-7xl mx-auto">
+        <section className="relative z-10 px-4 sm:px-6 md:px-12 py-20 sm:py-28 bg-[#F7F6F4] text-neutral-900 overflow-hidden">
+          <div className="paper-noise" aria-hidden="true" />
+          <div className="relative max-w-7xl mx-auto">
+
             <h2 data-reveal className="text-center font-mammoth leading-[1] tracking-tight text-[32px] sm:text-[44px] md:text-[56px] max-w-4xl mx-auto">{tst.title}</h2>
             <div className="mt-14 sm:mt-20 grid grid-cols-2 lg:grid-cols-4 gap-y-10 gap-x-6 border-t border-neutral-200">
               {(tst.items ?? []).map((s, i) => (
