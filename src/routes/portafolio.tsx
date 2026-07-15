@@ -120,14 +120,15 @@ function PortfolioPage() {
 
       {open && (
         <div
-          className="fixed inset-0 z-[70] bg-black/70 backdrop-blur-sm p-3 sm:p-6 md:p-10 flex items-start justify-center overflow-y-auto"
+          className="fixed inset-0 z-[70] bg-black/70 backdrop-blur-sm p-3 sm:p-6 md:p-10 flex items-center justify-center"
           onClick={() => setOpen(null)}
         >
           <div
-            className="portfolio-modal w-full max-w-4xl bg-white rounded-2xl overflow-hidden my-auto"
+            className="portfolio-modal w-full max-w-4xl bg-white rounded-2xl overflow-hidden flex flex-col"
+            style={{ maxHeight: "calc(100vh - 24px)" }}
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="sticky top-0 z-10 flex items-center justify-between gap-4 px-5 sm:px-6 py-3 sm:py-4 bg-white border-b border-neutral-200">
+            <div className="flex items-center justify-between gap-4 px-5 sm:px-6 py-3 sm:py-4 bg-white border-b border-neutral-200 shrink-0">
               <div className="min-w-0">
                 <p className="text-sm sm:text-base font-semibold text-neutral-900 truncate">{open.name}</p>
                 <p className="text-[11px] sm:text-xs text-neutral-500 tracking-[0.14em] uppercase">Proyecto</p>
@@ -141,7 +142,7 @@ function PortfolioPage() {
                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round"><path d="M1 1l12 12M13 1L1 13"/></svg>
               </button>
             </div>
-            <div className="bg-neutral-100">
+            <div className="bg-neutral-100 overflow-y-auto flex-1">
               {open.image_url ? (
                 <img src={open.image_url} alt={open.name} className="block w-full h-auto" />
               ) : (
@@ -151,6 +152,7 @@ function PortfolioPage() {
           </div>
         </div>
       )}
+
 
       <style>{siteStyles}</style>
     </div>
