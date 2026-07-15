@@ -9,6 +9,7 @@ import InovepImage from "@/assets/Inovep.png";
 import { SiteNav } from "@/components/SiteNav";
 import { SiteFooter } from "@/components/SiteFooter";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
+import { Signature } from "@/components/Signature";
 import { MouseFollowCursor } from "@/components/MouseFollowCursor";
 import { useSiteLanguage } from "@/hooks/use-site-language";
 import { useRevealOnScroll } from "@/hooks/use-reveal";
@@ -385,6 +386,7 @@ function Index() {
       <SiteFooter language={lang} content={content} />
       <WhatsAppButton settings={content.settings} lang={lang} />
       <MouseFollowCursor />
+      <Signature />
       <style>{siteStyles}</style>
       {/* logo asset only to satisfy import tracking */}
       <img src={logoAsset} alt="" hidden aria-hidden="true" />
