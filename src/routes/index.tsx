@@ -259,7 +259,7 @@ function Index() {
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8" data-reveal>
             <div>
               <p className="text-xs sm:text-sm tracking-[0.28em] font-bold text-[#EC4392] uppercase">{tr?.kicker}</p>
-              <h2 className="mt-4 font-mammoth leading-[1.1] tracking-tight text-[42px] sm:text-[56px] md:text-[72px] lg:text-[84px]">
+              <h2 className="mt-4 font-mammoth leading-[1.1] tracking-tight text-[30px] sm:text-[40px] md:text-[52px] lg:text-[60px]">
                 <span className="block text-neutral-900 pb-[0.06em]">{tr?.title1}</span>
                 <span className="block" style={{ color: "#EC4392" }}>{tr?.title2}</span>
               </h2>
