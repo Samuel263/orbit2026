@@ -92,7 +92,7 @@ export const siteStyles = `
   .client-strip:hover .client-marquee,
   .client-strip:hover .client-marquee-reverse { animation-play-state: paused; }
   .client-logo-white { filter: brightness(0) invert(1); opacity: 0.92; }
-  .client-logo-dark { filter: grayscale(100%) opacity(0.7); transition: filter 300ms ease; }
+  .client-logo-dark { filter: grayscale(0%) opacity(1); transition: filter 300ms ease; }
 .client-logo-dark:hover { filter: grayscale(0%) opacity(1); }
 
 
