@@ -97,19 +97,19 @@ function Index() {
   }, []);
 
   return (
-    <div className="relative isolate min-h-screen text-foreground">
+    <div className="relative isolate min-h-screen text-foreground bg-[#F7F6F4]">
       <SiteNav language={lang} onLanguageChange={onLanguageChange} />
 
-      <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none" aria-hidden="true">
-        <video autoPlay loop muted playsInline className="absolute inset-0 h-full w-full object-cover" src={videoBg} />
-        <div className="absolute inset-0" style={{ backgroundColor: "rgba(11, 18, 38, 0.75)" }} />
-      </div>
-
-<div className="relative z-10 px-4 sm:px-6 lg:px-8 pt-4">
-  <section
-          className="relative overflow-hidden rounded-3xl hero-stage"
+      <div className="relative z-10 px-3 sm:px-4 lg:px-5 pt-24 sm:pt-28">
+        <section
+          className="relative overflow-hidden rounded-[28px] sm:rounded-[36px] hero-stage shadow-[0_30px_80px_-40px_rgba(11,18,38,0.6)]"
           onPointerMoveCapture={handleHeroTrailMove}
         >
+          <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none" aria-hidden="true">
+            <video autoPlay loop muted playsInline className="absolute inset-0 h-full w-full object-cover" src={videoBg} />
+            <div className="absolute inset-0" style={{ backgroundColor: "rgba(11, 18, 38, 0.72)" }} />
+          </div>
+
           <div className="hero-trail-hitarea absolute inset-0 z-[2]" aria-hidden="true" />
 
           <div className="hero-trail-layer absolute inset-0 z-[3] pointer-events-none" aria-hidden="true">
@@ -131,7 +131,7 @@ function Index() {
             ))}
           </div>
 
-          <main className="relative z-10 flex flex-col items-center text-center px-4 sm:px-6 md:px-12 pt-24 sm:pt-28 lg:pt-32 pb-20 sm:pb-28">
+          <main className="relative z-10 flex flex-col items-center text-center px-4 sm:px-6 md:px-12 pt-20 sm:pt-24 lg:pt-28 pb-20 sm:pb-28">
             <div className="max-w-3xl mx-auto">
               <h1 className="hero-no-trail font-mammoth leading-[1.08] tracking-[-0.01em] text-[30px] sm:text-[44px] md:text-[56px] lg:text-[64px] hero-title">
                 <span className="text-white hero-line hero-line-1">
@@ -172,6 +172,7 @@ function Index() {
           </main>
         </section>
       </div>
+
 
 
 
