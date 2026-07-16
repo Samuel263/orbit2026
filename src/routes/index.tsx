@@ -101,7 +101,7 @@ function Index() {
 
       <SiteNav language={lang} onLanguageChange={onLanguageChange} />
 
-      <div className="relative z-10 px-1.5 sm:px-2 pt-1.5 sm:pt-2">
+      <div className="relative z-10 px-2 sm:px-2 pt-2 sm:pt-2">
 
 
         <section
