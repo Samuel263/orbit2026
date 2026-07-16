@@ -97,19 +97,19 @@ function Index() {
   }, []);
 
   return (
-    <div className="relative isolate min-h-screen text-foreground">
+    <div className="relative isolate min-h-screen text-foreground bg-[#F7F6F4]">
       <SiteNav language={lang} onLanguageChange={onLanguageChange} />
 
-      <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none" aria-hidden="true">
-        <video autoPlay loop muted playsInline className="absolute inset-0 h-full w-full object-cover" src={videoBg} />
-        <div className="absolute inset-0" style={{ backgroundColor: "rgba(11, 18, 38, 0.75)" }} />
-      </div>
-
-<div className="relative z-10 px-4 sm:px-6 lg:px-8 pt-4">
-  <section
-          className="relative overflow-hidden rounded-3xl hero-stage"
+      <div className="relative z-10 px-3 sm:px-4 lg:px-5 pt-24 sm:pt-28">
+        <section
+          className="relative overflow-hidden rounded-[28px] sm:rounded-[36px] hero-stage shadow-[0_30px_80px_-40px_rgba(11,18,38,0.6)]"
           onPointerMoveCapture={handleHeroTrailMove}
         >
+          <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none" aria-hidden="true">
+            <video autoPlay loop muted playsInline className="absolute inset-0 h-full w-full object-cover" src={videoBg} />
+            <div className="absolute inset-0" style={{ backgroundColor: "rgba(11, 18, 38, 0.72)" }} />
+          </div>
+
           <div className="hero-trail-hitarea absolute inset-0 z-[2]" aria-hidden="true" />
 
           <div className="hero-trail-layer absolute inset-0 z-[3] pointer-events-none" aria-hidden="true">
@@ -131,7 +131,7 @@ function Index() {
             ))}
           </div>
 
-          <main className="relative z-10 flex flex-col items-center text-center px-4 sm:px-6 md:px-12 pt-24 sm:pt-28 lg:pt-32 pb-20 sm:pb-28">
+          <main className="relative z-10 flex flex-col items-center text-center px-4 sm:px-6 md:px-12 pt-20 sm:pt-24 lg:pt-28 pb-20 sm:pb-28">
             <div className="max-w-3xl mx-auto">
               <h1 className="hero-no-trail font-mammoth leading-[1.08] tracking-[-0.01em] text-[30px] sm:text-[44px] md:text-[56px] lg:text-[64px] hero-title">
                 <span className="text-white hero-line hero-line-1">
@@ -172,6 +172,7 @@ function Index() {
           </main>
         </section>
       </div>
+
 
 
 
@@ -258,7 +259,7 @@ function Index() {
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8" data-reveal>
             <div>
               <p className="text-xs sm:text-sm tracking-[0.28em] font-bold text-[#EC4392] uppercase">{tr?.kicker}</p>
-              <h2 className="mt-4 font-mammoth leading-[1.1] tracking-tight text-[42px] sm:text-[56px] md:text-[72px] lg:text-[84px]">
+              <h2 className="mt-4 font-mammoth leading-[1.1] tracking-tight text-[30px] sm:text-[40px] md:text-[52px] lg:text-[60px]">
                 <span className="block text-neutral-900 pb-[0.06em]">{tr?.title1}</span>
                 <span className="block" style={{ color: "#EC4392" }}>{tr?.title2}</span>
               </h2>
@@ -312,32 +313,27 @@ function Index() {
         })()}
       </section>
 
-      {/* SERVICES — simplified single-column editorial list */}
+      {/* SERVICES — interactive numbered index */}
       <section className="relative z-10 px-4 sm:px-6 md:px-12 py-24 sm:py-32 bg-[#1A1A1A] text-white overflow-hidden">
-        <div className="max-w-5xl mx-auto">
-          <div className="text-center" data-reveal>
-            <h2 className="font-mammoth leading-[1.1] tracking-tight text-[38px] sm:text-[52px] md:text-[64px]">
-              <span className="block text-white pb-[0.06em]">{ts?.title1}</span>
-              <span className="block" style={{ color: "#EC4392" }}>{ts?.title2}</span>
-            </h2>
-            <p className="mx-auto mt-6 max-w-xl text-base sm:text-lg text-white/60 leading-relaxed">{ts?.sub}</p>
+        <div className="max-w-6xl mx-auto">
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-8 mb-14" data-reveal>
+            <div>
+              <p className="text-[10px] font-bold tracking-[0.32em] text-[#EC4392] uppercase">
+                Servicios · 01—{String(content.solutions.length).padStart(2, "0")}
+              </p>
+              <h2 className="mt-3 font-mammoth leading-[1.05] tracking-tight text-[38px] sm:text-[52px] md:text-[64px]">
+                <span className="text-white">{ts?.title1}</span> <span style={{ color: "#EC4392" }}>{ts?.title2}</span>
+              </h2>
+            </div>
+            <p className="max-w-xs text-sm text-white/50 leading-relaxed md:text-right">
+              {ts?.sub}
+            </p>
           </div>
 
-          <div className="mt-16 divide-y divide-white/10 border-y border-white/10">
-            {content.solutions.map((s, i) => (
-              <div
-                key={s.id}
-                data-reveal
-                className="group flex items-center gap-6 py-6 sm:py-7 transition-colors duration-300 hover:bg-white/[0.03] px-2 sm:px-4"
-              >
-                <span className="font-mammoth text-sm text-white/30 tabular-nums w-10 shrink-0">{String(i + 1).padStart(2, "0")}</span>
-                <h3 className="font-mammoth text-2xl sm:text-3xl leading-tight text-white flex-1 group-hover:text-[#EC4392] transition-colors">{s.title}</h3>
-                <span className="hidden sm:inline text-white/40 group-hover:text-[#EC4392] transition-colors" aria-hidden="true">→</span>
-              </div>
-            ))}
-          </div>
+          <ServicesGrid solutions={content.solutions} />
         </div>
       </section>
+
 
       {/* STATS — simple centered band */}
       {tst && (
@@ -390,3 +386,73 @@ function Index() {
     </div>
   );
 }
+
+type Solution = SiteContent["solutions"][number];
+
+function ServicesGrid({ solutions }: { solutions: Solution[] }) {
+  const [active, setActive] = useState(0);
+  if (!solutions.length) return null;
+  const current = solutions[Math.min(active, solutions.length - 1)];
+
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-[220px_1fr] gap-8 md:gap-12 items-stretch">
+      {/* Left: numbered index */}
+      <ul className="relative flex md:flex-col gap-1 overflow-x-auto md:overflow-visible md:border-l md:border-white/10 md:pl-6">
+        {solutions.map((s, i) => {
+          const isActive = i === active;
+          return (
+            <li key={s.id}>
+              <button
+                type="button"
+                onMouseEnter={() => setActive(i)}
+                onFocus={() => setActive(i)}
+                onClick={() => setActive(i)}
+                className={`relative flex items-center gap-3 py-3 pr-4 md:pr-6 text-left transition-colors duration-300 ${isActive ? "text-white" : "text-white/35 hover:text-white/70"}`}
+              >
+                <span
+                  className={`hidden md:block h-px transition-all duration-500 ${isActive ? "w-8 bg-[#EC4392]" : "w-3 bg-white/20"}`}
+                  aria-hidden="true"
+                />
+                <span className="font-mammoth text-lg sm:text-xl tabular-nums">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+              </button>
+            </li>
+          );
+        })}
+      </ul>
+
+      {/* Right: active service detail */}
+      <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] p-8 sm:p-12 min-h-[340px] flex flex-col justify-end">
+        <span
+          aria-hidden="true"
+          className="pointer-events-none absolute -right-4 -top-6 font-mammoth leading-none text-white/[0.05] select-none"
+          style={{ fontSize: "clamp(160px, 26vw, 320px)" }}
+          key={`bg-${current.id}`}
+        >
+          {String(active + 1).padStart(2, "0")}
+        </span>
+        <div key={current.id} className="service-detail relative z-10">
+          <span className="grid size-14 place-items-center rounded-full border border-[#EC4392] text-[#EC4392]">
+            {current.icon_svg_path ? (
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d={current.icon_svg_path} />
+              </svg>
+            ) : (
+              <span className="font-mammoth text-lg">{String(active + 1).padStart(2, "0")}</span>
+            )}
+          </span>
+          <h3 className="mt-6 font-mammoth text-3xl sm:text-4xl md:text-5xl leading-[1.05] tracking-tight text-white">
+            {current.title}
+          </h3>
+          {current.description ? (
+            <p className="mt-4 max-w-lg text-sm sm:text-base text-white/60 leading-relaxed">
+              {current.description}
+            </p>
+          ) : null}
+        </div>
+      </div>
+    </div>
+  );
+}
+

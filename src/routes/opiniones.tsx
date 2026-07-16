@@ -37,10 +37,10 @@ function ReviewsPage() {
             <div className="flex justify-center gap-1 text-[#F0AD4E] text-2xl">{"★★★★★".split("").map((s, i) => <span key={i}>{s}</span>)}</div>
             <p className="mt-3 text-3xl sm:text-4xl font-black tracking-tight">{tr?.excellent}</p>
             <p className="mt-2 text-sm text-neutral-600">{tr?.basedOn}</p>
-            <h1 className="mt-8 font-mammoth leading-[1.15] tracking-tight text-[36px] sm:text-[52px] md:text-[64px]">
-              <span className="block text-neutral-900 pb-[0.06em]">{tr?.title1}</span>
+            <h1 className="mt-8 font-mammoth leading-[1.1] tracking-tight text-[36px] sm:text-[48px] md:text-[56px]">
               <span className="block" style={{ color: "#EC4392" }}>{tr?.allTitle}</span>
             </h1>
+
 
             <p className="mt-5 text-base sm:text-lg text-neutral-600">{tr?.allSubtitle}</p>
           </div>
