@@ -313,32 +313,27 @@ function Index() {
         })()}
       </section>
 
-      {/* SERVICES — simplified single-column editorial list */}
+      {/* SERVICES — interactive numbered index */}
       <section className="relative z-10 px-4 sm:px-6 md:px-12 py-24 sm:py-32 bg-[#1A1A1A] text-white overflow-hidden">
-        <div className="max-w-5xl mx-auto">
-          <div className="text-center" data-reveal>
-            <h2 className="font-mammoth leading-[1.1] tracking-tight text-[38px] sm:text-[52px] md:text-[64px]">
-              <span className="block text-white pb-[0.06em]">{ts?.title1}</span>
-              <span className="block" style={{ color: "#EC4392" }}>{ts?.title2}</span>
-            </h2>
-            <p className="mx-auto mt-6 max-w-xl text-base sm:text-lg text-white/60 leading-relaxed">{ts?.sub}</p>
+        <div className="max-w-6xl mx-auto">
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-8 mb-14" data-reveal>
+            <div>
+              <p className="text-[10px] font-bold tracking-[0.32em] text-[#EC4392] uppercase">
+                Servicios · 01—{String(content.solutions.length).padStart(2, "0")}
+              </p>
+              <h2 className="mt-3 font-mammoth leading-[1.05] tracking-tight text-[38px] sm:text-[52px] md:text-[64px]">
+                <span className="text-white">{ts?.title1}</span> <span style={{ color: "#EC4392" }}>{ts?.title2}</span>
+              </h2>
+            </div>
+            <p className="max-w-xs text-sm text-white/50 leading-relaxed md:text-right">
+              {ts?.sub}
+            </p>
           </div>
 
-          <div className="mt-16 divide-y divide-white/10 border-y border-white/10">
-            {content.solutions.map((s, i) => (
-              <div
-                key={s.id}
-                data-reveal
-                className="group flex items-center gap-6 py-6 sm:py-7 transition-colors duration-300 hover:bg-white/[0.03] px-2 sm:px-4"
-              >
-                <span className="font-mammoth text-sm text-white/30 tabular-nums w-10 shrink-0">{String(i + 1).padStart(2, "0")}</span>
-                <h3 className="font-mammoth text-2xl sm:text-3xl leading-tight text-white flex-1 group-hover:text-[#EC4392] transition-colors">{s.title}</h3>
-                <span className="hidden sm:inline text-white/40 group-hover:text-[#EC4392] transition-colors" aria-hidden="true">→</span>
-              </div>
-            ))}
-          </div>
+          <ServicesGrid solutions={content.solutions} />
         </div>
       </section>
+
 
       {/* STATS — simple centered band */}
       {tst && (
