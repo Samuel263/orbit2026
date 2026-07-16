@@ -102,6 +102,7 @@ function Index() {
 
       <div className="relative z-10 px-3 sm:px-4 lg:px-5 pt-3 sm:pt-4 lg:pt-5">
 
+
         <section
           className="relative overflow-hidden rounded-[28px] sm:rounded-[36px] hero-stage shadow-[0_30px_80px_-40px_rgba(11,18,38,0.6)]"
           onPointerMoveCapture={handleHeroTrailMove}
