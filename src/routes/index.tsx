@@ -104,7 +104,7 @@ function Index() {
 
 
         <section
-          className="relative overflow-hidden rounded-[28px] sm:rounded-[36px] hero-stage shadow-[0_30px_80px_-40px_rgba(11,18,38,0.6)]"
+  className="relative overflow-hidden rounded-xl sm:rounded-2xl hero-stage shadow-[0_30px_80px_-40px_rgba(11,18,38,0.6)]"
           onPointerMoveCapture={handleHeroTrailMove}
         >
           <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none" aria-hidden="true">
