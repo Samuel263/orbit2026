@@ -47,6 +47,11 @@ export const siteStyles = `
     .rev-marquee-l, .rev-marquee-r { animation: none; }
   }
 
+  /* ---------- Services detail switch ---------- */
+  @keyframes serviceIn { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+  .service-detail { animation: serviceIn 450ms cubic-bezier(0.22, 1, 0.36, 1); }
+
+
   /* ---------- Editorial service rows ---------- */
   .service-row { transition: background-color 400ms ease; }
   .service-row:hover { background-color: rgba(255,255,255,0.02); }
