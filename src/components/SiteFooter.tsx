@@ -29,7 +29,7 @@ export function SiteFooter({ language, content }: Props) {
             <p className="text-sm text-white/60 leading-relaxed max-w-xs">
               Sitios web que convierten visitantes en clientes. Diseño y desarrollo hecho a la medida de tu marca.
             </p>
-            <p className="text-xs text-white/40 tracking-wide">Antofagasta · Chile</p>
+            <p className="text-xs text-white/40 tracking-wide">Santiago de Chile</p>
           </div>
 
           {/* Navegación */}
