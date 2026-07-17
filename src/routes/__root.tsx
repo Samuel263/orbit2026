@@ -108,31 +108,17 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
-    <html lang="es">
+    <html lang="en">
       <head>
         <HeadContent />
-        <style>{`
-          /* Hide Google Translate banner + tooltip while keeping translations */
-          .goog-te-banner-frame.skiptranslate, .goog-tooltip, .goog-tooltip:hover { display: none !important; }
-          body { top: 0 !important; }
-          .goog-te-gadget { height: 0; overflow: hidden; }
-        `}</style>
       </head>
       <body>
         {children}
-        <div id="google_translate_element" style={{ display: "none" }} />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `function googleTranslateElementInit(){new google.translate.TranslateElement({pageLanguage:'es',includedLanguages:'en,es,pt,fr,de,it',autoDisplay:false},'google_translate_element');}`,
-          }}
-        />
-        <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" async />
         <Scripts />
       </body>
     </html>
   );
 }
-
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
