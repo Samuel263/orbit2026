@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import logoAsset from "@/assets/logo.png";
 import type { SiteContent, Lang } from "@/lib/content.functions";
 import { pickBlock } from "@/lib/content-blocks";
+import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 
 type Props = { language: Lang; content: SiteContent };
 
