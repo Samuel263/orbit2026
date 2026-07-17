@@ -108,7 +108,7 @@ function PortfolioPage() {
           <div className="max-w-3xl mx-auto text-center">
             <h2 data-reveal className="font-mammoth leading-[1.05] tracking-tight text-[28px] sm:text-[40px] text-neutral-900">{tcta.title}</h2>
             <div data-reveal style={{ transitionDelay: "180ms" }} className="mt-8">
-              <a href="/#cotizar" className="btn-sweep inline-block text-white px-8 py-4 text-sm font-semibold tracking-[0.12em] rounded-full" style={{ backgroundColor: "#D97757", ["--sweep-bg" as string]: "#ffffff", ["--sweep-fg" as string]: "#000000" }}>
+              <a href="/#cotizar" className="btn-sweep inline-block px-8 py-4 text-sm font-semibold tracking-[0.12em] rounded-full" style={{ backgroundColor: "#D97757", color: "#4A2618", ["--sweep-bg" as string]: "#ffffff", ["--sweep-fg" as string]: "#4A2618" }}>
                 {tcta.button}
               </a>
             </div>
