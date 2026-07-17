@@ -31,14 +31,14 @@ function ReviewsPage() {
     <div className="relative isolate min-h-screen text-foreground bg-[rgba(5,12,31,1)]">
       <SiteNav language={lang} onLanguageChange={onLanguageChange} />
 
-      <section className="bg-[#F7F6F4] text-neutral-900 px-4 sm:px-6 md:px-12 py-20 sm:py-28">
+      <section className="bg-[#F8F8F6] text-neutral-900 px-4 sm:px-6 md:px-12 py-20 sm:py-28">
         <div className="max-w-7xl mx-auto">
           <div className="text-center max-w-3xl mx-auto" data-reveal>
             <div className="flex justify-center gap-1 text-[#F0AD4E] text-2xl">{"★★★★★".split("").map((s, i) => <span key={i}>{s}</span>)}</div>
             <p className="mt-3 text-3xl sm:text-4xl font-black tracking-tight">{tr?.excellent}</p>
             <p className="mt-2 text-sm text-neutral-600">{tr?.basedOn}</p>
             <h1 className="mt-8 font-mammoth leading-[1.1] tracking-tight text-[36px] sm:text-[48px] md:text-[56px]">
-              <span className="block" style={{ color: "#EC4392" }}>{tr?.allTitle}</span>
+              <span className="block" style={{ color: "#D97757" }}>{tr?.allTitle}</span>
             </h1>
 
 

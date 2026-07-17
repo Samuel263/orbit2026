@@ -114,7 +114,7 @@ export function LanguageSwitcher({ value, onLanguageChange }: LanguageSwitcherPr
                 />
               </span>
               <span className="flex-1 text-left">{l.label}</span>
-              {active && <Check size={14} className="text-[#EC4392]" />}
+              {active && <Check size={14} className="text-[#D97757]" />}
             </button>
           );
         })}

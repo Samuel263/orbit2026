@@ -52,7 +52,7 @@ export function SiteFooter({ language, content }: Props) {
           {/* Contacto */}
           <div className="md:col-span-4 flex flex-col gap-3">
             <p className="text-[10px] tracking-[0.28em] uppercase text-white/40">Contacto</p>
-            <a href="mailto:hola@orbit.cl" className="text-lg font-mammoth text-white hover:text-[#EC4392] transition w-fit">hola@orbit.cl</a>
+            <a href="mailto:hola@orbit.cl" className="text-lg font-mammoth text-white hover:text-[#D97757] transition w-fit">hola@orbit.cl</a>
             <div className="flex flex-wrap gap-2 mt-2">
               {content.socials.map((s) => (
                 <a
@@ -76,7 +76,7 @@ export function SiteFooter({ language, content }: Props) {
             type="button"
             onClick={scrollTop}
             className="btn-sweep inline-flex items-center gap-2 rounded-full border border-white/20 px-5 py-2.5 text-xs tracking-[0.18em] uppercase text-white/85 hover:text-white transition"
-            style={{ ["--sweep-bg" as string]: "#EC4392", ["--sweep-fg" as string]: "#ffffff" }}
+            style={{ ["--sweep-bg" as string]: "#D97757", ["--sweep-fg" as string]: "#ffffff" }}
           >
             <span className="btn-sweep-label">Volver arriba ↑</span>
           </button>

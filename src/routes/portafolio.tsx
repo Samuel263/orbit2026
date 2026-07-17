@@ -42,15 +42,15 @@ function PortfolioPage() {
   }, [open]);
 
   return (
-    <div className="relative isolate min-h-screen text-foreground bg-[#F7F6F4]">
+    <div className="relative isolate min-h-screen text-foreground bg-[#F8F8F6]">
       <div className="site-noise" aria-hidden="true" />
       <SiteNav language={lang} onLanguageChange={onLanguageChange} />
 
-      <section className="relative z-10 px-4 sm:px-6 md:px-12 pt-32 sm:pt-40 pb-10 bg-[#F7F6F4]">
+      <section className="relative z-10 px-4 sm:px-6 md:px-12 pt-32 sm:pt-40 pb-10 bg-[#F8F8F6]">
         <div className="max-w-7xl mx-auto text-center">
-          <p data-reveal className="text-[10px] font-bold tracking-[0.32em] text-[#EC4392] uppercase">Portafolio</p>
+          <p data-reveal className="text-[10px] font-bold tracking-[0.32em] text-[#D97757] uppercase">Portafolio</p>
           <h1 data-reveal style={{ transitionDelay: "80ms" }} className="mt-4 font-mammoth leading-[1.1] tracking-tight text-[40px] sm:text-[60px] md:text-[72px]">
-            <span className="block" style={{ color: "#EC4392" }}>{tc?.allTitle}</span>
+            <span className="block" style={{ color: "#D97757" }}>{tc?.allTitle}</span>
           </h1>
           <p data-reveal style={{ transitionDelay: "160ms" }} className="mt-5 mx-auto max-w-2xl text-base sm:text-lg text-neutral-600">{tc?.allSubtitle}</p>
         </div>
@@ -58,7 +58,7 @@ function PortfolioPage() {
       </section>
 
 
-      <section className="relative z-10 px-4 sm:px-6 md:px-12 py-12 sm:py-16 bg-[#F7F6F4]">
+      <section className="relative z-10 px-4 sm:px-6 md:px-12 py-12 sm:py-16 bg-[#F8F8F6]">
         <div className="max-w-7xl mx-auto grid gap-x-6 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
           {content.projects.map((p, i) => (
             <div key={p.id} data-reveal style={{ transitionDelay: `${(i % 3) * 100}ms` }}>
@@ -104,11 +104,11 @@ function PortfolioPage() {
       </section>
 
       {tcta && (
-        <section className="relative z-10 px-4 sm:px-6 md:px-12 py-20 bg-[#F7F6F4] border-t border-neutral-200">
+        <section className="relative z-10 px-4 sm:px-6 md:px-12 py-20 bg-[#F8F8F6] border-t border-neutral-200">
           <div className="max-w-3xl mx-auto text-center">
             <h2 data-reveal className="font-mammoth leading-[1.05] tracking-tight text-[28px] sm:text-[40px] text-neutral-900">{tcta.title}</h2>
             <div data-reveal style={{ transitionDelay: "180ms" }} className="mt-8">
-              <a href="/#cotizar" className="btn-sweep inline-block text-white px-8 py-4 text-sm font-semibold tracking-[0.12em] rounded-full" style={{ backgroundColor: "#EC4392", ["--sweep-bg" as string]: "#ffffff", ["--sweep-fg" as string]: "#000000" }}>
+              <a href="/#cotizar" className="btn-sweep inline-block text-white px-8 py-4 text-sm font-semibold tracking-[0.12em] rounded-full" style={{ backgroundColor: "#D97757", ["--sweep-bg" as string]: "#ffffff", ["--sweep-fg" as string]: "#000000" }}>
                 {tcta.button}
               </a>
             </div>
