@@ -97,7 +97,7 @@ function Index() {
   }, []);
 
   return (
-    <div className="relative isolate min-h-screen text-foreground bg-white">
+    <div className="relative isolate min-h-screen text-foreground bg-[#F8F8F6]">
 
       <SiteNav language={lang} onLanguageChange={onLanguageChange} />
 
