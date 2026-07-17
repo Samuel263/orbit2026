@@ -110,7 +110,7 @@ function Index() {
         >
           <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none" aria-hidden="true">
             <video autoPlay loop muted playsInline className="absolute inset-0 h-full w-full object-cover" src={videoBg} />
-            <div className="absolute inset-0" style={{ backgroundColor: "rgba(11, 18, 38, 0.72)" }} />
+            <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, rgba(217,119,87,0.55), rgba(26,26,26,0.85))", mixBlendMode: "multiply" }} />
           </div>
 
           <div className="hero-trail-hitarea absolute inset-0 z-[2]" aria-hidden="true" />
@@ -257,7 +257,7 @@ function Index() {
       </section>
 
       {/* REVIEWS */}
-      <section id="opiniones" className="relative z-10 px-4 sm:px-6 md:px-12 py-24 sm:py-32 bg-white text-neutral-900 overflow-hidden">
+      <section id="opiniones" className="relative z-10 px-4 sm:px-6 md:px-12 py-24 sm:py-32 bg-[#F8F8F6] text-neutral-900 overflow-hidden">
         <div className="relative max-w-7xl mx-auto">
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8" data-reveal>
             <div>
@@ -340,7 +340,7 @@ function Index() {
 
       {/* STATS — simple centered band */}
       {tst && (
-        <section className="relative z-10 px-4 sm:px-6 md:px-12 py-20 sm:py-28 bg-white text-neutral-900 overflow-hidden">
+        <section className="relative z-10 px-4 sm:px-6 md:px-12 py-20 sm:py-28 bg-[#F8F8F6] text-neutral-900 overflow-hidden">
           <div className="relative max-w-5xl mx-auto text-center">
             <h2 data-reveal className="font-mammoth leading-[1.1] tracking-tight text-[28px] sm:text-[38px] md:text-[46px] max-w-3xl mx-auto">{tst.title}</h2>
             <div className="mt-14 grid grid-cols-2 md:grid-cols-4 gap-y-10 gap-x-6">
@@ -357,7 +357,7 @@ function Index() {
 
       {/* CTA — bold, clean, no glow */}
       {tcta && (
-        <section id="cotizar" className="relative z-10 px-4 sm:px-6 md:px-12 py-32 sm:py-40 bg-[#0B0A14] overflow-hidden">
+        <section id="cotizar" className="relative z-10 px-4 sm:px-6 md:px-12 py-32 sm:py-40 bg-[#0F0F10] overflow-hidden">
           <div className="relative max-w-4xl mx-auto text-center">
             <div data-reveal className="inline-flex items-center gap-2 text-[10px] font-bold tracking-[0.28em] text-[#D97757] uppercase mb-6">
               <span className="h-px w-8 bg-[#D97757]/50" />

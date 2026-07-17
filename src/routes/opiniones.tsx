@@ -47,7 +47,7 @@ function ReviewsPage() {
 
           <div className="mt-14 columns-1 sm:columns-2 lg:columns-3 gap-5 [column-fill:_balance]">
             {content.reviews.map((r, i) => (
-              <article key={r.id} data-reveal style={{ transitionDelay: `${(i % 6) * 80}ms` }} className="mb-5 break-inside-avoid rounded-2xl border border-neutral-200 bg-white p-5">
+              <article key={r.id} data-reveal style={{ transitionDelay: `${(i % 6) * 80}ms` }} className="mb-5 break-inside-avoid rounded-2xl border border-neutral-200 bg-white/60 p-5">
                 <header className="flex items-center gap-3">
                   <div className="grid size-11 shrink-0 place-items-center rounded-full text-white text-sm font-semibold" style={{ backgroundColor: r.color }}>{r.initial}</div>
                   <div className="min-w-0 flex-1">
