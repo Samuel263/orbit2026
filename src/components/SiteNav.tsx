@@ -2,13 +2,12 @@ import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import logoAsset from "@/assets/logo.png";
-import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { getSiteContent, type Lang } from "@/lib/content.functions";
 import { pickBlock } from "@/lib/content-blocks";
 
-type Props = { language: Lang; onLanguageChange: (lang: string) => void };
+type Props = { language: Lang; onLanguageChange?: (lang: string) => void };
 
-export function SiteNav({ language, onLanguageChange }: Props) {
+export function SiteNav({ language }: Props) {
   const [scrolled, setScrolled] = useState(false);
   const { data: content } = useQuery({
     queryKey: ["site-content", language],
@@ -36,11 +35,10 @@ export function SiteNav({ language, onLanguageChange }: Props) {
           <Link to="/opiniones" className="hover:text-white transition">{t?.reviews ?? ""}</Link>
         </nav>
         <div className="flex items-center gap-2 shrink-0">
-          <LanguageSwitcher value={language} onLanguageChange={onLanguageChange} />
           <a
             href="/#cotizar"
             className="btn-sweep bg-white h-9 sm:h-10 inline-flex items-center px-4 sm:px-5 text-[11px] sm:text-xs font-semibold tracking-[0.12em] text-black whitespace-nowrap rounded-full"
-            style={{ ["--sweep-bg" as string]: "#EC4392", ["--sweep-fg" as string]: "#ffffff" }}
+            style={{ ["--sweep-bg" as string]: "#D97757", ["--sweep-fg" as string]: "#4A2618" }}
           >
             <span className="btn-sweep-label">
               <span className="hidden sm:inline">{t?.quote ?? ""}</span>
@@ -52,3 +50,4 @@ export function SiteNav({ language, onLanguageChange }: Props) {
     </div>
   );
 }
+

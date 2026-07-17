@@ -97,7 +97,7 @@ function Index() {
   }, []);
 
   return (
-    <div className="relative isolate min-h-screen text-foreground bg-white">
+    <div className="relative isolate min-h-screen text-foreground bg-[#F8F8F6]">
 
       <SiteNav language={lang} onLanguageChange={onLanguageChange} />
 
@@ -109,8 +109,10 @@ function Index() {
           onPointerMoveCapture={handleHeroTrailMove}
         >
           <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none" aria-hidden="true">
-            <video autoPlay loop muted playsInline className="absolute inset-0 h-full w-full object-cover" src={videoBg} />
-            <div className="absolute inset-0" style={{ backgroundColor: "rgba(11, 18, 38, 0.72)" }} />
+            <video autoPlay loop muted playsInline className="absolute inset-0 h-full w-full object-cover" style={{ filter: "grayscale(1) contrast(1.05)" }} src={videoBg} />
+            <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse at 50% 40%, rgba(217,119,87,0.85), rgba(26,26,26,0.95) 70%)", mixBlendMode: "multiply" }} />
+            <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse at 50% 40%, rgba(217,119,87,0.35), transparent 60%)", mixBlendMode: "soft-light" }} />
+            <div className="absolute inset-0 bg-[#1A1A1A]/40" />
           </div>
 
           <div className="hero-trail-hitarea absolute inset-0 z-[2]" aria-hidden="true" />
@@ -140,13 +142,13 @@ function Index() {
                 <span className="text-white hero-line hero-line-1">
                   {pickBlock<{ headlineTop: string }>(content, "hero", lang)?.headlineTop ?? ""}{" "}
                 </span>
-                <span className="hero-line hero-line-2 overflow-visible" style={{ color: "#EC4392" }}>
+                <span className="hero-line hero-line-2 overflow-visible" style={{ color: "#D97757" }}>
                   {pickBlock<{ headlineBottom: string }>(content, "hero", lang)?.headlineBottom ?? ""}
                 </span>
               </h1>
               <p className="hero-no-trail mt-6 text-sm sm:text-base text-white/85 leading-relaxed max-w-xl mx-auto">{t?.description}</p>
               <div className="hero-no-trail mt-8 flex flex-wrap items-center justify-center gap-3 sm:gap-4">
-                <a href="#cotizar" className="btn-sweep bg-[var(--pink)] transition px-6 sm:px-7 py-3 sm:py-3.5 text-sm font-medium text-white rounded-full" style={{ ["--sweep-bg" as string]: "#ffffff", ["--sweep-fg" as string]: "#000000" }}>
+                <a href="#cotizar" className="btn-sweep transition px-6 sm:px-7 py-3 sm:py-3.5 text-sm font-medium rounded-full" style={{ backgroundColor: "#D97757", color: "#4A2618", ["--sweep-bg" as string]: "#ffffff", ["--sweep-fg" as string]: "#4A2618" }}>
                   <span className="btn-sweep-label">{tnav?.quote ?? ""}</span>
                 </a>
                 <Link to="/portafolio" className="btn-sweep border border-white/80 transition px-6 sm:px-7 py-3 sm:py-3.5 text-sm font-medium text-white rounded-full" style={{ ["--sweep-bg" as string]: "#ffffff", ["--sweep-fg" as string]: "#000000" }}>
@@ -181,13 +183,13 @@ function Index() {
 
 
       {/* CLIENTS — minimal, single strip */}
-      <section className="relative z-10 bg-[#F7F6F4] text-neutral-900 py-16 sm:py-20 overflow-hidden">
+      <section className="relative z-10 bg-[#F8F8F6] text-neutral-900 py-16 sm:py-20 overflow-hidden">
         <div className="relative max-w-6xl mx-auto px-4 sm:px-6 md:px-10 text-center">
           <span data-reveal className="inline-flex items-center gap-2 text-[10px] font-bold tracking-[0.28em] text-neutral-500 uppercase">
             <span className="h-px w-8 bg-neutral-300" />{tcl?.kicker}<span className="h-px w-8 bg-neutral-300" />
           </span>
           <h2 data-reveal style={{ transitionDelay: "80ms" }} className="mt-5 font-mammoth leading-[1.15] tracking-tight text-[26px] sm:text-[34px] md:text-[42px]">
-            <span className="text-neutral-900">{tcl?.t1}</span> <span style={{ color: "#EC4392" }}>{tcl?.t2}</span>
+            <span className="text-neutral-900">{tcl?.t1}</span> <span style={{ color: "#D97757" }}>{tcl?.t2}</span>
           </h2>
         </div>
         <div className="max-w-6xl mx-auto px-4 sm:px-6 md:px-10 mt-10 sm:mt-14">
@@ -213,58 +215,60 @@ function Index() {
           <div className="text-left max-w-3xl">
             <h2 data-reveal className="font-mammoth leading-[1.15] tracking-tight text-[34px] sm:text-[44px] md:text-[54px] lg:text-[64px]">
               <span className="block text-white text-[0.92em] pb-[0.08em]">{tc?.t1}</span>
-              <span className="block overflow-visible" style={{ color: "#EC4392" }}>{tc?.t2}</span>
+              <span className="block overflow-visible" style={{ color: "#D97757" }}>{tc?.t2}</span>
             </h2>
             <p data-reveal style={{ transitionDelay: "120ms" }} className="mt-5 text-base sm:text-lg text-white/85 leading-relaxed">{tc?.desc}</p>
           </div>
         </div>
 
-        <div className="relative mt-14 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_6%,black_94%,transparent)]">
-          <div className="proj-marquee flex w-max gap-6 sm:gap-8">
-            {(() => {
-              const src = content.projects.length > 0 ? content.projects : [];
-              const loop = [...src, ...src, ...src, ...src];
-              return loop.map((p, i) => (
-                <div
-                  key={`p-${i}`}
-                  className="shrink-0 overflow-hidden rounded-2xl bg-[#0e0b1a] border border-white/5"
-                  style={{ width: "clamp(200px, 22vw, 315px)", aspectRatio: "630 / 1650" }}
-                  aria-hidden="true"
-                >
+        <div className="max-w-7xl mx-auto mt-14 px-4 sm:px-6 md:px-12">
+          <div className="grid gap-6 sm:gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            {featuredProjects.map((p, i) => (
+              <div
+                key={p.id ?? `p-${i}`}
+                data-reveal
+                style={{ transitionDelay: `${i * 100}ms` }}
+                className="overflow-hidden rounded-2xl bg-[#141414] border border-white/5"
+              >
+                <div className="relative overflow-hidden" style={{ aspectRatio: "4 / 5" }}>
                   {p.image_url ? (
                     <img
                       src={p.image_url}
-                      alt=""
-                      className="w-full h-full object-cover pointer-events-none select-none"
+                      alt={p.name}
+                      className="absolute inset-0 w-full h-full object-cover"
                       style={{ objectPosition: "top center" }}
-                      draggable={false}
                       loading="lazy"
+                      decoding="async"
                     />
                   ) : (
-                    <div className="w-full h-full bg-gradient-to-b from-[#1a1230] to-[#0a0814]" />
+                    <div className="absolute inset-0 bg-gradient-to-b from-[#1a1230] to-[#0a0814]" />
                   )}
                 </div>
-              ));
-            })()}
+                <div className="flex items-center justify-between px-5 py-4">
+                  <span className="text-sm text-white font-medium truncate">{p.name}</span>
+                  <span className="text-[11px] text-white/40 tracking-[0.14em] uppercase shrink-0">{String(i + 1).padStart(2, "0")}</span>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 mt-14 flex justify-center" data-reveal>
-          <Link to="/portafolio" className="btn-sweep bg-[var(--pink)] transition px-8 py-4 text-sm font-semibold tracking-[0.18em] text-white rounded-full" style={{ ["--sweep-bg" as string]: "#ffffff", ["--sweep-fg" as string]: "#000000" }}>
+          <Link to="/portafolio" className="btn-sweep transition px-8 py-4 text-sm font-semibold tracking-[0.18em] rounded-full" style={{ backgroundColor: "#D97757", color: "#4A2618", ["--sweep-bg" as string]: "#ffffff", ["--sweep-fg" as string]: "#4A2618" }}>
             <span className="btn-sweep-label">{tc?.more}</span>
           </Link>
         </div>
       </section>
 
       {/* REVIEWS */}
-      <section id="opiniones" className="relative z-10 px-4 sm:px-6 md:px-12 py-24 sm:py-32 bg-white text-neutral-900 overflow-hidden">
+      <section id="opiniones" className="relative z-10 px-4 sm:px-6 md:px-12 py-24 sm:py-32 bg-[#F8F8F6] text-neutral-900 overflow-hidden">
         <div className="relative max-w-7xl mx-auto">
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8" data-reveal>
             <div>
-              <p className="text-xs sm:text-sm tracking-[0.28em] font-bold text-[#EC4392] uppercase">{tr?.kicker}</p>
+              <p className="text-xs sm:text-sm tracking-[0.28em] font-bold text-[#D97757] uppercase">{tr?.kicker}</p>
               <h2 className="mt-4 font-mammoth leading-[1.1] tracking-tight text-[30px] sm:text-[40px] md:text-[52px] lg:text-[60px]">
                 <span className="block text-neutral-900 pb-[0.06em]">{tr?.title1}</span>
-                <span className="block" style={{ color: "#EC4392" }}>{tr?.title2}</span>
+                <span className="block" style={{ color: "#D97757" }}>{tr?.title2}</span>
               </h2>
             </div>
             <div className="flex flex-col items-start lg:items-end gap-2">
@@ -286,7 +290,7 @@ function Index() {
           const Card = ({ r, i }: { r: typeof src[number]; i: number }) => (
             <article
               key={`${r.id}-${i}`}
-              className="shrink-0 w-[300px] sm:w-[360px] bg-[#F7F6F4] border border-neutral-200 rounded-2xl p-6"
+              className="shrink-0 w-[300px] sm:w-[360px] bg-[#F8F8F6] border border-neutral-200 rounded-2xl p-6"
             >
               <div className="flex gap-0.5 text-[#F0AD4E] text-sm">{"★★★★★".split("").map((s, j) => <span key={j}>{s}</span>)}</div>
               <p className="mt-3 text-[15px] leading-relaxed text-neutral-800 line-clamp-5">{r.text_body}</p>
@@ -321,11 +325,11 @@ function Index() {
         <div className="max-w-6xl mx-auto">
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-8 mb-14" data-reveal>
             <div>
-              <p className="text-[10px] font-bold tracking-[0.32em] text-[#EC4392] uppercase">
+              <p className="text-[10px] font-bold tracking-[0.32em] text-[#D97757] uppercase">
                 Servicios · 01—{String(content.solutions.length).padStart(2, "0")}
               </p>
               <h2 className="mt-3 font-mammoth leading-[1.05] tracking-tight text-[38px] sm:text-[52px] md:text-[64px]">
-                <span className="text-white">{ts?.title1}</span> <span style={{ color: "#EC4392" }}>{ts?.title2}</span>
+                <span className="text-white">{ts?.title1}</span> <span style={{ color: "#D97757" }}>{ts?.title2}</span>
               </h2>
             </div>
             <p className="max-w-xs text-sm text-white/50 leading-relaxed md:text-right">
@@ -340,13 +344,13 @@ function Index() {
 
       {/* STATS — simple centered band */}
       {tst && (
-        <section className="relative z-10 px-4 sm:px-6 md:px-12 py-20 sm:py-28 bg-white text-neutral-900 overflow-hidden">
+        <section className="relative z-10 px-4 sm:px-6 md:px-12 py-20 sm:py-28 bg-[#F8F8F6] text-neutral-900 overflow-hidden">
           <div className="relative max-w-5xl mx-auto text-center">
             <h2 data-reveal className="font-mammoth leading-[1.1] tracking-tight text-[28px] sm:text-[38px] md:text-[46px] max-w-3xl mx-auto">{tst.title}</h2>
             <div className="mt-14 grid grid-cols-2 md:grid-cols-4 gap-y-10 gap-x-6">
               {(tst.items ?? []).map((s, i) => (
                 <div key={`${s.l}-${i}`} data-reveal style={{ transitionDelay: `${i * 100}ms` }} className="text-center">
-                  <p className="font-mammoth text-5xl sm:text-6xl leading-none tracking-tight" style={{ color: i % 2 === 0 ? "#EC4392" : "#1A1A1A" }}>{s.n}</p>
+                  <p className="font-mammoth text-5xl sm:text-6xl leading-none tracking-tight" style={{ color: i % 2 === 0 ? "#D97757" : "#1A1A1A" }}>{s.n}</p>
                   <p className="mt-3 text-[11px] sm:text-xs tracking-[0.18em] uppercase text-neutral-500">{s.l}</p>
                 </div>
               ))}
@@ -357,19 +361,19 @@ function Index() {
 
       {/* CTA — bold, clean, no glow */}
       {tcta && (
-        <section id="cotizar" className="relative z-10 px-4 sm:px-6 md:px-12 py-32 sm:py-40 bg-[#0B0A14] overflow-hidden">
+        <section id="cotizar" className="relative z-10 px-4 sm:px-6 md:px-12 py-32 sm:py-40 bg-[#0F0F10] overflow-hidden">
           <div className="relative max-w-4xl mx-auto text-center">
-            <div data-reveal className="inline-flex items-center gap-2 text-[10px] font-bold tracking-[0.28em] text-[#EC4392] uppercase mb-6">
-              <span className="h-px w-8 bg-[#EC4392]/50" />
+            <div data-reveal className="inline-flex items-center gap-2 text-[10px] font-bold tracking-[0.28em] text-[#D97757] uppercase mb-6">
+              <span className="h-px w-8 bg-[#D97757]/50" />
               <span>{tnav?.quote ?? ""}</span>
-              <span className="h-px w-8 bg-[#EC4392]/50" />
+              <span className="h-px w-8 bg-[#D97757]/50" />
             </div>
             <h2 data-reveal className="font-mammoth leading-[1.1] tracking-tight text-[34px] sm:text-[44px] md:text-[56px] lg:text-[64px] text-white max-w-3xl mx-auto">
               {tcta.title}
             </h2>
             <p data-reveal style={{ transitionDelay: "120ms" }} className="mt-8 text-lg sm:text-xl text-white/70 max-w-2xl mx-auto leading-relaxed">{tcta.sub}</p>
             <div data-reveal style={{ transitionDelay: "240ms" }} className="mt-12">
-              <a href="#cotizar" className="btn-sweep inline-block text-white px-10 py-5 text-sm font-semibold tracking-[0.18em] transition rounded-full" style={{ backgroundColor: "#EC4392", ["--sweep-bg" as string]: "#ffffff", ["--sweep-fg" as string]: "#000000" }}>
+              <a href="#cotizar" className="btn-sweep inline-block px-10 py-5 text-sm font-semibold tracking-[0.18em] transition rounded-full" style={{ backgroundColor: "#D97757", color: "#4A2618", ["--sweep-bg" as string]: "#ffffff", ["--sweep-fg" as string]: "#4A2618" }}>
                 <span className="btn-sweep-label">{tcta.button}</span>
               </a>
             </div>
@@ -413,7 +417,7 @@ function ServicesGrid({ solutions }: { solutions: Solution[] }) {
                 className={`relative flex items-center gap-3 py-3 pr-4 md:pr-6 text-left transition-colors duration-300 ${isActive ? "text-white" : "text-white/35 hover:text-white/70"}`}
               >
                 <span
-                  className={`hidden md:block h-px transition-all duration-500 ${isActive ? "w-8 bg-[#EC4392]" : "w-3 bg-white/20"}`}
+                  className={`hidden md:block h-px transition-all duration-500 ${isActive ? "w-8 bg-[#D97757]" : "w-3 bg-white/20"}`}
                   aria-hidden="true"
                 />
                 <span className="font-mammoth text-lg sm:text-xl tabular-nums">
@@ -436,7 +440,7 @@ function ServicesGrid({ solutions }: { solutions: Solution[] }) {
           {String(active + 1).padStart(2, "0")}
         </span>
         <div key={current.id} className="service-detail relative z-10">
-          <span className="grid size-14 place-items-center rounded-full border border-[#EC4392] text-[#EC4392]">
+          <span className="grid size-14 place-items-center rounded-full border border-[#D97757] text-[#D97757]">
             {current.icon_svg_path ? (
               <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                 <path d={current.icon_svg_path} />
