@@ -73,14 +73,17 @@ export function SiteFooter({ language, content }: Props) {
 
         <div className="max-w-7xl mx-auto mt-16 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pt-8 border-t border-white/10">
           <p className="text-xs text-white/40">{t?.rights ?? `© ${new Date().getFullYear()} Orbit — Todos los derechos reservados.`}</p>
-          <button
-            type="button"
-            onClick={scrollTop}
-            className="btn-sweep inline-flex items-center gap-2 rounded-full border border-white/20 px-5 py-2.5 text-xs tracking-[0.18em] uppercase text-white/85 hover:text-white transition"
-            style={{ ["--sweep-bg" as string]: "#D97757", ["--sweep-fg" as string]: "#ffffff" }}
-          >
-            <span className="btn-sweep-label">Volver arriba ↑</span>
-          </button>
+          <div className="flex items-center gap-3">
+            <LanguageSwitcher variant="light" />
+            <button
+              type="button"
+              onClick={scrollTop}
+              className="btn-sweep inline-flex items-center gap-2 rounded-full border border-white/20 px-5 py-2.5 text-xs tracking-[0.18em] uppercase text-white/85 hover:text-white transition"
+              style={{ ["--sweep-bg" as string]: "#D97757", ["--sweep-fg" as string]: "#ffffff" }}
+            >
+              <span className="btn-sweep-label">Volver arriba ↑</span>
+            </button>
+          </div>
         </div>
       </div>
 
