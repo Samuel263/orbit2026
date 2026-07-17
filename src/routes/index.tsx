@@ -109,8 +109,10 @@ function Index() {
           onPointerMoveCapture={handleHeroTrailMove}
         >
           <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none" aria-hidden="true">
-            <video autoPlay loop muted playsInline className="absolute inset-0 h-full w-full object-cover" src={videoBg} />
-            <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, rgba(217,119,87,0.55), rgba(26,26,26,0.85))", mixBlendMode: "multiply" }} />
+            <video autoPlay loop muted playsInline className="absolute inset-0 h-full w-full object-cover" style={{ filter: "grayscale(1) contrast(1.05)" }} src={videoBg} />
+            <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse at 50% 40%, rgba(217,119,87,0.85), rgba(26,26,26,0.95) 70%)", mixBlendMode: "multiply" }} />
+            <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse at 50% 40%, rgba(217,119,87,0.35), transparent 60%)", mixBlendMode: "soft-light" }} />
+            <div className="absolute inset-0 bg-[#1A1A1A]/40" />
           </div>
 
           <div className="hero-trail-hitarea absolute inset-0 z-[2]" aria-hidden="true" />
