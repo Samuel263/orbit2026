@@ -221,33 +221,35 @@ function Index() {
           </div>
         </div>
 
-        <div className="relative mt-14 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_6%,black_94%,transparent)]">
-          <div className="proj-marquee flex w-max gap-6 sm:gap-8">
-            {(() => {
-              const src = content.projects.length > 0 ? content.projects : [];
-              const loop = [...src, ...src, ...src, ...src];
-              return loop.map((p, i) => (
-                <div
-                  key={`p-${i}`}
-                  className="shrink-0 overflow-hidden rounded-2xl bg-[#0e0b1a] border border-white/5"
-                  style={{ width: "clamp(200px, 22vw, 315px)", aspectRatio: "630 / 1650" }}
-                  aria-hidden="true"
-                >
+        <div className="max-w-7xl mx-auto mt-14 px-4 sm:px-6 md:px-12">
+          <div className="grid gap-6 sm:gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            {featuredProjects.map((p, i) => (
+              <div
+                key={p.id ?? `p-${i}`}
+                data-reveal
+                style={{ transitionDelay: `${i * 100}ms` }}
+                className="overflow-hidden rounded-2xl bg-[#141414] border border-white/5"
+              >
+                <div className="relative overflow-hidden" style={{ aspectRatio: "4 / 5" }}>
                   {p.image_url ? (
                     <img
                       src={p.image_url}
-                      alt=""
-                      className="w-full h-full object-cover pointer-events-none select-none"
+                      alt={p.name}
+                      className="absolute inset-0 w-full h-full object-cover"
                       style={{ objectPosition: "top center" }}
-                      draggable={false}
                       loading="lazy"
+                      decoding="async"
                     />
                   ) : (
-                    <div className="w-full h-full bg-gradient-to-b from-[#1a1230] to-[#0a0814]" />
+                    <div className="absolute inset-0 bg-gradient-to-b from-[#1a1230] to-[#0a0814]" />
                   )}
                 </div>
-              ));
-            })()}
+                <div className="flex items-center justify-between px-5 py-4">
+                  <span className="text-sm text-white font-medium truncate">{p.name}</span>
+                  <span className="text-[11px] text-white/40 tracking-[0.14em] uppercase shrink-0">{String(i + 1).padStart(2, "0")}</span>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
 
