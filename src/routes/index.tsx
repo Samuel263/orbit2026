@@ -320,7 +320,7 @@ function Index() {
         })()}
       </section>
 
-      {/* SERVICES — interactive numbered index */}
+      {/* SERVICES — simple card grid */}
       <section className="relative z-10 px-4 sm:px-6 md:px-12 py-24 sm:py-32 bg-[#1A1A1A] text-white overflow-hidden">
         <div className="max-w-6xl mx-auto">
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-8 mb-14" data-reveal>
@@ -328,7 +328,7 @@ function Index() {
               <p className="text-[10px] font-bold tracking-[0.32em] text-[#D97757] uppercase">
                 Servicios · 01—{String(content.solutions.length).padStart(2, "0")}
               </p>
-              <h2 className="mt-3 font-mammoth leading-[1.05] tracking-tight text-[38px] sm:text-[52px] md:text-[64px]">
+              <h2 className="paint-hover mt-3 font-mammoth leading-[1.05] tracking-tight text-[38px] sm:text-[52px] md:text-[64px]">
                 <span className="text-white">{ts?.title1}</span> <span style={{ color: "#D97757" }}>{ts?.title2}</span>
               </h2>
             </div>
@@ -337,7 +337,30 @@ function Index() {
             </p>
           </div>
 
-          <ServicesGrid solutions={content.solutions} />
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
+            {content.solutions.map((s, i) => (
+              <div
+                key={s.id}
+                data-reveal
+                style={{ transitionDelay: `${(i % 3) * 80}ms` }}
+                className="rounded-[15px] border border-white/10 bg-white/[0.02] p-8 transition-colors hover:border-[#D97757]/60 hover:bg-white/[0.04]"
+              >
+                <span className="grid size-12 place-items-center rounded-full border border-[#D97757] text-[#D97757] mb-6">
+                  {s.icon_svg_path ? (
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                      <path d={s.icon_svg_path} />
+                    </svg>
+                  ) : (
+                    <span className="font-mammoth text-sm">{String(i + 1).padStart(2, "0")}</span>
+                  )}
+                </span>
+                <h3 className="font-mammoth text-2xl leading-[1.1] tracking-tight text-white">{s.title}</h3>
+                {s.description ? (
+                  <p className="mt-3 text-sm text-white/60 leading-relaxed">{s.description}</p>
+                ) : null}
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
