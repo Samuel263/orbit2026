@@ -1,5 +1,8 @@
 // Shared style block for site pages.
 export const siteStyles = `
+  html { scroll-behavior: smooth; }
+  .paint-hover [data-paint-char] { will-change: color; }
+
   /* ---------- Projects vertical marquee ---------- */
   @keyframes projMarquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
   .proj-marquee { animation: projMarquee 55s linear infinite; will-change: transform; }
