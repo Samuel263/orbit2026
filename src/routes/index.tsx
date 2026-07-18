@@ -14,7 +14,7 @@ import { PaintHover } from "@/components/PaintHover";
 import { useSiteLanguage } from "@/hooks/use-site-language";
 import { useRevealOnScroll } from "@/hooks/use-reveal";
 import { siteStyles } from "@/lib/site-styles";
-import { getSiteContent, type Lang, type SiteContent } from "@/lib/content.functions";
+import { getSiteContent, type Lang } from "@/lib/content.functions";
 import { pickBlock } from "@/lib/content-blocks";
 
 type HeroTrailCard =
