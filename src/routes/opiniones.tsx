@@ -3,6 +3,7 @@ import { useSuspenseQuery } from "@tanstack/react-query";
 import { SiteNav } from "@/components/SiteNav";
 import { SiteFooter } from "@/components/SiteFooter";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
+import { PaintHover } from "@/components/PaintHover";
 import { useSiteLanguage } from "@/hooks/use-site-language";
 import { useRevealOnScroll } from "@/hooks/use-reveal";
 import { siteStyles } from "@/lib/site-styles";
@@ -37,7 +38,7 @@ function ReviewsPage() {
             <div className="flex justify-center gap-1 text-[#F0AD4E] text-2xl">{"★★★★★".split("").map((s, i) => <span key={i}>{s}</span>)}</div>
             <p className="mt-3 text-3xl sm:text-4xl font-black tracking-tight">{tr?.excellent}</p>
             <p className="mt-2 text-sm text-neutral-600">{tr?.basedOn}</p>
-            <h1 className="mt-8 font-mammoth leading-[1.1] tracking-tight text-[36px] sm:text-[48px] md:text-[56px]">
+            <h1 className="paint-hover mt-8 font-mammoth leading-[1.1] tracking-tight text-[36px] sm:text-[48px] md:text-[56px]">
               <span className="block" style={{ color: "#D97757" }}>{tr?.allTitle}</span>
             </h1>
 
@@ -62,7 +63,7 @@ function ReviewsPage() {
           </div>
 
           <div className="mt-14 flex justify-center" data-reveal>
-            <Link to="/" className="btn-sweep border border-neutral-900 transition px-8 py-4 text-xs sm:text-sm font-semibold tracking-[0.18em] text-neutral-900 rounded-full" style={{ ["--sweep-bg" as string]: "#0a0a0a", ["--sweep-fg" as string]: "#ffffff" }}>
+            <Link to="/" className="btn-sweep border border-neutral-900 transition px-8 py-4 text-xs sm:text-sm font-semibold tracking-[0.18em] text-neutral-900 rounded-[15px]" style={{ ["--sweep-bg" as string]: "#0a0a0a", ["--sweep-fg" as string]: "#ffffff" }}>
               ← Home
             </Link>
 
@@ -72,6 +73,7 @@ function ReviewsPage() {
 
       <SiteFooter language={lang} content={content} />
       <WhatsAppButton settings={content.settings} lang={lang} />
+      <PaintHover />
       <style>{siteStyles}</style>
     </div>
   );

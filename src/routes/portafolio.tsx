@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { SiteNav } from "@/components/SiteNav";
 import { SiteFooter } from "@/components/SiteFooter";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
+import { PaintHover } from "@/components/PaintHover";
 import { useSiteLanguage } from "@/hooks/use-site-language";
 import { useRevealOnScroll } from "@/hooks/use-reveal";
 import { siteStyles } from "@/lib/site-styles";
@@ -21,7 +22,7 @@ export const Route = createFileRoute("/portafolio")({
   component: PortfolioPage,
 });
 
-type Project = { id: string; name: string; image_url: string | null };
+type Project = { id: string; name: string; image_url: string | null; url?: string };
 
 function PortfolioPage() {
   const { language, onLanguageChange } = useSiteLanguage();
@@ -49,7 +50,7 @@ function PortfolioPage() {
       <section className="relative z-10 px-4 sm:px-6 md:px-12 pt-32 sm:pt-40 pb-10 bg-[#F8F8F6]">
         <div className="max-w-7xl mx-auto text-center">
           <p data-reveal className="text-[10px] font-bold tracking-[0.32em] text-[#D97757] uppercase">Portafolio</p>
-          <h1 data-reveal style={{ transitionDelay: "80ms" }} className="mt-4 font-mammoth leading-[1.1] tracking-tight text-[40px] sm:text-[60px] md:text-[72px]">
+          <h1 data-reveal style={{ transitionDelay: "80ms" }} className="paint-hover mt-4 font-mammoth leading-[1.1] tracking-tight text-[40px] sm:text-[60px] md:text-[72px]">
             <span className="block" style={{ color: "#D97757" }}>{tc?.allTitle}</span>
           </h1>
           <p data-reveal style={{ transitionDelay: "160ms" }} className="mt-5 mx-auto max-w-2xl text-base sm:text-lg text-neutral-600">{tc?.allSubtitle}</p>
@@ -64,7 +65,7 @@ function PortfolioPage() {
             <div key={p.id} data-reveal style={{ transitionDelay: `${(i % 3) * 100}ms` }}>
               <button
                 type="button"
-                onClick={() => setOpen({ id: p.id, name: p.name, image_url: p.image_url })}
+                onClick={() => setOpen({ id: p.id, name: p.name, image_url: p.image_url, url: p.url })}
                 className="portfolio-item group block w-full text-left"
               >
                 <div className="relative overflow-hidden rounded-2xl bg-neutral-200" style={{ aspectRatio: "3 / 4" }}>
@@ -97,7 +98,7 @@ function PortfolioPage() {
         </div>
 
         <div className="mt-16 flex justify-center" data-reveal>
-          <Link to="/" className="btn-sweep border border-neutral-900 transition px-8 py-4 text-xs sm:text-sm font-semibold tracking-[0.18em] text-neutral-900 rounded-full" style={{ ["--sweep-bg" as string]: "#0a0a0a", ["--sweep-fg" as string]: "#ffffff" }}>
+          <Link to="/" className="btn-sweep border border-neutral-900 transition px-8 py-4 text-xs sm:text-sm font-semibold tracking-[0.18em] text-neutral-900 rounded-[15px]" style={{ ["--sweep-bg" as string]: "#0a0a0a", ["--sweep-fg" as string]: "#ffffff" }}>
             ← Home
           </Link>
         </div>
@@ -106,9 +107,9 @@ function PortfolioPage() {
       {tcta && (
         <section className="relative z-10 px-4 sm:px-6 md:px-12 py-20 bg-[#F8F8F6] border-t border-neutral-200">
           <div className="max-w-3xl mx-auto text-center">
-            <h2 data-reveal className="font-mammoth leading-[1.05] tracking-tight text-[28px] sm:text-[40px] text-neutral-900">{tcta.title}</h2>
+            <h2 data-reveal className="paint-hover font-mammoth leading-[1.05] tracking-tight text-[28px] sm:text-[40px] text-neutral-900">{tcta.title}</h2>
             <div data-reveal style={{ transitionDelay: "180ms" }} className="mt-8">
-              <a href="/#cotizar" className="btn-sweep inline-block px-8 py-4 text-sm font-semibold tracking-[0.12em] rounded-full" style={{ backgroundColor: "#D97757", color: "#4A2618", ["--sweep-bg" as string]: "#ffffff", ["--sweep-fg" as string]: "#4A2618" }}>
+              <a href="/#cotizar" className="btn-sweep inline-block px-8 py-4 text-sm font-semibold tracking-[0.12em] rounded-[15px]" style={{ backgroundColor: "#D97757", color: "#ffffff", ["--sweep-bg" as string]: "#ffffff", ["--sweep-fg" as string]: "#D97757" }}>
                 {tcta.button}
               </a>
             </div>
@@ -118,6 +119,7 @@ function PortfolioPage() {
 
       <SiteFooter language={lang} content={content} />
       <WhatsAppButton settings={content.settings} lang={lang} />
+      <PaintHover />
 
       {open && (
         <div
@@ -134,14 +136,26 @@ function PortfolioPage() {
                 <p className="text-sm sm:text-base font-semibold text-neutral-900 truncate">{open.name}</p>
                 <p className="text-[11px] sm:text-xs text-neutral-500 tracking-[0.14em] uppercase">Proyecto</p>
               </div>
-              <button
-                type="button"
-                onClick={() => setOpen(null)}
-                aria-label="Cerrar"
-                className="shrink-0 grid place-items-center size-9 sm:size-10 rounded-full border border-neutral-300 text-neutral-700 hover:text-neutral-900 hover:border-neutral-900 transition"
-              >
-                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round"><path d="M1 1l12 12M13 1L1 13"/></svg>
-              </button>
+              <div className="flex items-center gap-2 shrink-0">
+                {open.url && open.url.trim() !== "" && (
+                  <a
+                    href={open.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center gap-2 rounded-[15px] bg-[#D97757] text-white px-4 py-2 text-xs font-semibold tracking-[0.14em] uppercase hover:opacity-90 transition"
+                  >
+                    Visitar sitio <span aria-hidden="true">↗</span>
+                  </a>
+                )}
+                <button
+                  type="button"
+                  onClick={() => setOpen(null)}
+                  aria-label="Cerrar"
+                  className="grid place-items-center size-9 sm:size-10 rounded-[15px] border border-neutral-300 text-neutral-700 hover:text-neutral-900 hover:border-neutral-900 transition"
+                >
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round"><path d="M1 1l12 12M13 1L1 13"/></svg>
+                </button>
+              </div>
             </div>
             <div className="bg-neutral-100 overflow-y-auto flex-1">
               {open.image_url ? (

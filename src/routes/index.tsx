@@ -10,10 +10,11 @@ import { SiteNav } from "@/components/SiteNav";
 import { SiteFooter } from "@/components/SiteFooter";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { MouseFollowCursor } from "@/components/MouseFollowCursor";
+import { PaintHover } from "@/components/PaintHover";
 import { useSiteLanguage } from "@/hooks/use-site-language";
 import { useRevealOnScroll } from "@/hooks/use-reveal";
 import { siteStyles } from "@/lib/site-styles";
-import { getSiteContent, type Lang, type SiteContent } from "@/lib/content.functions";
+import { getSiteContent, type Lang } from "@/lib/content.functions";
 import { pickBlock } from "@/lib/content-blocks";
 
 type HeroTrailCard =
@@ -138,7 +139,7 @@ function Index() {
 
           <main className="relative z-10 flex flex-col items-center text-center px-4 sm:px-6 md:px-12 pt-20 sm:pt-24 lg:pt-28 pb-20 sm:pb-28">
             <div className="max-w-3xl mx-auto">
-              <h1 className="hero-no-trail font-mammoth leading-[1.08] tracking-[-0.01em] text-[30px] sm:text-[44px] md:text-[56px] lg:text-[64px] hero-title">
+              <h1 className="hero-no-trail paint-hover font-mammoth leading-[1.08] tracking-[-0.01em] text-[30px] sm:text-[44px] md:text-[56px] lg:text-[64px] hero-title">
                 <span className="text-white hero-line hero-line-1">
                   {pickBlock<{ headlineTop: string }>(content, "hero", lang)?.headlineTop ?? ""}{" "}
                 </span>
@@ -148,7 +149,7 @@ function Index() {
               </h1>
               <p className="hero-no-trail mt-6 text-sm sm:text-base text-white/85 leading-relaxed max-w-xl mx-auto">{t?.description}</p>
               <div className="hero-no-trail mt-8 flex flex-wrap items-center justify-center gap-3 sm:gap-4">
-                <a href="#cotizar" className="btn-sweep transition px-6 sm:px-7 py-3 sm:py-3.5 text-sm font-medium rounded-[15px]" style={{ backgroundColor: "#D97757", color: "#4A2618", ["--sweep-bg" as string]: "#ffffff", ["--sweep-fg" as string]: "#4A2618" }}>
+                <a href="#cotizar" className="btn-sweep transition px-6 sm:px-7 py-3 sm:py-3.5 text-sm font-medium rounded-[15px]" style={{ backgroundColor: "#D97757", color: "#ffffff", ["--sweep-bg" as string]: "#ffffff", ["--sweep-fg" as string]: "#D97757" }}>
                   <span className="btn-sweep-label">{tnav?.quote ?? ""}</span>
                 </a>
                 <Link to="/portafolio" className="btn-sweep border border-white/80 transition px-6 sm:px-7 py-3 sm:py-3.5 text-sm font-medium text-white rounded-[15px]" style={{ ["--sweep-bg" as string]: "#ffffff", ["--sweep-fg" as string]: "#000000" }}>
@@ -213,7 +214,7 @@ function Index() {
       <section id="portafolio" className="relative z-10 py-20 sm:py-28 bg-[#1A1A1A] overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12">
           <div className="text-left max-w-3xl">
-            <h2 data-reveal className="font-mammoth leading-[1.15] tracking-tight text-[34px] sm:text-[44px] md:text-[54px] lg:text-[64px]">
+            <h2 data-reveal className="paint-hover font-mammoth leading-[1.15] tracking-tight text-[34px] sm:text-[44px] md:text-[54px] lg:text-[64px]">
               <span className="block text-white text-[0.92em] pb-[0.08em]">{tc?.t1}</span>
               <span className="block overflow-visible" style={{ color: "#D97757" }}>{tc?.t2}</span>
             </h2>
@@ -221,40 +222,39 @@ function Index() {
           </div>
         </div>
 
-        <div className="max-w-7xl mx-auto mt-14 px-4 sm:px-6 md:px-12">
-          <div className="grid gap-6 sm:gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            {featuredProjects.map((p, i) => (
-              <div
-                key={p.id ?? `p-${i}`}
-                data-reveal
-                style={{ transitionDelay: `${i * 100}ms` }}
-                className="overflow-hidden rounded-2xl bg-[#141414] border border-white/5"
-              >
-                <div className="relative overflow-hidden" style={{ aspectRatio: "4 / 5" }}>
-                  {p.image_url ? (
-                    <img
-                      src={p.image_url}
-                      alt={p.name}
-                      className="absolute inset-0 w-full h-full object-cover"
-                      style={{ objectPosition: "top center" }}
-                      loading="lazy"
-                      decoding="async"
-                    />
-                  ) : (
-                    <div className="absolute inset-0 bg-gradient-to-b from-[#1a1230] to-[#0a0814]" />
-                  )}
-                </div>
-                <div className="flex items-center justify-between px-5 py-4">
-                  <span className="text-sm text-white font-medium truncate">{p.name}</span>
-                  <span className="text-[11px] text-white/40 tracking-[0.14em] uppercase shrink-0">{String(i + 1).padStart(2, "0")}</span>
-                </div>
-              </div>
-            ))}
+        <div className="mt-14">
+          <div className="overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_5%,black_95%,transparent)]">
+            <div className="proj-marquee flex w-max gap-6">
+              {(() => {
+                const list = content.projects.length > 0 ? content.projects : featuredProjects;
+                const doubled = [...list, ...list, ...list];
+                return doubled.map((p, i) => (
+                  <div
+                    key={`p-${i}`}
+                    className="shrink-0 w-[220px] sm:w-[260px] md:w-[300px] overflow-hidden rounded-2xl bg-[#141414]"
+                    style={{ aspectRatio: "630 / 1200" }}
+                  >
+                    {p.image_url ? (
+                      <img
+                        src={p.image_url}
+                        alt={p.name}
+                        className="w-full h-full object-cover"
+                        style={{ objectPosition: "top center" }}
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    ) : (
+                      <div className="w-full h-full bg-gradient-to-b from-[#1a1230] to-[#0a0814]" />
+                    )}
+                  </div>
+                ));
+              })()}
+            </div>
           </div>
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 mt-14 flex justify-center" data-reveal>
-          <Link to="/portafolio" className="btn-sweep transition px-8 py-4 text-sm font-semibold tracking-[0.18em] rounded-[15px]" style={{ backgroundColor: "#D97757", color: "#4A2618", ["--sweep-bg" as string]: "#ffffff", ["--sweep-fg" as string]: "#4A2618" }}>
+          <Link to="/portafolio" className="btn-sweep transition px-8 py-4 text-sm font-semibold tracking-[0.18em] rounded-[15px]" style={{ backgroundColor: "#D97757", color: "#ffffff", ["--sweep-bg" as string]: "#ffffff", ["--sweep-fg" as string]: "#D97757" }}>
             <span className="btn-sweep-label">{tc?.more}</span>
           </Link>
         </div>
@@ -266,7 +266,7 @@ function Index() {
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8" data-reveal>
             <div>
               <p className="text-xs sm:text-sm tracking-[0.28em] font-bold text-[#D97757] uppercase">{tr?.kicker}</p>
-              <h2 className="mt-4 font-mammoth leading-[1.1] tracking-tight text-[30px] sm:text-[40px] md:text-[52px] lg:text-[60px]">
+              <h2 className="paint-hover mt-4 font-mammoth leading-[1.1] tracking-tight text-[30px] sm:text-[40px] md:text-[52px] lg:text-[60px]">
                 <span className="block text-neutral-900 pb-[0.06em]">{tr?.title1}</span>
                 <span className="block" style={{ color: "#D97757" }}>{tr?.title2}</span>
               </h2>
@@ -320,7 +320,7 @@ function Index() {
         })()}
       </section>
 
-      {/* SERVICES — interactive numbered index */}
+      {/* SERVICES — simple card grid */}
       <section className="relative z-10 px-4 sm:px-6 md:px-12 py-24 sm:py-32 bg-[#1A1A1A] text-white overflow-hidden">
         <div className="max-w-6xl mx-auto">
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-8 mb-14" data-reveal>
@@ -328,7 +328,7 @@ function Index() {
               <p className="text-[10px] font-bold tracking-[0.32em] text-[#D97757] uppercase">
                 Servicios · 01—{String(content.solutions.length).padStart(2, "0")}
               </p>
-              <h2 className="mt-3 font-mammoth leading-[1.05] tracking-tight text-[38px] sm:text-[52px] md:text-[64px]">
+              <h2 className="paint-hover mt-3 font-mammoth leading-[1.05] tracking-tight text-[38px] sm:text-[52px] md:text-[64px]">
                 <span className="text-white">{ts?.title1}</span> <span style={{ color: "#D97757" }}>{ts?.title2}</span>
               </h2>
             </div>
@@ -337,7 +337,30 @@ function Index() {
             </p>
           </div>
 
-          <ServicesGrid solutions={content.solutions} />
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
+            {content.solutions.map((s, i) => (
+              <div
+                key={s.id}
+                data-reveal
+                style={{ transitionDelay: `${(i % 3) * 80}ms` }}
+                className="rounded-[15px] border border-white/10 bg-white/[0.02] p-8 transition-colors hover:border-[#D97757]/60 hover:bg-white/[0.04]"
+              >
+                <span className="grid size-12 place-items-center rounded-full border border-[#D97757] text-[#D97757] mb-6">
+                  {s.icon_svg_path ? (
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                      <path d={s.icon_svg_path} />
+                    </svg>
+                  ) : (
+                    <span className="font-mammoth text-sm">{String(i + 1).padStart(2, "0")}</span>
+                  )}
+                </span>
+                <h3 className="font-mammoth text-2xl leading-[1.1] tracking-tight text-white">{s.title}</h3>
+                {s.description ? (
+                  <p className="mt-3 text-sm text-white/60 leading-relaxed">{s.description}</p>
+                ) : null}
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -346,7 +369,7 @@ function Index() {
       {tst && (
         <section className="relative z-10 px-4 sm:px-6 md:px-12 py-20 sm:py-28 bg-[#F8F8F6] text-neutral-900 overflow-hidden">
           <div className="relative max-w-5xl mx-auto text-center">
-            <h2 data-reveal className="font-mammoth leading-[1.1] tracking-tight text-[28px] sm:text-[38px] md:text-[46px] max-w-3xl mx-auto">{tst.title}</h2>
+            <h2 data-reveal className="paint-hover font-mammoth leading-[1.1] tracking-tight text-[28px] sm:text-[38px] md:text-[46px] max-w-3xl mx-auto">{tst.title}</h2>
             <div className="mt-14 grid grid-cols-2 md:grid-cols-4 gap-y-10 gap-x-6">
               {(tst.items ?? []).map((s, i) => (
                 <div key={`${s.l}-${i}`} data-reveal style={{ transitionDelay: `${i * 100}ms` }} className="text-center">
@@ -368,12 +391,12 @@ function Index() {
               <span>{tnav?.quote ?? ""}</span>
               <span className="h-px w-8 bg-[#D97757]/50" />
             </div>
-            <h2 data-reveal className="font-mammoth leading-[1.1] tracking-tight text-[34px] sm:text-[44px] md:text-[56px] lg:text-[64px] text-white max-w-3xl mx-auto">
+            <h2 data-reveal className="paint-hover font-mammoth leading-[1.1] tracking-tight text-[34px] sm:text-[44px] md:text-[56px] lg:text-[64px] text-white max-w-3xl mx-auto">
               {tcta.title}
             </h2>
             <p data-reveal style={{ transitionDelay: "120ms" }} className="mt-8 text-lg sm:text-xl text-white/70 max-w-2xl mx-auto leading-relaxed">{tcta.sub}</p>
             <div data-reveal style={{ transitionDelay: "240ms" }} className="mt-12">
-              <a href="#cotizar" className="btn-sweep inline-block px-10 py-5 text-sm font-semibold tracking-[0.18em] transition rounded-[15px]" style={{ backgroundColor: "#D97757", color: "#4A2618", ["--sweep-bg" as string]: "#ffffff", ["--sweep-fg" as string]: "#4A2618" }}>
+              <a href="#cotizar" className="btn-sweep inline-block px-10 py-5 text-sm font-semibold tracking-[0.18em] transition rounded-[15px]" style={{ backgroundColor: "#D97757", color: "#ffffff", ["--sweep-bg" as string]: "#ffffff", ["--sweep-fg" as string]: "#D97757" }}>
                 <span className="btn-sweep-label">{tcta.button}</span>
               </a>
             </div>
@@ -387,6 +410,7 @@ function Index() {
       <SiteFooter language={lang} content={content} />
       <WhatsAppButton settings={content.settings} lang={lang} />
       <MouseFollowCursor />
+      <PaintHover />
       <style>{siteStyles}</style>
       {/* logo asset only to satisfy import tracking */}
       <img src={logoAsset} alt="" hidden aria-hidden="true" />
@@ -394,71 +418,3 @@ function Index() {
   );
 }
 
-type Solution = SiteContent["solutions"][number];
-
-function ServicesGrid({ solutions }: { solutions: Solution[] }) {
-  const [active, setActive] = useState(0);
-  if (!solutions.length) return null;
-  const current = solutions[Math.min(active, solutions.length - 1)];
-
-  return (
-    <div className="grid grid-cols-1 md:grid-cols-[220px_1fr] gap-8 md:gap-12 items-stretch">
-      {/* Left: numbered index */}
-      <ul className="relative flex md:flex-col gap-1 overflow-x-auto md:overflow-visible md:border-l md:border-white/10 md:pl-6">
-        {solutions.map((s, i) => {
-          const isActive = i === active;
-          return (
-            <li key={s.id}>
-              <button
-                type="button"
-                onMouseEnter={() => setActive(i)}
-                onFocus={() => setActive(i)}
-                onClick={() => setActive(i)}
-                className={`relative flex items-center gap-3 py-3 pr-4 md:pr-6 text-left transition-colors duration-300 ${isActive ? "text-white" : "text-white/35 hover:text-white/70"}`}
-              >
-                <span
-                  className={`hidden md:block h-px transition-all duration-500 ${isActive ? "w-8 bg-[#D97757]" : "w-3 bg-white/20"}`}
-                  aria-hidden="true"
-                />
-                <span className="font-mammoth text-lg sm:text-xl tabular-nums">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-              </button>
-            </li>
-          );
-        })}
-      </ul>
-
-      {/* Right: active service detail */}
-      <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] p-8 sm:p-12 min-h-[340px] flex flex-col justify-end">
-        <span
-          aria-hidden="true"
-          className="pointer-events-none absolute -right-4 -top-6 font-mammoth leading-none text-white/[0.05] select-none"
-          style={{ fontSize: "clamp(160px, 26vw, 320px)" }}
-          key={`bg-${current.id}`}
-        >
-          {String(active + 1).padStart(2, "0")}
-        </span>
-        <div key={current.id} className="service-detail relative z-10">
-          <span className="grid size-14 place-items-center rounded-full border border-[#D97757] text-[#D97757]">
-            {current.icon_svg_path ? (
-              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <path d={current.icon_svg_path} />
-              </svg>
-            ) : (
-              <span className="font-mammoth text-lg">{String(active + 1).padStart(2, "0")}</span>
-            )}
-          </span>
-          <h3 className="mt-6 font-mammoth text-3xl sm:text-4xl md:text-5xl leading-[1.05] tracking-tight text-white">
-            {current.title}
-          </h3>
-          {current.description ? (
-            <p className="mt-4 max-w-lg text-sm sm:text-base text-white/60 leading-relaxed">
-              {current.description}
-            </p>
-          ) : null}
-        </div>
-      </div>
-    </div>
-  );
-}
