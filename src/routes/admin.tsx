@@ -370,6 +370,7 @@ function editableFields(table: string): Field[] {
       return [
         { name: "name", label: "Nombre del proyecto", type: "text" },
         { name: "image_url", label: "Imagen del proyecto (obligatoria)", type: "image" },
+        { name: "url", label: "URL del sitio (opcional, se muestra en el portafolio)", type: "text" },
         { name: "position", label: "Orden", type: "number" },
         { name: "featured", label: "Destacado (home)", type: "boolean" },
       ];
