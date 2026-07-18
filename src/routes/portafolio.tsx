@@ -119,6 +119,7 @@ function PortfolioPage() {
 
       <SiteFooter language={lang} content={content} />
       <WhatsAppButton settings={content.settings} lang={lang} />
+      <PaintHover />
 
       {open && (
         <div
