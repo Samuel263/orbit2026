@@ -49,7 +49,7 @@ function PortfolioPage() {
       <section className="relative z-10 px-4 sm:px-6 md:px-12 pt-32 sm:pt-40 pb-10 bg-[#F8F8F6]">
         <div className="max-w-7xl mx-auto text-center">
           <p data-reveal className="text-[10px] font-bold tracking-[0.32em] text-[#D97757] uppercase">Portafolio</p>
-          <h1 data-reveal style={{ transitionDelay: "80ms" }} className="mt-4 font-mammoth leading-[1.1] tracking-tight text-[40px] sm:text-[60px] md:text-[72px]">
+          <h1 data-reveal style={{ transitionDelay: "80ms" }} className="paint-hover mt-4 font-mammoth leading-[1.1] tracking-tight text-[40px] sm:text-[60px] md:text-[72px]">
             <span className="block" style={{ color: "#D97757" }}>{tc?.allTitle}</span>
           </h1>
           <p data-reveal style={{ transitionDelay: "160ms" }} className="mt-5 mx-auto max-w-2xl text-base sm:text-lg text-neutral-600">{tc?.allSubtitle}</p>
