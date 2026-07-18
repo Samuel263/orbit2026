@@ -63,7 +63,7 @@ function ReviewsPage() {
           </div>
 
           <div className="mt-14 flex justify-center" data-reveal>
-            <Link to="/" className="btn-sweep border border-neutral-900 transition px-8 py-4 text-xs sm:text-sm font-semibold tracking-[0.18em] text-neutral-900 rounded-full" style={{ ["--sweep-bg" as string]: "#0a0a0a", ["--sweep-fg" as string]: "#ffffff" }}>
+            <Link to="/" className="btn-sweep border border-neutral-900 transition px-8 py-4 text-xs sm:text-sm font-semibold tracking-[0.18em] text-neutral-900 rounded-[15px]" style={{ ["--sweep-bg" as string]: "#0a0a0a", ["--sweep-fg" as string]: "#ffffff" }}>
               ← Home
             </Link>
 
@@ -73,6 +73,7 @@ function ReviewsPage() {
 
       <SiteFooter language={lang} content={content} />
       <WhatsAppButton settings={content.settings} lang={lang} />
+      <PaintHover />
       <style>{siteStyles}</style>
     </div>
   );
