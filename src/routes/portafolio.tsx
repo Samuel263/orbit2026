@@ -97,7 +97,7 @@ function PortfolioPage() {
         </div>
 
         <div className="mt-16 flex justify-center" data-reveal>
-          <Link to="/" className="btn-sweep border border-neutral-900 transition px-8 py-4 text-xs sm:text-sm font-semibold tracking-[0.18em] text-neutral-900 rounded-full" style={{ ["--sweep-bg" as string]: "#0a0a0a", ["--sweep-fg" as string]: "#ffffff" }}>
+          <Link to="/" className="btn-sweep border border-neutral-900 transition px-8 py-4 text-xs sm:text-sm font-semibold tracking-[0.18em] text-neutral-900 rounded-[15px]" style={{ ["--sweep-bg" as string]: "#0a0a0a", ["--sweep-fg" as string]: "#ffffff" }}>
             ← Home
           </Link>
         </div>
@@ -106,9 +106,9 @@ function PortfolioPage() {
       {tcta && (
         <section className="relative z-10 px-4 sm:px-6 md:px-12 py-20 bg-[#F8F8F6] border-t border-neutral-200">
           <div className="max-w-3xl mx-auto text-center">
-            <h2 data-reveal className="font-mammoth leading-[1.05] tracking-tight text-[28px] sm:text-[40px] text-neutral-900">{tcta.title}</h2>
+            <h2 data-reveal className="paint-hover font-mammoth leading-[1.05] tracking-tight text-[28px] sm:text-[40px] text-neutral-900">{tcta.title}</h2>
             <div data-reveal style={{ transitionDelay: "180ms" }} className="mt-8">
-              <a href="/#cotizar" className="btn-sweep inline-block px-8 py-4 text-sm font-semibold tracking-[0.12em] rounded-full" style={{ backgroundColor: "#D97757", color: "#4A2618", ["--sweep-bg" as string]: "#ffffff", ["--sweep-fg" as string]: "#4A2618" }}>
+              <a href="/#cotizar" className="btn-sweep inline-block px-8 py-4 text-sm font-semibold tracking-[0.12em] rounded-[15px]" style={{ backgroundColor: "#D97757", color: "#ffffff", ["--sweep-bg" as string]: "#ffffff", ["--sweep-fg" as string]: "#D97757" }}>
                 {tcta.button}
               </a>
             </div>
