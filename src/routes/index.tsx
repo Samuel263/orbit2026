@@ -410,6 +410,7 @@ function Index() {
       <SiteFooter language={lang} content={content} />
       <WhatsAppButton settings={content.settings} lang={lang} />
       <MouseFollowCursor />
+      <PaintHover />
       <style>{siteStyles}</style>
       {/* logo asset only to satisfy import tracking */}
       <img src={logoAsset} alt="" hidden aria-hidden="true" />
@@ -417,71 +418,3 @@ function Index() {
   );
 }
 
-type Solution = SiteContent["solutions"][number];
-
-function ServicesGrid({ solutions }: { solutions: Solution[] }) {
-  const [active, setActive] = useState(0);
-  if (!solutions.length) return null;
-  const current = solutions[Math.min(active, solutions.length - 1)];
-
-  return (
-    <div className="grid grid-cols-1 md:grid-cols-[220px_1fr] gap-8 md:gap-12 items-stretch">
-      {/* Left: numbered index */}
-      <ul className="relative flex md:flex-col gap-1 overflow-x-auto md:overflow-visible md:border-l md:border-white/10 md:pl-6">
-        {solutions.map((s, i) => {
-          const isActive = i === active;
-          return (
-            <li key={s.id}>
-              <button
-                type="button"
-                onMouseEnter={() => setActive(i)}
-                onFocus={() => setActive(i)}
-                onClick={() => setActive(i)}
-                className={`relative flex items-center gap-3 py-3 pr-4 md:pr-6 text-left transition-colors duration-300 ${isActive ? "text-white" : "text-white/35 hover:text-white/70"}`}
-              >
-                <span
-                  className={`hidden md:block h-px transition-all duration-500 ${isActive ? "w-8 bg-[#D97757]" : "w-3 bg-white/20"}`}
-                  aria-hidden="true"
-                />
-                <span className="font-mammoth text-lg sm:text-xl tabular-nums">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-              </button>
-            </li>
-          );
-        })}
-      </ul>
-
-      {/* Right: active service detail */}
-      <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] p-8 sm:p-12 min-h-[340px] flex flex-col justify-end">
-        <span
-          aria-hidden="true"
-          className="pointer-events-none absolute -right-4 -top-6 font-mammoth leading-none text-white/[0.05] select-none"
-          style={{ fontSize: "clamp(160px, 26vw, 320px)" }}
-          key={`bg-${current.id}`}
-        >
-          {String(active + 1).padStart(2, "0")}
-        </span>
-        <div key={current.id} className="service-detail relative z-10">
-          <span className="grid size-14 place-items-center rounded-full border border-[#D97757] text-[#D97757]">
-            {current.icon_svg_path ? (
-              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <path d={current.icon_svg_path} />
-              </svg>
-            ) : (
-              <span className="font-mammoth text-lg">{String(active + 1).padStart(2, "0")}</span>
-            )}
-          </span>
-          <h3 className="mt-6 font-mammoth text-3xl sm:text-4xl md:text-5xl leading-[1.05] tracking-tight text-white">
-            {current.title}
-          </h3>
-          {current.description ? (
-            <p className="mt-4 max-w-lg text-sm sm:text-base text-white/60 leading-relaxed">
-              {current.description}
-            </p>
-          ) : null}
-        </div>
-      </div>
-    </div>
-  );
-}
