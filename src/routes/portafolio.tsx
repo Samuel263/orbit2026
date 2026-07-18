@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { SiteNav } from "@/components/SiteNav";
 import { SiteFooter } from "@/components/SiteFooter";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
+import { PaintHover } from "@/components/PaintHover";
 import { useSiteLanguage } from "@/hooks/use-site-language";
 import { useRevealOnScroll } from "@/hooks/use-reveal";
 import { siteStyles } from "@/lib/site-styles";
