@@ -214,7 +214,7 @@ function Index() {
       <section id="portafolio" className="relative z-10 py-20 sm:py-28 bg-[#1A1A1A] overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12">
           <div className="text-left max-w-3xl">
-            <h2 data-reveal className="font-mammoth leading-[1.15] tracking-tight text-[34px] sm:text-[44px] md:text-[54px] lg:text-[64px]">
+            <h2 data-reveal className="paint-hover font-mammoth leading-[1.15] tracking-tight text-[34px] sm:text-[44px] md:text-[54px] lg:text-[64px]">
               <span className="block text-white text-[0.92em] pb-[0.08em]">{tc?.t1}</span>
               <span className="block overflow-visible" style={{ color: "#D97757" }}>{tc?.t2}</span>
             </h2>
@@ -222,40 +222,39 @@ function Index() {
           </div>
         </div>
 
-        <div className="max-w-7xl mx-auto mt-14 px-4 sm:px-6 md:px-12">
-          <div className="grid gap-6 sm:gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            {featuredProjects.map((p, i) => (
-              <div
-                key={p.id ?? `p-${i}`}
-                data-reveal
-                style={{ transitionDelay: `${i * 100}ms` }}
-                className="overflow-hidden rounded-2xl bg-[#141414] border border-white/5"
-              >
-                <div className="relative overflow-hidden" style={{ aspectRatio: "4 / 5" }}>
-                  {p.image_url ? (
-                    <img
-                      src={p.image_url}
-                      alt={p.name}
-                      className="absolute inset-0 w-full h-full object-cover"
-                      style={{ objectPosition: "top center" }}
-                      loading="lazy"
-                      decoding="async"
-                    />
-                  ) : (
-                    <div className="absolute inset-0 bg-gradient-to-b from-[#1a1230] to-[#0a0814]" />
-                  )}
-                </div>
-                <div className="flex items-center justify-between px-5 py-4">
-                  <span className="text-sm text-white font-medium truncate">{p.name}</span>
-                  <span className="text-[11px] text-white/40 tracking-[0.14em] uppercase shrink-0">{String(i + 1).padStart(2, "0")}</span>
-                </div>
-              </div>
-            ))}
+        <div className="mt-14">
+          <div className="overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_5%,black_95%,transparent)]">
+            <div className="proj-marquee flex w-max gap-6">
+              {(() => {
+                const list = content.projects.length > 0 ? content.projects : featuredProjects;
+                const doubled = [...list, ...list, ...list];
+                return doubled.map((p, i) => (
+                  <div
+                    key={`p-${i}`}
+                    className="shrink-0 w-[220px] sm:w-[260px] md:w-[300px] overflow-hidden rounded-2xl bg-[#141414]"
+                    style={{ aspectRatio: "630 / 1200" }}
+                  >
+                    {p.image_url ? (
+                      <img
+                        src={p.image_url}
+                        alt={p.name}
+                        className="w-full h-full object-cover"
+                        style={{ objectPosition: "top center" }}
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    ) : (
+                      <div className="w-full h-full bg-gradient-to-b from-[#1a1230] to-[#0a0814]" />
+                    )}
+                  </div>
+                ));
+              })()}
+            </div>
           </div>
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 mt-14 flex justify-center" data-reveal>
-          <Link to="/portafolio" className="btn-sweep transition px-8 py-4 text-sm font-semibold tracking-[0.18em] rounded-[15px]" style={{ backgroundColor: "#D97757", color: "#4A2618", ["--sweep-bg" as string]: "#ffffff", ["--sweep-fg" as string]: "#4A2618" }}>
+          <Link to="/portafolio" className="btn-sweep transition px-8 py-4 text-sm font-semibold tracking-[0.18em] rounded-[15px]" style={{ backgroundColor: "#D97757", color: "#ffffff", ["--sweep-bg" as string]: "#ffffff", ["--sweep-fg" as string]: "#D97757" }}>
             <span className="btn-sweep-label">{tc?.more}</span>
           </Link>
         </div>
