@@ -64,7 +64,7 @@ function PortfolioPage() {
             <div key={p.id} data-reveal style={{ transitionDelay: `${(i % 3) * 100}ms` }}>
               <button
                 type="button"
-                onClick={() => setOpen({ id: p.id, name: p.name, image_url: p.image_url })}
+                onClick={() => setOpen({ id: p.id, name: p.name, image_url: p.image_url, url: p.url })}
                 className="portfolio-item group block w-full text-left"
               >
                 <div className="relative overflow-hidden rounded-2xl bg-neutral-200" style={{ aspectRatio: "3 / 4" }}>
