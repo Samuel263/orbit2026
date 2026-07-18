@@ -21,7 +21,7 @@ export const Route = createFileRoute("/portafolio")({
   component: PortfolioPage,
 });
 
-type Project = { id: string; name: string; image_url: string | null };
+type Project = { id: string; name: string; image_url: string | null; url?: string };
 
 function PortfolioPage() {
   const { language, onLanguageChange } = useSiteLanguage();
