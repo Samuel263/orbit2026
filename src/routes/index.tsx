@@ -369,7 +369,7 @@ function Index() {
       {tst && (
         <section className="relative z-10 px-4 sm:px-6 md:px-12 py-20 sm:py-28 bg-[#F8F8F6] text-neutral-900 overflow-hidden">
           <div className="relative max-w-5xl mx-auto text-center">
-            <h2 data-reveal className="font-mammoth leading-[1.1] tracking-tight text-[28px] sm:text-[38px] md:text-[46px] max-w-3xl mx-auto">{tst.title}</h2>
+            <h2 data-reveal className="paint-hover font-mammoth leading-[1.1] tracking-tight text-[28px] sm:text-[38px] md:text-[46px] max-w-3xl mx-auto">{tst.title}</h2>
             <div className="mt-14 grid grid-cols-2 md:grid-cols-4 gap-y-10 gap-x-6">
               {(tst.items ?? []).map((s, i) => (
                 <div key={`${s.l}-${i}`} data-reveal style={{ transitionDelay: `${i * 100}ms` }} className="text-center">
