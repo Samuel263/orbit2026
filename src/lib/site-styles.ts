@@ -213,10 +213,13 @@ export const siteStyles = `
     justify-content: space-between;
     gap: 18px;
     padding: 18px;
-    border-radius: 14px;
+    border-radius: 10px;
     overflow: hidden;
     color: #fff;
-    background: rgba(20, 18, 40, 0.55);
+    background-color: #1f1f1f;
+    background-image:
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.35 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    background-size: 160px 160px;
     border: none;
     box-shadow: none;
     animation: heroTrailFade 2400ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
