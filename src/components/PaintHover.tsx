@@ -42,7 +42,6 @@ export function PaintHover() {
               s.textContent = c;
               s.setAttribute("data-paint-char", "");
               s.style.transition = "color 320ms cubic-bezier(0.22,1,0.36,1)";
-              s.style.display = "inline-block";
               frag.appendChild(s);
             }
             parent.replaceChild(frag, tn);

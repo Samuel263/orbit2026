@@ -84,7 +84,7 @@ export function LanguageSwitcher({ value, onLanguageChange, variant = "dark" }: 
         onClick={() => setOpen((v) => !v)}
         aria-label="Cambiar idioma"
         aria-expanded={open}
-        className={`inline-flex items-center gap-2 h-9 px-3 text-xs font-medium rounded-full transition-colors ${
+        className={`inline-flex items-center gap-2 h-9 px-3 text-xs font-medium rounded-[15px] transition-colors ${
           isLight
             ? "bg-white/5 text-white/80 hover:bg-white/10 border border-white/10"
             : "bg-white/10 text-white hover:bg-white/20"
