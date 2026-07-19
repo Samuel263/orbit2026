@@ -149,7 +149,7 @@ function Index() {
               </h1>
               <p className="hero-no-trail mt-6 text-sm sm:text-base text-white/85 leading-relaxed max-w-xl mx-auto">{t?.description}</p>
               <div className="hero-no-trail mt-8 flex flex-wrap items-center justify-center gap-3 sm:gap-4">
-                <a href="#cotizar" className="btn-sweep transition px-6 sm:px-7 py-3 sm:py-3.5 text-sm font-medium rounded-[15px]" style={{ backgroundColor: "#D97757", color: "#ffffff", ["--sweep-bg" as string]: "#ffffff", ["--sweep-fg" as string]: "#D97757" }}>
+                <a href="#cotizar" className="btn-sweep text-white transition px-6 sm:px-7 py-3 sm:py-3.5 text-sm font-medium rounded-[15px]" style={{ backgroundColor: "#D97757", ["--sweep-bg" as string]: "#ffffff", ["--sweep-fg" as string]: "#D97757" }}>
                   <span className="btn-sweep-label">{tnav?.quote ?? ""}</span>
                 </a>
                 <Link to="/portafolio" className="btn-sweep border border-white/80 transition px-6 sm:px-7 py-3 sm:py-3.5 text-sm font-medium text-white rounded-[15px]" style={{ ["--sweep-bg" as string]: "#ffffff", ["--sweep-fg" as string]: "#000000" }}>
