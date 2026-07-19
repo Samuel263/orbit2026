@@ -76,14 +76,14 @@ export function SiteFooter({ language, content }: Props) {
         </div>
       </div>
 
-      <div className="relative overflow-hidden pb-6 sm:pb-8 md:pb-10 leading-none text-center pointer-events-none select-none">
-        <p
+      <div className="relative overflow-hidden pb-8 sm:pb-10 pt-4 flex justify-center pointer-events-none select-none">
+        <img
+          src={logoAsset}
+          alt=""
           aria-hidden="true"
-          className="font-mammoth tracking-tight text-white/[0.06] leading-[1] px-4"
-          style={{ fontSize: "clamp(64px, 22vw, 300px)" }}
-        >
-          www<span style={{ color: "rgba(217,119,87,0.18)" }}>.</span>
-        </p>
+          className="h-16 sm:h-20 md:h-24 w-auto"
+          style={{ filter: "grayscale(100%) brightness(0) invert(1)", opacity: 0.18 }}
+        />
       </div>
     </footer>
   );
