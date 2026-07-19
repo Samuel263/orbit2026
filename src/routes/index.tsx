@@ -141,10 +141,17 @@ function Index() {
 
 
         <section
-  className="relative overflow-hidden rounded-xl sm:rounded-2xl hero-stage shadow-[0_30px_80px_-40px_rgba(11,18,38,0.6)]"
+          ref={heroSectionRef}
+          className="relative overflow-hidden rounded-xl sm:rounded-2xl hero-stage bg-[#1A1A1A]"
           onPointerMoveCapture={handleHeroTrailMove}
         >
-          <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none" aria-hidden="true">
+          {/* Fixed-viewport video layer, clipped to this section via JS clip-path */}
+          <div
+            ref={heroVideoLayerRef}
+            className="fixed inset-0 z-[1] pointer-events-none overflow-hidden"
+            aria-hidden="true"
+            style={{ willChange: "clip-path" }}
+          >
             <video autoPlay loop muted playsInline className="absolute inset-0 h-full w-full object-cover" style={{ filter: "grayscale(1) contrast(1.05)" }} src={videoBg} />
             <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse at 50% 40%, rgba(217,119,87,0.85), rgba(26,26,26,0.95) 70%)", mixBlendMode: "multiply" }} />
             <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse at 50% 40%, rgba(217,119,87,0.35), transparent 60%)", mixBlendMode: "soft-light" }} />
