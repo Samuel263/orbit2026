@@ -189,7 +189,7 @@ function Index() {
           <span data-reveal className="inline-flex items-center gap-2 text-[10px] font-bold tracking-[0.28em] text-neutral-500 uppercase">
             <span className="h-px w-8 bg-neutral-300" />{tcl?.kicker}<span className="h-px w-8 bg-neutral-300" />
           </span>
-          <h2 data-reveal style={{ transitionDelay: "80ms" }} className="mt-5 font-mammoth leading-[1.15] tracking-tight text-[26px] sm:text-[34px] md:text-[42px]">
+          <h2 data-reveal style={{ transitionDelay: "80ms" }} className="paint-hover mt-5 font-mammoth leading-[1.15] tracking-tight text-[26px] sm:text-[34px] md:text-[42px]">
             <span className="text-neutral-900">{tcl?.t1}</span> <span style={{ color: "#D97757" }}>{tcl?.t2}</span>
           </h2>
         </div>
