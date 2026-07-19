@@ -16,8 +16,8 @@ export function SiteFooter({ language, content }: Props) {
       <div className="relative z-10 px-4 sm:px-6 md:px-12 pt-20 pb-8">
         <div className="max-w-7xl mx-auto grid gap-12 md:gap-8 md:grid-cols-12">
           <div className="md:col-span-5 flex flex-col gap-5">
-            <Link to="/" className="inline-flex items-baseline gap-1 font-mammoth text-4xl sm:text-5xl leading-none tracking-tight text-white">
-              www<span style={{ color: "#D97757" }}>.</span>
+            <Link to="/" className="inline-flex items-center">
+              <img src={logoAsset} alt="Logo" className="h-9 sm:h-10 w-auto" />
             </Link>
             <div className="inline-flex items-center gap-2 self-start rounded-[15px] border border-white/10 bg-white/5 px-3 py-1.5">
               <span className="relative flex size-2">
