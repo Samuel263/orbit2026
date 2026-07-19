@@ -74,7 +74,7 @@ export function SiteFooter({ language, content }: Props) {
           src={logoAsset}
           alt=""
           aria-hidden="true"
-          className="h-16 sm:h-20 md:h-24 w-auto"
+          className="h-40 sm:h-56 md:h-72 lg:h-80 w-auto"
           style={{ filter: "grayscale(100%) brightness(0) invert(1)", opacity: 0.18 }}
         />
       </div>
