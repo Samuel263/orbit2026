@@ -142,7 +142,7 @@ function Index() {
 
         <section
           ref={heroSectionRef}
-          className="relative overflow-hidden rounded-xl sm:rounded-2xl hero-stage bg-[#1A1A1A]"
+          className="relative overflow-hidden rounded-xl sm:rounded-2xl hero-stage"
           onPointerMoveCapture={handleHeroTrailMove}
         >
           {/* Fixed-viewport video layer, clipped to this section via JS clip-path */}
