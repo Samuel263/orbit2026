@@ -48,11 +48,19 @@ export function PaintHover() {
           }
           t.dataset.paintReady = "1";
         }
-        const baseHex = rgbToHex(getComputedStyle(t).color).toLowerCase();
-        const isOrange = Math.abs(parseInt(baseHex.slice(1, 3), 16) - 0xd9) < 20 &&
-          Math.abs(parseInt(baseHex.slice(3, 5), 16) - 0x77) < 20;
-        const alt = isOrange ? DARK : ORANGE;
-        t.querySelectorAll<HTMLElement>("[data-paint-char]").forEach((el) => next.push({ el, alt }));
+        // Compute alt color PER character from its own inherited color.
+        t.querySelectorAll<HTMLElement>("[data-paint-char]").forEach((el) => {
+          const parentEl = el.parentElement;
+          if (!parentEl) return;
+          const baseHex = rgbToHex(getComputedStyle(parentEl).color).toLowerCase();
+          if (!baseHex) return;
+          const r = parseInt(baseHex.slice(1, 3), 16);
+          const g = parseInt(baseHex.slice(3, 5), 16);
+          const b = parseInt(baseHex.slice(5, 7), 16);
+          const isOrange = Math.abs(r - 0xd9) < 35 && Math.abs(g - 0x77) < 35 && Math.abs(b - 0x57) < 35;
+          const alt = isOrange ? DARK : ORANGE;
+          next.push({ el, alt });
+        });
       }
       items = next;
     }
