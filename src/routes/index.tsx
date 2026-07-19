@@ -61,7 +61,42 @@ function Index() {
   const [heroTrail, setHeroTrail] = useState<HeroTrailInstance[]>([]);
   const trailSequenceRef = useRef(0);
   const lastTrailAtRef = useRef(0);
+  const heroSectionRef = useRef<HTMLElement | null>(null);
+  const heroVideoLayerRef = useRef<HTMLDivElement | null>(null);
   useRevealOnScroll();
+
+  useEffect(() => {
+    const section = heroSectionRef.current;
+    const wrap = heroVideoLayerRef.current;
+    if (!section || !wrap) return;
+    let raf = 0;
+    const update = () => {
+      raf = 0;
+      const r = section.getBoundingClientRect();
+      const vw = window.innerWidth;
+      const vh = window.innerHeight;
+      if (r.bottom < -20 || r.top > vh + 20) {
+        wrap.style.visibility = "hidden";
+        return;
+      }
+      wrap.style.visibility = "";
+      const top = Math.max(0, r.top);
+      const left = Math.max(0, r.left);
+      const right = Math.max(0, vw - r.right);
+      const bottom = Math.max(0, vh - r.bottom);
+      const radius = vw >= 640 ? 16 : 12;
+      wrap.style.clipPath = `inset(${top}px ${right}px ${bottom}px ${left}px round ${radius}px)`;
+    };
+    const onScroll = () => { if (!raf) raf = requestAnimationFrame(update); };
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", update);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", update);
+      if (raf) cancelAnimationFrame(raf);
+    };
+  }, []);
 
   const t = pickBlock<{ description: string; viewPortfolio: string; clientAlt: string }>(content, "hero", lang);
   const tc = pickBlock<{ t1: string; t2: string; desc: string; view: string; more: string }>(content, "cases", lang);
