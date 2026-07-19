@@ -1,6 +1,6 @@
 // Shared style block for site pages.
 export const siteStyles = `
-  html { scroll-behavior: smooth; }
+  html.lenis { scroll-behavior: auto; }
   .paint-hover [data-paint-char] { will-change: color; }
 
   /* ---------- Projects vertical marquee ---------- */
