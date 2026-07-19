@@ -19,13 +19,6 @@ export function SiteFooter({ language, content }: Props) {
             <Link to="/" className="inline-flex items-center">
               <img src={logoAsset} alt="Logo" className="h-9 sm:h-10 w-auto" />
             </Link>
-            <div className="inline-flex items-center gap-2 self-start rounded-[15px] border border-white/10 bg-white/5 px-3 py-1.5">
-              <span className="relative flex size-2">
-                <span className="absolute inset-0 rounded-full bg-[#7EE640] animate-ping opacity-70" />
-                <span className="relative inline-flex size-2 rounded-full bg-[#7EE640]" />
-              </span>
-              <span className="text-[11px] tracking-[0.14em] uppercase text-white/80">Disponible para nuevos proyectos</span>
-            </div>
             <p className="text-sm text-white/60 leading-relaxed max-w-sm">
               Diseñamos y desarrollamos sitios web hechos a la medida — pensados para convertir, no para decorar.
             </p>
