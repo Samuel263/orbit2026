@@ -149,7 +149,7 @@ function Index() {
               </h1>
               <p className="hero-no-trail mt-6 text-sm sm:text-base text-white/85 leading-relaxed max-w-xl mx-auto">{t?.description}</p>
               <div className="hero-no-trail mt-8 flex flex-wrap items-center justify-center gap-3 sm:gap-4">
-                <a href="#cotizar" className="btn-sweep text-white transition px-6 sm:px-7 py-3 sm:py-3.5 text-sm font-medium rounded-[15px]" style={{ backgroundColor: "#D97757", ["--sweep-bg" as string]: "#ffffff", ["--sweep-fg" as string]: "#D97757" }}>
+                <a href="#cotizar" className="btn-sweep text-white transition px-6 sm:px-7 py-3 sm:py-3.5 text-sm font-medium rounded-[15px]" style={{ backgroundColor: "#D97757", ["--sweep-bg" as string]: "#ffffff", ["--sweep-fg" as string]: "#000000" }}>
                   <span className="btn-sweep-label">{tnav?.quote ?? ""}</span>
                 </a>
                 <Link to="/portafolio" className="btn-sweep border border-white/80 transition px-6 sm:px-7 py-3 sm:py-3.5 text-sm font-medium text-white rounded-[15px]" style={{ ["--sweep-bg" as string]: "#ffffff", ["--sweep-fg" as string]: "#000000" }}>
@@ -254,7 +254,7 @@ function Index() {
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 mt-14 flex justify-center" data-reveal>
-          <Link to="/portafolio" className="btn-sweep text-white transition px-8 py-4 text-sm font-semibold tracking-[0.18em] rounded-[15px]" style={{ backgroundColor: "#D97757", ["--sweep-bg" as string]: "#ffffff", ["--sweep-fg" as string]: "#D97757" }}>
+          <Link to="/portafolio" className="btn-sweep text-white transition px-8 py-4 text-sm font-semibold tracking-[0.18em] rounded-[15px]" style={{ backgroundColor: "#D97757", ["--sweep-bg" as string]: "#ffffff", ["--sweep-fg" as string]: "#000000" }}>
             <span className="btn-sweep-label">{tc?.more}</span>
           </Link>
         </div>
@@ -396,7 +396,7 @@ function Index() {
             </h2>
             <p data-reveal style={{ transitionDelay: "120ms" }} className="mt-8 text-lg sm:text-xl text-white/70 max-w-2xl mx-auto leading-relaxed">{tcta.sub}</p>
             <div data-reveal style={{ transitionDelay: "240ms" }} className="mt-12">
-              <a href="#cotizar" className="btn-sweep text-white inline-block px-10 py-5 text-sm font-semibold tracking-[0.18em] transition rounded-[15px]" style={{ backgroundColor: "#D97757", ["--sweep-bg" as string]: "#ffffff", ["--sweep-fg" as string]: "#D97757" }}>
+              <a href="#cotizar" className="btn-sweep text-white inline-block px-10 py-5 text-sm font-semibold tracking-[0.18em] transition rounded-[15px]" style={{ backgroundColor: "#D97757", ["--sweep-bg" as string]: "#ffffff", ["--sweep-fg" as string]: "#000000" }}>
                 <span className="btn-sweep-label">{tcta.button}</span>
               </a>
             </div>
