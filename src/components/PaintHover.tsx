@@ -57,8 +57,8 @@ export function PaintHover() {
           const r = parseInt(baseHex.slice(1, 3), 16);
           const g = parseInt(baseHex.slice(3, 5), 16);
           const b = parseInt(baseHex.slice(5, 7), 16);
-          const isOrange = Math.abs(r - 0xd9) < 35 && Math.abs(g - 0x77) < 35 && Math.abs(b - 0x57) < 35;
-          const alt = isOrange ? DARK : ORANGE;
+          const luma = 0.2126 * r + 0.7152 * g + 0.0722 * b;
+          const alt = luma > 140 ? DARK : LIGHT;
           next.push({ el, alt });
         });
       }
