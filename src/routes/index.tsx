@@ -329,11 +329,11 @@ function Index() {
         <div className="max-w-6xl mx-auto">
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-8 mb-14" data-reveal>
             <div>
-              <p className="text-[10px] font-bold tracking-[0.32em] text-[#0a0a0a] uppercase">
+              <p className="text-[10px] font-bold tracking-[0.32em] text-white/60 uppercase">
                 Servicios · 01—{String(content.solutions.length).padStart(2, "0")}
               </p>
-              <h2 className="paint-hover mt-3 font-mammoth leading-[1.05] tracking-tight text-[38px] sm:text-[52px] md:text-[64px]">
-                <span className="text-white">{ts?.title1}</span> <span style={{ color: "#0a0a0a" }}>{ts?.title2}</span>
+              <h2 className="paint-hover mt-3 font-mammoth leading-[1.05] tracking-tight text-[38px] sm:text-[52px] md:text-[64px] text-white">
+                <span>{ts?.title1}</span> <span>{ts?.title2}</span>
               </h2>
             </div>
             <p className="max-w-xs text-sm text-white/50 leading-relaxed md:text-right">
@@ -347,9 +347,9 @@ function Index() {
                 key={s.id}
                 data-reveal
                 style={{ transitionDelay: `${(i % 3) * 80}ms` }}
-                className="rounded-[15px] border border-white/10 bg-white/[0.02] p-8 transition-colors hover:border-[#0a0a0a]/60 hover:bg-white/[0.04]"
+                className="rounded-[15px] border border-white/10 bg-white/[0.02] p-8 transition-colors hover:border-white/60 hover:bg-white/[0.05]"
               >
-                <span className="grid size-12 place-items-center rounded-full border border-[#0a0a0a] text-[#0a0a0a] mb-6">
+                <span className="grid size-12 place-items-center rounded-full border border-white text-white mb-6">
                   {s.icon_svg_path ? (
                     <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                       <path d={s.icon_svg_path} />
