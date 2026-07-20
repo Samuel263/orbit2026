@@ -218,9 +218,9 @@ function Index() {
       <section id="portafolio" className="relative z-10 py-20 sm:py-28 bg-[#1A1A1A] overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12">
           <div className="text-left max-w-3xl">
-            <h2 data-reveal className="paint-hover font-mammoth leading-[1.15] tracking-tight text-[34px] sm:text-[44px] md:text-[54px] lg:text-[64px]">
-              <span className="block text-white text-[0.92em] pb-[0.08em]">{tc?.t1}</span>
-              <span className="block overflow-visible" style={{ color: "#0a0a0a" }}>{tc?.t2}</span>
+            <h2 data-reveal className="paint-hover font-mammoth leading-[1.15] tracking-tight text-[34px] sm:text-[44px] md:text-[54px] lg:text-[64px] text-white">
+              <span className="block text-[0.92em] pb-[0.08em]">{tc?.t1}</span>
+              <span className="block overflow-visible">{tc?.t2}</span>
             </h2>
             <p data-reveal style={{ transitionDelay: "120ms" }} className="mt-5 text-base sm:text-lg text-white/85 leading-relaxed">{tc?.desc}</p>
           </div>
