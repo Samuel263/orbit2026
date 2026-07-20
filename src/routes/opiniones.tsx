@@ -39,7 +39,7 @@ function ReviewsPage() {
             <p className="mt-3 text-3xl sm:text-4xl font-black tracking-tight">{tr?.excellent}</p>
             <p className="mt-2 text-sm text-neutral-600">{tr?.basedOn}</p>
             <h1 className="paint-hover mt-8 font-mammoth leading-[1.1] tracking-tight text-[36px] sm:text-[48px] md:text-[56px]">
-              <span className="block" style={{ color: "#D97757" }}>{tr?.allTitle}</span>
+              <span className="block" style={{ color: "#0a0a0a" }}>{tr?.allTitle}</span>
             </h1>
 
 

@@ -185,13 +185,13 @@ function Index() {
                 <span className="text-white hero-line hero-line-1">
                   {pickBlock<{ headlineTop: string }>(content, "hero", lang)?.headlineTop ?? ""}{" "}
                 </span>
-                <span className="hero-line hero-line-2 overflow-visible" style={{ color: "#D97757" }}>
+                <span className="hero-line hero-line-2 overflow-visible" style={{ color: "#0a0a0a" }}>
                   {pickBlock<{ headlineBottom: string }>(content, "hero", lang)?.headlineBottom ?? ""}
                 </span>
               </h1>
               <p className="hero-no-trail mt-6 text-sm sm:text-base text-white/85 leading-relaxed max-w-xl mx-auto">{t?.description}</p>
               <div className="hero-no-trail mt-8 flex flex-wrap items-center justify-center gap-3 sm:gap-4">
-                <a href="#cotizar" className="btn-sweep text-white transition px-6 sm:px-7 py-3 sm:py-3.5 text-sm font-medium rounded-[15px]" style={{ backgroundColor: "#D97757", ["--sweep-bg" as string]: "#ffffff", ["--sweep-fg" as string]: "#000000" }}>
+                <a href="#cotizar" className="btn-sweep text-white transition px-6 sm:px-7 py-3 sm:py-3.5 text-sm font-medium rounded-[15px]" style={{ backgroundColor: "#0a0a0a", ["--sweep-bg" as string]: "#ffffff", ["--sweep-fg" as string]: "#000000" }}>
                   <span className="btn-sweep-label">{tnav?.quote ?? ""}</span>
                 </a>
                 <Link to="/portafolio" className="btn-sweep border border-white/80 transition px-6 sm:px-7 py-3 sm:py-3.5 text-sm font-medium text-white rounded-[15px]" style={{ ["--sweep-bg" as string]: "#ffffff", ["--sweep-fg" as string]: "#000000" }}>
@@ -232,7 +232,7 @@ function Index() {
             <span className="h-px w-8 bg-neutral-300" />{tcl?.kicker}<span className="h-px w-8 bg-neutral-300" />
           </span>
           <h2 data-reveal style={{ transitionDelay: "80ms" }} className="paint-hover mt-5 font-mammoth leading-[1.15] tracking-tight text-[26px] sm:text-[34px] md:text-[42px]">
-            <span className="text-neutral-900">{tcl?.t1}</span> <span style={{ color: "#D97757" }}>{tcl?.t2}</span>
+            <span className="text-neutral-900">{tcl?.t1}</span> <span style={{ color: "#0a0a0a" }}>{tcl?.t2}</span>
           </h2>
         </div>
         <div className="max-w-6xl mx-auto px-4 sm:px-6 md:px-10 mt-10 sm:mt-14">
@@ -258,7 +258,7 @@ function Index() {
           <div className="text-left max-w-3xl">
             <h2 data-reveal className="paint-hover font-mammoth leading-[1.15] tracking-tight text-[34px] sm:text-[44px] md:text-[54px] lg:text-[64px]">
               <span className="block text-white text-[0.92em] pb-[0.08em]">{tc?.t1}</span>
-              <span className="block overflow-visible" style={{ color: "#D97757" }}>{tc?.t2}</span>
+              <span className="block overflow-visible" style={{ color: "#0a0a0a" }}>{tc?.t2}</span>
             </h2>
             <p data-reveal style={{ transitionDelay: "120ms" }} className="mt-5 text-base sm:text-lg text-white/85 leading-relaxed">{tc?.desc}</p>
           </div>
@@ -296,7 +296,7 @@ function Index() {
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 mt-14 flex justify-center" data-reveal>
-          <Link to="/portafolio" className="btn-sweep text-white transition px-8 py-4 text-sm font-semibold tracking-[0.18em] rounded-[15px]" style={{ backgroundColor: "#D97757", ["--sweep-bg" as string]: "#ffffff", ["--sweep-fg" as string]: "#000000" }}>
+          <Link to="/portafolio" className="btn-sweep text-white transition px-8 py-4 text-sm font-semibold tracking-[0.18em] rounded-[15px]" style={{ backgroundColor: "#0a0a0a", ["--sweep-bg" as string]: "#ffffff", ["--sweep-fg" as string]: "#000000" }}>
             <span className="btn-sweep-label">{tc?.more}</span>
           </Link>
         </div>
@@ -307,10 +307,10 @@ function Index() {
         <div className="relative max-w-7xl mx-auto">
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8" data-reveal>
             <div>
-              <p className="text-xs sm:text-sm tracking-[0.28em] font-bold text-[#D97757] uppercase">{tr?.kicker}</p>
+              <p className="text-xs sm:text-sm tracking-[0.28em] font-bold text-[#0a0a0a] uppercase">{tr?.kicker}</p>
               <h2 className="paint-hover mt-4 font-mammoth leading-[1.1] tracking-tight text-[30px] sm:text-[40px] md:text-[52px] lg:text-[60px]">
                 <span className="block text-neutral-900 pb-[0.06em]">{tr?.title1}</span>
-                <span className="block" style={{ color: "#D97757" }}>{tr?.title2}</span>
+                <span className="block" style={{ color: "#0a0a0a" }}>{tr?.title2}</span>
               </h2>
             </div>
             <div className="flex flex-col items-start lg:items-end gap-2">
@@ -367,11 +367,11 @@ function Index() {
         <div className="max-w-6xl mx-auto">
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-8 mb-14" data-reveal>
             <div>
-              <p className="text-[10px] font-bold tracking-[0.32em] text-[#D97757] uppercase">
+              <p className="text-[10px] font-bold tracking-[0.32em] text-[#0a0a0a] uppercase">
                 Servicios · 01—{String(content.solutions.length).padStart(2, "0")}
               </p>
               <h2 className="paint-hover mt-3 font-mammoth leading-[1.05] tracking-tight text-[38px] sm:text-[52px] md:text-[64px]">
-                <span className="text-white">{ts?.title1}</span> <span style={{ color: "#D97757" }}>{ts?.title2}</span>
+                <span className="text-white">{ts?.title1}</span> <span style={{ color: "#0a0a0a" }}>{ts?.title2}</span>
               </h2>
             </div>
             <p className="max-w-xs text-sm text-white/50 leading-relaxed md:text-right">
@@ -385,9 +385,9 @@ function Index() {
                 key={s.id}
                 data-reveal
                 style={{ transitionDelay: `${(i % 3) * 80}ms` }}
-                className="rounded-[15px] border border-white/10 bg-white/[0.02] p-8 transition-colors hover:border-[#D97757]/60 hover:bg-white/[0.04]"
+                className="rounded-[15px] border border-white/10 bg-white/[0.02] p-8 transition-colors hover:border-[#0a0a0a]/60 hover:bg-white/[0.04]"
               >
-                <span className="grid size-12 place-items-center rounded-full border border-[#D97757] text-[#D97757] mb-6">
+                <span className="grid size-12 place-items-center rounded-full border border-[#0a0a0a] text-[#0a0a0a] mb-6">
                   {s.icon_svg_path ? (
                     <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                       <path d={s.icon_svg_path} />
@@ -415,7 +415,7 @@ function Index() {
             <div className="mt-14 grid grid-cols-2 md:grid-cols-4 gap-y-10 gap-x-6">
               {(tst.items ?? []).map((s, i) => (
                 <div key={`${s.l}-${i}`} data-reveal style={{ transitionDelay: `${i * 100}ms` }} className="text-center">
-                  <p className="font-mammoth text-5xl sm:text-6xl leading-none tracking-tight" style={{ color: i % 2 === 0 ? "#D97757" : "#1A1A1A" }}>{s.n}</p>
+                  <p className="font-mammoth text-5xl sm:text-6xl leading-none tracking-tight" style={{ color: i % 2 === 0 ? "#0a0a0a" : "#1A1A1A" }}>{s.n}</p>
                   <p className="mt-3 text-[11px] sm:text-xs tracking-[0.18em] uppercase text-neutral-500">{s.l}</p>
                 </div>
               ))}
@@ -428,17 +428,17 @@ function Index() {
       {tcta && (
         <section id="cotizar" className="relative z-10 px-4 sm:px-6 md:px-12 py-32 sm:py-40 bg-[#0F0F10] overflow-hidden">
           <div className="relative max-w-4xl mx-auto text-center">
-            <div data-reveal className="inline-flex items-center gap-2 text-[10px] font-bold tracking-[0.28em] text-[#D97757] uppercase mb-6">
-              <span className="h-px w-8 bg-[#D97757]/50" />
+            <div data-reveal className="inline-flex items-center gap-2 text-[10px] font-bold tracking-[0.28em] text-[#0a0a0a] uppercase mb-6">
+              <span className="h-px w-8 bg-[#0a0a0a]/50" />
               <span>{tnav?.quote ?? ""}</span>
-              <span className="h-px w-8 bg-[#D97757]/50" />
+              <span className="h-px w-8 bg-[#0a0a0a]/50" />
             </div>
             <h2 data-reveal className="paint-hover font-mammoth leading-[1.1] tracking-tight text-[34px] sm:text-[44px] md:text-[56px] lg:text-[64px] text-white max-w-3xl mx-auto">
               {tcta.title}
             </h2>
             <p data-reveal style={{ transitionDelay: "120ms" }} className="mt-8 text-lg sm:text-xl text-white/70 max-w-2xl mx-auto leading-relaxed">{tcta.sub}</p>
             <div data-reveal style={{ transitionDelay: "240ms" }} className="mt-12">
-              <a href="#cotizar" className="btn-sweep text-white inline-block px-10 py-5 text-sm font-semibold tracking-[0.18em] transition rounded-[15px]" style={{ backgroundColor: "#D97757", ["--sweep-bg" as string]: "#ffffff", ["--sweep-fg" as string]: "#000000" }}>
+              <a href="#cotizar" className="btn-sweep text-white inline-block px-10 py-5 text-sm font-semibold tracking-[0.18em] transition rounded-[15px]" style={{ backgroundColor: "#0a0a0a", ["--sweep-bg" as string]: "#ffffff", ["--sweep-fg" as string]: "#000000" }}>
                 <span className="btn-sweep-label">{tcta.button}</span>
               </a>
             </div>

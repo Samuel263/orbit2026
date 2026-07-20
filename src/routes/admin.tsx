@@ -47,12 +47,12 @@ function LoginScreen() {
         <input
           type="password" autoFocus value={password} onChange={(e) => setPassword(e.target.value)}
           placeholder="Contraseña"
-          className="w-full rounded-md border border-white/15 bg-neutral-800 px-3 py-2 text-sm outline-none focus:border-[#D97757]"
+          className="w-full rounded-md border border-white/15 bg-neutral-800 px-3 py-2 text-sm outline-none focus:border-[#0a0a0a]"
         />
         {error && <p className="text-sm text-red-400">{error}</p>}
         <button
           type="submit" disabled={loading || !password}
-          className="w-full rounded-md bg-[#D97757] px-4 py-2 text-sm font-semibold text-white disabled:opacity-50"
+          className="w-full rounded-md bg-[#0a0a0a] px-4 py-2 text-sm font-semibold text-white disabled:opacity-50"
         >{loading ? "Verificando..." : "Entrar"}</button>
       </form>
     </div>
@@ -99,7 +99,7 @@ function AdminShell() {
         {SECTIONS.map((s) => (
           <button
             key={s.key} onClick={() => setActive(s.key)}
-            className={`w-full text-left rounded-md px-3 py-2 text-sm transition ${active === s.key ? "bg-[#D97757]/20 text-white" : "text-white/70 hover:bg-white/5"}`}
+            className={`w-full text-left rounded-md px-3 py-2 text-sm transition ${active === s.key ? "bg-[#0a0a0a]/20 text-white" : "text-white/70 hover:bg-white/5"}`}
           >{s.label}</button>
         ))}
         <div className="pt-4 mt-4 border-t border-white/10 space-y-2">
@@ -159,13 +159,13 @@ function SectionEditor({ table }: { table: string }) {
         {!isSingleton && (
           <button
             onClick={() => setEditing(defaultRow(table))}
-            className="rounded-md bg-[#D97757] px-4 py-2 text-sm font-semibold"
+            className="rounded-md bg-[#0a0a0a] px-4 py-2 text-sm font-semibold"
           >+ Nuevo</button>
         )}
       </div>
 
       {isSingleton && rows.length === 0 && (
-        <button onClick={() => setEditing(defaultRow(table))} className="rounded-md bg-[#D97757] px-4 py-2 text-sm font-semibold mb-4">Crear</button>
+        <button onClick={() => setEditing(defaultRow(table))} className="rounded-md bg-[#0a0a0a] px-4 py-2 text-sm font-semibold mb-4">Crear</button>
       )}
 
       <div className="overflow-x-auto rounded-lg border border-white/10">
@@ -181,7 +181,7 @@ function SectionEditor({ table }: { table: string }) {
               <tr key={String(r.id ?? r.key ?? r.path ?? i)} className="border-t border-white/5 hover:bg-white/[0.03]">
                 {columns.map((c) => <td key={c} className="px-3 py-2 max-w-xs truncate">{renderCell(r[c])}</td>)}
                 <td className="px-3 py-2 text-right space-x-2 whitespace-nowrap">
-                  <button onClick={() => setEditing(r)} className="text-xs text-[#D97757] hover:underline">Editar</button>
+                  <button onClick={() => setEditing(r)} className="text-xs text-[#0a0a0a] hover:underline">Editar</button>
                   {!isSingleton && (
                     <button
                       onClick={() => { if (confirm("¿Eliminar?")) del.mutate((r.id ?? r.key ?? r.path) as string | number); }}
@@ -231,7 +231,7 @@ function defaultRow(table: string): Record<string, unknown> {
   switch (table) {
     case "content_blocks": return { key: "", data: {} };
     case "projects": return { name: "", url: "", domain: "", image_url: null, position: 0, featured: true };
-    case "reviews": return { name: "", initial: "", color: "#D97757", date_label: "", text_body: "", position: 0 };
+    case "reviews": return { name: "", initial: "", color: "#0a0a0a", date_label: "", text_body: "", position: 0 };
     case "clients": return { name: "", logo_url: null, position: 0 };
     case "solutions": return { icon_svg_path: "", position: 0, i18n: { es: { title: "", description: "" } } };
     case "team": return { name: "", photo_url: null, position: 0, i18n: { es: { role: "", bio: "" } } };
@@ -293,7 +293,7 @@ function RowEditor({
                   value={String(draft[f.name] ?? "")}
                   onChange={(e) => setDraft((d) => ({ ...d, [f.name]: e.target.value }))}
                   rows={4}
-                  className="w-full rounded-md border border-white/15 bg-neutral-800 px-3 py-2 text-sm outline-none focus:border-[#D97757]"
+                  className="w-full rounded-md border border-white/15 bg-neutral-800 px-3 py-2 text-sm outline-none focus:border-[#0a0a0a]"
                 />
               ) : f.type === "boolean" ? (
                 <input
@@ -305,7 +305,7 @@ function RowEditor({
                 <input
                   type="number" value={Number(draft[f.name] ?? 0)}
                   onChange={(e) => setDraft((d) => ({ ...d, [f.name]: Number(e.target.value) }))}
-                  className="w-full rounded-md border border-white/15 bg-neutral-800 px-3 py-2 text-sm outline-none focus:border-[#D97757]"
+                  className="w-full rounded-md border border-white/15 bg-neutral-800 px-3 py-2 text-sm outline-none focus:border-[#0a0a0a]"
                 />
               ) : f.type === "image" ? (
                 <div className="flex items-center gap-3">
@@ -313,7 +313,7 @@ function RowEditor({
                     type="text" value={String(draft[f.name] ?? "")}
                     onChange={(e) => setDraft((d) => ({ ...d, [f.name]: e.target.value || null }))}
                     placeholder="ruta/en/storage.png o URL absoluta"
-                    className="flex-1 rounded-md border border-white/15 bg-neutral-800 px-3 py-2 text-sm outline-none focus:border-[#D97757]"
+                    className="flex-1 rounded-md border border-white/15 bg-neutral-800 px-3 py-2 text-sm outline-none focus:border-[#0a0a0a]"
                   />
                   <input
                     ref={fileRef} type="file" accept="image/*" hidden
@@ -331,7 +331,7 @@ function RowEditor({
                 <input
                   type="text" value={String(draft[f.name] ?? "")}
                   onChange={(e) => setDraft((d) => ({ ...d, [f.name]: e.target.value }))}
-                  className="w-full rounded-md border border-white/15 bg-neutral-800 px-3 py-2 text-sm outline-none focus:border-[#D97757]"
+                  className="w-full rounded-md border border-white/15 bg-neutral-800 px-3 py-2 text-sm outline-none focus:border-[#0a0a0a]"
                 />
               )}
             </div>
@@ -349,7 +349,7 @@ function RowEditor({
               try { await onSave(draft); } catch (e) { setError((e as Error).message); }
               finally { setSaving(false); }
             }}
-            className="rounded-md bg-[#D97757] px-4 py-2 text-sm font-semibold disabled:opacity-50"
+            className="rounded-md bg-[#0a0a0a] px-4 py-2 text-sm font-semibold disabled:opacity-50"
           >{saving ? "Guardando..." : "Guardar"}</button>
         </div>
       </div>
@@ -448,7 +448,7 @@ function JsonEditor({ value, onChange }: { value: unknown; onChange: (v: unknown
         }}
         rows={14}
         spellCheck={false}
-        className="w-full rounded-md border border-white/15 bg-neutral-800 px-3 py-2 text-xs font-mono outline-none focus:border-[#D97757]"
+        className="w-full rounded-md border border-white/15 bg-neutral-800 px-3 py-2 text-xs font-mono outline-none focus:border-[#0a0a0a]"
       />
       {error && <p className="text-[11px] text-red-400 mt-1">JSON inválido: {error}</p>}
     </div>

@@ -117,7 +117,7 @@ export function LanguageSwitcher({ value, onLanguageChange, variant = "dark" }: 
                 <img src={`https://flagcdn.com/w80/${l.country}.png`} alt="" className="h-full w-full object-cover" />
               </span>
               <span className="flex-1 text-left">{l.label}</span>
-              {active && <Check size={14} className="text-[#D97757]" />}
+              {active && <Check size={14} className="text-[#0a0a0a]" />}
             </button>
           );
         })}

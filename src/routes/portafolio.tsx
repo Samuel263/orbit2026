@@ -49,9 +49,9 @@ function PortfolioPage() {
 
       <section className="relative z-10 px-4 sm:px-6 md:px-12 pt-32 sm:pt-40 pb-10 bg-[#F8F8F6]">
         <div className="max-w-7xl mx-auto text-center">
-          <p data-reveal className="text-[10px] font-bold tracking-[0.32em] text-[#D97757] uppercase">Portafolio</p>
+          <p data-reveal className="text-[10px] font-bold tracking-[0.32em] text-[#0a0a0a] uppercase">Portafolio</p>
           <h1 data-reveal style={{ transitionDelay: "80ms" }} className="paint-hover mt-4 font-mammoth leading-[1.1] tracking-tight text-[40px] sm:text-[60px] md:text-[72px]">
-            <span className="block" style={{ color: "#D97757" }}>{tc?.allTitle}</span>
+            <span className="block" style={{ color: "#0a0a0a" }}>{tc?.allTitle}</span>
           </h1>
           <p data-reveal style={{ transitionDelay: "160ms" }} className="mt-5 mx-auto max-w-2xl text-base sm:text-lg text-neutral-600">{tc?.allSubtitle}</p>
         </div>
@@ -109,7 +109,7 @@ function PortfolioPage() {
           <div className="max-w-3xl mx-auto text-center">
             <h2 data-reveal className="paint-hover font-mammoth leading-[1.05] tracking-tight text-[28px] sm:text-[40px] text-neutral-900">{tcta.title}</h2>
             <div data-reveal style={{ transitionDelay: "180ms" }} className="mt-8">
-              <a href="/#cotizar" className="btn-sweep text-white inline-block px-8 py-4 text-sm font-semibold tracking-[0.12em] rounded-[15px]" style={{ backgroundColor: "#D97757", ["--sweep-bg" as string]: "#ffffff", ["--sweep-fg" as string]: "#000000" }}>
+              <a href="/#cotizar" className="btn-sweep text-white inline-block px-8 py-4 text-sm font-semibold tracking-[0.12em] rounded-[15px]" style={{ backgroundColor: "#0a0a0a", ["--sweep-bg" as string]: "#ffffff", ["--sweep-fg" as string]: "#000000" }}>
                 {tcta.button}
               </a>
             </div>
@@ -142,7 +142,7 @@ function PortfolioPage() {
                     href={open.url}
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-flex items-center gap-2 rounded-[15px] bg-[#D97757] text-white px-4 py-2 text-xs font-semibold tracking-[0.14em] uppercase hover:opacity-90 transition"
+                    className="inline-flex items-center gap-2 rounded-[15px] bg-[#0a0a0a] text-white px-4 py-2 text-xs font-semibold tracking-[0.14em] uppercase hover:opacity-90 transition"
                   >
                     Visitar sitio <span aria-hidden="true">↗</span>
                   </a>
