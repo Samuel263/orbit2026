@@ -145,17 +145,11 @@ function Index() {
           className="relative overflow-hidden rounded-xl sm:rounded-2xl hero-stage"
           onPointerMoveCapture={handleHeroTrailMove}
         >
-          {/* Fixed-viewport video layer, clipped to this section via JS clip-path */}
-          <div
-            ref={heroVideoLayerRef}
-            className="fixed inset-0 z-[1] pointer-events-none overflow-hidden"
-            aria-hidden="true"
-            style={{ willChange: "clip-path" }}
-          >
-            <video autoPlay loop muted playsInline className="absolute inset-0 h-full w-full object-cover" style={{ filter: "grayscale(1) contrast(1.05)" }} src={videoBg} />
-            <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse at 50% 40%, rgba(217,119,87,0.85), rgba(26,26,26,0.95) 70%)", mixBlendMode: "multiply" }} />
-            <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse at 50% 40%, rgba(217,119,87,0.35), transparent 60%)", mixBlendMode: "soft-light" }} />
-            <div className="absolute inset-0 bg-[#1A1A1A]/40" />
+          {/* Beams background — pure black/white, confined to this section */}
+          <div className="absolute inset-0 z-[1] pointer-events-none overflow-hidden bg-black" aria-hidden="true">
+            <ClientOnly fallback={<div className="absolute inset-0 bg-black" />}>
+              <Beams beamWidth={2} beamHeight={15} beamNumber={12} lightColor="#ffffff" speed={2} noiseIntensity={1.75} scale={0.2} rotation={30} />
+            </ClientOnly>
           </div>
 
           <div className="hero-trail-hitarea absolute inset-0 z-[2]" aria-hidden="true" />
@@ -181,20 +175,20 @@ function Index() {
 
           <main className="relative z-10 flex flex-col items-center text-center px-4 sm:px-6 md:px-12 pt-20 sm:pt-24 lg:pt-28 pb-20 sm:pb-28">
             <div className="max-w-3xl mx-auto">
-              <h1 className="hero-no-trail paint-hover font-mammoth leading-[1.08] tracking-[-0.01em] text-[30px] sm:text-[44px] md:text-[56px] lg:text-[64px] hero-title">
-                <span className="text-white hero-line hero-line-1">
+              <h1 className="hero-no-trail paint-hover font-mammoth leading-[1.08] tracking-[-0.01em] text-[30px] sm:text-[44px] md:text-[56px] lg:text-[64px] hero-title text-white">
+                <span className="hero-line hero-line-1">
                   {pickBlock<{ headlineTop: string }>(content, "hero", lang)?.headlineTop ?? ""}{" "}
                 </span>
-                <span className="hero-line hero-line-2 overflow-visible" style={{ color: "#0a0a0a" }}>
+                <span className="hero-line hero-line-2 overflow-visible">
                   {pickBlock<{ headlineBottom: string }>(content, "hero", lang)?.headlineBottom ?? ""}
                 </span>
               </h1>
               <p className="hero-no-trail mt-6 text-sm sm:text-base text-white/85 leading-relaxed max-w-xl mx-auto">{t?.description}</p>
               <div className="hero-no-trail mt-8 flex flex-wrap items-center justify-center gap-3 sm:gap-4">
-                <a href="#cotizar" className="btn-sweep text-white transition px-6 sm:px-7 py-3 sm:py-3.5 text-sm font-medium rounded-[15px]" style={{ backgroundColor: "#0a0a0a", ["--sweep-bg" as string]: "#ffffff", ["--sweep-fg" as string]: "#000000" }}>
+                <a href="#cotizar" className="btn-sweep transition px-6 sm:px-7 py-3 sm:py-3.5 text-sm font-medium rounded-[15px]" style={{ backgroundColor: "#ffffff", color: "#0a0a0a", ["--sweep-bg" as string]: "#0a0a0a", ["--sweep-fg" as string]: "#ffffff" }}>
                   <span className="btn-sweep-label">{tnav?.quote ?? ""}</span>
                 </a>
-                <Link to="/portafolio" className="btn-sweep border border-white/80 transition px-6 sm:px-7 py-3 sm:py-3.5 text-sm font-medium text-white rounded-[15px]" style={{ ["--sweep-bg" as string]: "#ffffff", ["--sweep-fg" as string]: "#000000" }}>
+                <Link to="/portafolio" className="btn-sweep border border-white/80 transition px-6 sm:px-7 py-3 sm:py-3.5 text-sm font-medium text-white rounded-[15px]" style={{ ["--sweep-bg" as string]: "#ffffff", ["--sweep-fg" as string]: "#0a0a0a" }}>
                   <span className="btn-sweep-label">{t?.viewPortfolio ?? ""}</span>
                 </Link>
               </div>
