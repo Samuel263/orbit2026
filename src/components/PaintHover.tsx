@@ -8,8 +8,8 @@ export function PaintHover() {
     if (typeof window === "undefined") return;
     if (window.matchMedia("(pointer: coarse)").matches) return;
 
-    const ORANGE = "#0a0a0a";
-    const DARK = "#0F0F10";
+    const LIGHT = "#ffffff";
+    const DARK = "#0a0a0a";
     type Item = { el: HTMLElement; alt: string };
     let items: Item[] = [];
 
