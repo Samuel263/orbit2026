@@ -47,7 +47,7 @@
   --color-ring: var(--ring);
   --color-pink: var(--pink);
   --color-green: var(--green);
-  --font-mammoth: "Jumper", sans-serif;
+  --font-mammoth: "OpenAI Sans", "Inter", ui-sans-serif, system-ui, sans-serif;
 }
 
 :root {
