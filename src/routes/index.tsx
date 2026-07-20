@@ -258,7 +258,7 @@ function Index() {
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 mt-14 flex justify-center" data-reveal>
-          <Link to="/portafolio" className="btn-sweep text-white transition px-8 py-4 text-sm font-semibold tracking-[0.18em] rounded-[15px]" style={{ backgroundColor: "#0a0a0a", ["--sweep-bg" as string]: "#ffffff", ["--sweep-fg" as string]: "#000000" }}>
+          <Link to="/portafolio" className="btn-sweep transition px-8 py-4 text-sm font-semibold tracking-[0.18em] rounded-[15px]" style={{ backgroundColor: "#ffffff", color: "#0a0a0a", ["--sweep-bg" as string]: "#0a0a0a", ["--sweep-fg" as string]: "#ffffff" }}>
             <span className="btn-sweep-label">{tc?.more}</span>
           </Link>
         </div>
