@@ -1,11 +1,12 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { ClientOnly } from "@tanstack/react-router";
 import { useSuspenseQuery } from "@tanstack/react-query";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import type { PointerEvent } from "react";
-import logoAsset from "@/assets/logo.png";
-import videoBg from "@/assets/white-waves-bg.mp4";
+import logoAsset from "@/assets/shift-logo.png";
 import transportesAykImage from "@/assets/TransportesAYK.png";
 import InovepImage from "@/assets/Inovep.png";
+import Beams from "@/components/Beams";
 import { SiteNav } from "@/components/SiteNav";
 import { SiteFooter } from "@/components/SiteFooter";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
