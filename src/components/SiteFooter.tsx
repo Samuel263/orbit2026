@@ -35,7 +35,7 @@ export function SiteFooter({ language, content }: Props) {
 
           <div className="md:col-span-5 flex flex-col gap-3">
             <p className="text-[10px] tracking-[0.28em] uppercase text-white/40">Contacto</p>
-            <a href="mailto:hola@orbit.cl" className="paint-hover text-2xl sm:text-3xl font-mammoth text-white hover:text-[#0a0a0a] transition w-fit">hola@orbit.cl</a>
+            <a href="mailto:hola@orbit.cl" className="paint-hover text-2xl sm:text-3xl font-mammoth text-white hover:opacity-80 transition w-fit">hola@orbit.cl</a>
             <div className="flex flex-wrap gap-2 mt-2">
               {content.socials.map((s) => (
                 <a
