@@ -61,7 +61,7 @@ export function SiteFooter({ language, content }: Props) {
               type="button"
               onClick={scrollTop}
               className="btn-sweep inline-flex items-center gap-2 rounded-[15px] border border-white/20 px-5 py-2.5 text-xs tracking-[0.18em] uppercase text-white/85 hover:text-white transition"
-              style={{ ["--sweep-bg" as string]: "#0a0a0a", ["--sweep-fg" as string]: "#ffffff" }}
+              style={{ ["--sweep-bg" as string]: "#ffffff", ["--sweep-fg" as string]: "#0a0a0a" }}
             >
               <span className="btn-sweep-label">Volver arriba ↑</span>
             </button>
