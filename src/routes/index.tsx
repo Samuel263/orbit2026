@@ -117,7 +117,9 @@ function Index() {
           {/* Beams background — pure black/white, confined to this section */}
           <div className="absolute inset-0 z-[1] pointer-events-none overflow-hidden bg-black" aria-hidden="true">
             <ClientOnly fallback={<div className="absolute inset-0 bg-black" />}>
-              <Beams beamWidth={2} beamHeight={15} beamNumber={12} lightColor="#ffffff" speed={2} noiseIntensity={1.75} scale={0.2} rotation={30} />
+              <Suspense fallback={<div className="absolute inset-0 bg-black" />}>
+                <Beams beamWidth={2} beamHeight={15} beamNumber={12} lightColor="#ffffff" speed={2} noiseIntensity={1.75} scale={0.2} rotation={30} />
+              </Suspense>
             </ClientOnly>
           </div>
 
