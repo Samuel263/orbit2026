@@ -15,7 +15,7 @@ export const siteStyles = `
   }
   .review-note:hover {
     transform: rotate(0deg) translateY(-4px);
-    border-color: #D97757;
+    border-color: #0a0a0a;
   }
   .review-note__tape {
     position: absolute;

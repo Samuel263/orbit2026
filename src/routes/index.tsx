@@ -1,9 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { ClientOnly } from "@tanstack/react-router";
 import { useSuspenseQuery } from "@tanstack/react-query";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { lazy, Suspense, useCallback, useRef, useState } from "react";
 import type { PointerEvent } from "react";
-import logoAsset from "@/assets/logo.png";
-import videoBg from "@/assets/white-waves-bg.mp4";
+import logoAsset from "@/assets/shift-logo.png";
 import transportesAykImage from "@/assets/TransportesAYK.png";
 import InovepImage from "@/assets/Inovep.png";
 import { SiteNav } from "@/components/SiteNav";
@@ -16,6 +16,8 @@ import { useRevealOnScroll } from "@/hooks/use-reveal";
 import { siteStyles } from "@/lib/site-styles";
 import { getSiteContent, type Lang } from "@/lib/content.functions";
 import { pickBlock } from "@/lib/content-blocks";
+
+const Beams = lazy(() => import("@/components/Beams"));
 
 type HeroTrailCard =
   | { type: "text"; eyebrow: string; title: string; tone: "pink" | "green" | "white" }
@@ -62,41 +64,8 @@ function Index() {
   const trailSequenceRef = useRef(0);
   const lastTrailAtRef = useRef(0);
   const heroSectionRef = useRef<HTMLElement | null>(null);
-  const heroVideoLayerRef = useRef<HTMLDivElement | null>(null);
   useRevealOnScroll();
 
-  useEffect(() => {
-    const section = heroSectionRef.current;
-    const wrap = heroVideoLayerRef.current;
-    if (!section || !wrap) return;
-    let raf = 0;
-    const update = () => {
-      raf = 0;
-      const r = section.getBoundingClientRect();
-      const vw = window.innerWidth;
-      const vh = window.innerHeight;
-      if (r.bottom < -20 || r.top > vh + 20) {
-        wrap.style.visibility = "hidden";
-        return;
-      }
-      wrap.style.visibility = "";
-      const top = Math.max(0, r.top);
-      const left = Math.max(0, r.left);
-      const right = Math.max(0, vw - r.right);
-      const bottom = Math.max(0, vh - r.bottom);
-      const radius = vw >= 640 ? 16 : 12;
-      wrap.style.clipPath = `inset(${top}px ${right}px ${bottom}px ${left}px round ${radius}px)`;
-    };
-    const onScroll = () => { if (!raf) raf = requestAnimationFrame(update); };
-    update();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", update);
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", update);
-      if (raf) cancelAnimationFrame(raf);
-    };
-  }, []);
 
   const t = pickBlock<{ description: string; viewPortfolio: string; clientAlt: string }>(content, "hero", lang);
   const tc = pickBlock<{ t1: string; t2: string; desc: string; view: string; more: string }>(content, "cases", lang);
@@ -145,17 +114,13 @@ function Index() {
           className="relative overflow-hidden rounded-xl sm:rounded-2xl hero-stage"
           onPointerMoveCapture={handleHeroTrailMove}
         >
-          {/* Fixed-viewport video layer, clipped to this section via JS clip-path */}
-          <div
-            ref={heroVideoLayerRef}
-            className="fixed inset-0 z-[1] pointer-events-none overflow-hidden"
-            aria-hidden="true"
-            style={{ willChange: "clip-path" }}
-          >
-            <video autoPlay loop muted playsInline className="absolute inset-0 h-full w-full object-cover" style={{ filter: "grayscale(1) contrast(1.05)" }} src={videoBg} />
-            <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse at 50% 40%, rgba(217,119,87,0.85), rgba(26,26,26,0.95) 70%)", mixBlendMode: "multiply" }} />
-            <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse at 50% 40%, rgba(217,119,87,0.35), transparent 60%)", mixBlendMode: "soft-light" }} />
-            <div className="absolute inset-0 bg-[#1A1A1A]/40" />
+          {/* Beams background — pure black/white, confined to this section */}
+          <div className="absolute inset-0 z-[1] pointer-events-none overflow-hidden bg-black" aria-hidden="true">
+            <ClientOnly fallback={<div className="absolute inset-0 bg-black" />}>
+              <Suspense fallback={<div className="absolute inset-0 bg-black" />}>
+                <Beams beamWidth={2} beamHeight={15} beamNumber={12} lightColor="#ffffff" speed={2} noiseIntensity={1.75} scale={0.2} rotation={30} />
+              </Suspense>
+            </ClientOnly>
           </div>
 
           <div className="hero-trail-hitarea absolute inset-0 z-[2]" aria-hidden="true" />
@@ -181,20 +146,20 @@ function Index() {
 
           <main className="relative z-10 flex flex-col items-center text-center px-4 sm:px-6 md:px-12 pt-20 sm:pt-24 lg:pt-28 pb-20 sm:pb-28">
             <div className="max-w-3xl mx-auto">
-              <h1 className="hero-no-trail paint-hover font-mammoth leading-[1.08] tracking-[-0.01em] text-[30px] sm:text-[44px] md:text-[56px] lg:text-[64px] hero-title">
-                <span className="text-white hero-line hero-line-1">
+              <h1 className="hero-no-trail paint-hover font-mammoth leading-[1.08] tracking-[-0.01em] text-[30px] sm:text-[44px] md:text-[56px] lg:text-[64px] hero-title text-white">
+                <span className="hero-line hero-line-1">
                   {pickBlock<{ headlineTop: string }>(content, "hero", lang)?.headlineTop ?? ""}{" "}
                 </span>
-                <span className="hero-line hero-line-2 overflow-visible" style={{ color: "#D97757" }}>
+                <span className="hero-line hero-line-2 overflow-visible">
                   {pickBlock<{ headlineBottom: string }>(content, "hero", lang)?.headlineBottom ?? ""}
                 </span>
               </h1>
               <p className="hero-no-trail mt-6 text-sm sm:text-base text-white/85 leading-relaxed max-w-xl mx-auto">{t?.description}</p>
               <div className="hero-no-trail mt-8 flex flex-wrap items-center justify-center gap-3 sm:gap-4">
-                <a href="#cotizar" className="btn-sweep text-white transition px-6 sm:px-7 py-3 sm:py-3.5 text-sm font-medium rounded-[15px]" style={{ backgroundColor: "#D97757", ["--sweep-bg" as string]: "#ffffff", ["--sweep-fg" as string]: "#000000" }}>
+                <a href="#cotizar" className="btn-sweep transition px-6 sm:px-7 py-3 sm:py-3.5 text-sm font-medium rounded-[15px]" style={{ backgroundColor: "#ffffff", color: "#0a0a0a", ["--sweep-bg" as string]: "#0a0a0a", ["--sweep-fg" as string]: "#ffffff" }}>
                   <span className="btn-sweep-label">{tnav?.quote ?? ""}</span>
                 </a>
-                <Link to="/portafolio" className="btn-sweep border border-white/80 transition px-6 sm:px-7 py-3 sm:py-3.5 text-sm font-medium text-white rounded-[15px]" style={{ ["--sweep-bg" as string]: "#ffffff", ["--sweep-fg" as string]: "#000000" }}>
+                <Link to="/portafolio" className="btn-sweep border border-white/80 transition px-6 sm:px-7 py-3 sm:py-3.5 text-sm font-medium text-white rounded-[15px]" style={{ ["--sweep-bg" as string]: "#ffffff", ["--sweep-fg" as string]: "#0a0a0a" }}>
                   <span className="btn-sweep-label">{t?.viewPortfolio ?? ""}</span>
                 </Link>
               </div>
@@ -232,7 +197,7 @@ function Index() {
             <span className="h-px w-8 bg-neutral-300" />{tcl?.kicker}<span className="h-px w-8 bg-neutral-300" />
           </span>
           <h2 data-reveal style={{ transitionDelay: "80ms" }} className="paint-hover mt-5 font-mammoth leading-[1.15] tracking-tight text-[26px] sm:text-[34px] md:text-[42px]">
-            <span className="text-neutral-900">{tcl?.t1}</span> <span style={{ color: "#D97757" }}>{tcl?.t2}</span>
+            <span className="text-neutral-900">{tcl?.t1}</span> <span style={{ color: "#0a0a0a" }}>{tcl?.t2}</span>
           </h2>
         </div>
         <div className="max-w-6xl mx-auto px-4 sm:px-6 md:px-10 mt-10 sm:mt-14">
@@ -256,9 +221,9 @@ function Index() {
       <section id="portafolio" className="relative z-10 py-20 sm:py-28 bg-[#1A1A1A] overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12">
           <div className="text-left max-w-3xl">
-            <h2 data-reveal className="paint-hover font-mammoth leading-[1.15] tracking-tight text-[34px] sm:text-[44px] md:text-[54px] lg:text-[64px]">
-              <span className="block text-white text-[0.92em] pb-[0.08em]">{tc?.t1}</span>
-              <span className="block overflow-visible" style={{ color: "#D97757" }}>{tc?.t2}</span>
+            <h2 data-reveal className="paint-hover font-mammoth leading-[1.15] tracking-tight text-[34px] sm:text-[44px] md:text-[54px] lg:text-[64px] text-white">
+              <span className="block text-[0.92em] pb-[0.08em]">{tc?.t1}</span>
+              <span className="block overflow-visible">{tc?.t2}</span>
             </h2>
             <p data-reveal style={{ transitionDelay: "120ms" }} className="mt-5 text-base sm:text-lg text-white/85 leading-relaxed">{tc?.desc}</p>
           </div>
@@ -296,7 +261,7 @@ function Index() {
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 mt-14 flex justify-center" data-reveal>
-          <Link to="/portafolio" className="btn-sweep text-white transition px-8 py-4 text-sm font-semibold tracking-[0.18em] rounded-[15px]" style={{ backgroundColor: "#D97757", ["--sweep-bg" as string]: "#ffffff", ["--sweep-fg" as string]: "#000000" }}>
+          <Link to="/portafolio" className="btn-sweep transition px-8 py-4 text-sm font-semibold tracking-[0.18em] rounded-[15px]" style={{ backgroundColor: "#ffffff", color: "#0a0a0a", ["--sweep-bg" as string]: "#0a0a0a", ["--sweep-fg" as string]: "#ffffff" }}>
             <span className="btn-sweep-label">{tc?.more}</span>
           </Link>
         </div>
@@ -307,10 +272,10 @@ function Index() {
         <div className="relative max-w-7xl mx-auto">
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8" data-reveal>
             <div>
-              <p className="text-xs sm:text-sm tracking-[0.28em] font-bold text-[#D97757] uppercase">{tr?.kicker}</p>
+              <p className="text-xs sm:text-sm tracking-[0.28em] font-bold text-[#0a0a0a] uppercase">{tr?.kicker}</p>
               <h2 className="paint-hover mt-4 font-mammoth leading-[1.1] tracking-tight text-[30px] sm:text-[40px] md:text-[52px] lg:text-[60px]">
                 <span className="block text-neutral-900 pb-[0.06em]">{tr?.title1}</span>
-                <span className="block" style={{ color: "#D97757" }}>{tr?.title2}</span>
+                <span className="block" style={{ color: "#0a0a0a" }}>{tr?.title2}</span>
               </h2>
             </div>
             <div className="flex flex-col items-start lg:items-end gap-2">
@@ -367,11 +332,11 @@ function Index() {
         <div className="max-w-6xl mx-auto">
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-8 mb-14" data-reveal>
             <div>
-              <p className="text-[10px] font-bold tracking-[0.32em] text-[#D97757] uppercase">
+              <p className="text-[10px] font-bold tracking-[0.32em] text-white/60 uppercase">
                 Servicios · 01—{String(content.solutions.length).padStart(2, "0")}
               </p>
-              <h2 className="paint-hover mt-3 font-mammoth leading-[1.05] tracking-tight text-[38px] sm:text-[52px] md:text-[64px]">
-                <span className="text-white">{ts?.title1}</span> <span style={{ color: "#D97757" }}>{ts?.title2}</span>
+              <h2 className="paint-hover mt-3 font-mammoth leading-[1.05] tracking-tight text-[38px] sm:text-[52px] md:text-[64px] text-white">
+                <span>{ts?.title1}</span> <span>{ts?.title2}</span>
               </h2>
             </div>
             <p className="max-w-xs text-sm text-white/50 leading-relaxed md:text-right">
@@ -385,9 +350,9 @@ function Index() {
                 key={s.id}
                 data-reveal
                 style={{ transitionDelay: `${(i % 3) * 80}ms` }}
-                className="rounded-[15px] border border-white/10 bg-white/[0.02] p-8 transition-colors hover:border-[#D97757]/60 hover:bg-white/[0.04]"
+                className="rounded-[15px] border border-white/10 bg-white/[0.02] p-8 transition-colors hover:border-white/60 hover:bg-white/[0.05]"
               >
-                <span className="grid size-12 place-items-center rounded-full border border-[#D97757] text-[#D97757] mb-6">
+                <span className="grid size-12 place-items-center rounded-full border border-white text-white mb-6">
                   {s.icon_svg_path ? (
                     <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                       <path d={s.icon_svg_path} />
@@ -415,7 +380,7 @@ function Index() {
             <div className="mt-14 grid grid-cols-2 md:grid-cols-4 gap-y-10 gap-x-6">
               {(tst.items ?? []).map((s, i) => (
                 <div key={`${s.l}-${i}`} data-reveal style={{ transitionDelay: `${i * 100}ms` }} className="text-center">
-                  <p className="font-mammoth text-5xl sm:text-6xl leading-none tracking-tight" style={{ color: i % 2 === 0 ? "#D97757" : "#1A1A1A" }}>{s.n}</p>
+                  <p className="font-mammoth text-5xl sm:text-6xl leading-none tracking-tight" style={{ color: i % 2 === 0 ? "#0a0a0a" : "#1A1A1A" }}>{s.n}</p>
                   <p className="mt-3 text-[11px] sm:text-xs tracking-[0.18em] uppercase text-neutral-500">{s.l}</p>
                 </div>
               ))}
@@ -428,17 +393,17 @@ function Index() {
       {tcta && (
         <section id="cotizar" className="relative z-10 px-4 sm:px-6 md:px-12 py-32 sm:py-40 bg-[#0F0F10] overflow-hidden">
           <div className="relative max-w-4xl mx-auto text-center">
-            <div data-reveal className="inline-flex items-center gap-2 text-[10px] font-bold tracking-[0.28em] text-[#D97757] uppercase mb-6">
-              <span className="h-px w-8 bg-[#D97757]/50" />
+            <div data-reveal className="inline-flex items-center gap-2 text-[10px] font-bold tracking-[0.28em] text-white/60 uppercase mb-6">
+              <span className="h-px w-8 bg-white/40" />
               <span>{tnav?.quote ?? ""}</span>
-              <span className="h-px w-8 bg-[#D97757]/50" />
+              <span className="h-px w-8 bg-white/40" />
             </div>
             <h2 data-reveal className="paint-hover font-mammoth leading-[1.1] tracking-tight text-[34px] sm:text-[44px] md:text-[56px] lg:text-[64px] text-white max-w-3xl mx-auto">
               {tcta.title}
             </h2>
             <p data-reveal style={{ transitionDelay: "120ms" }} className="mt-8 text-lg sm:text-xl text-white/70 max-w-2xl mx-auto leading-relaxed">{tcta.sub}</p>
             <div data-reveal style={{ transitionDelay: "240ms" }} className="mt-12">
-              <a href="#cotizar" className="btn-sweep text-white inline-block px-10 py-5 text-sm font-semibold tracking-[0.18em] transition rounded-[15px]" style={{ backgroundColor: "#D97757", ["--sweep-bg" as string]: "#ffffff", ["--sweep-fg" as string]: "#000000" }}>
+              <a href="#cotizar" className="btn-sweep inline-block px-10 py-5 text-sm font-semibold tracking-[0.18em] transition rounded-[15px]" style={{ backgroundColor: "#ffffff", color: "#0a0a0a", ["--sweep-bg" as string]: "#0a0a0a", ["--sweep-fg" as string]: "#ffffff" }}>
                 <span className="btn-sweep-label">{tcta.button}</span>
               </a>
             </div>
