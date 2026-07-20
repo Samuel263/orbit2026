@@ -390,17 +390,17 @@ function Index() {
       {tcta && (
         <section id="cotizar" className="relative z-10 px-4 sm:px-6 md:px-12 py-32 sm:py-40 bg-[#0F0F10] overflow-hidden">
           <div className="relative max-w-4xl mx-auto text-center">
-            <div data-reveal className="inline-flex items-center gap-2 text-[10px] font-bold tracking-[0.28em] text-[#0a0a0a] uppercase mb-6">
-              <span className="h-px w-8 bg-[#0a0a0a]/50" />
+            <div data-reveal className="inline-flex items-center gap-2 text-[10px] font-bold tracking-[0.28em] text-white/60 uppercase mb-6">
+              <span className="h-px w-8 bg-white/40" />
               <span>{tnav?.quote ?? ""}</span>
-              <span className="h-px w-8 bg-[#0a0a0a]/50" />
+              <span className="h-px w-8 bg-white/40" />
             </div>
             <h2 data-reveal className="paint-hover font-mammoth leading-[1.1] tracking-tight text-[34px] sm:text-[44px] md:text-[56px] lg:text-[64px] text-white max-w-3xl mx-auto">
               {tcta.title}
             </h2>
             <p data-reveal style={{ transitionDelay: "120ms" }} className="mt-8 text-lg sm:text-xl text-white/70 max-w-2xl mx-auto leading-relaxed">{tcta.sub}</p>
             <div data-reveal style={{ transitionDelay: "240ms" }} className="mt-12">
-              <a href="#cotizar" className="btn-sweep text-white inline-block px-10 py-5 text-sm font-semibold tracking-[0.18em] transition rounded-[15px]" style={{ backgroundColor: "#0a0a0a", ["--sweep-bg" as string]: "#ffffff", ["--sweep-fg" as string]: "#000000" }}>
+              <a href="#cotizar" className="btn-sweep inline-block px-10 py-5 text-sm font-semibold tracking-[0.18em] transition rounded-[15px]" style={{ backgroundColor: "#ffffff", color: "#0a0a0a", ["--sweep-bg" as string]: "#0a0a0a", ["--sweep-fg" as string]: "#ffffff" }}>
                 <span className="btn-sweep-label">{tcta.button}</span>
               </a>
             </div>
