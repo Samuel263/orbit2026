@@ -1,12 +1,11 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ClientOnly } from "@tanstack/react-router";
 import { useSuspenseQuery } from "@tanstack/react-query";
-import { useCallback, useRef, useState } from "react";
+import { lazy, Suspense, useCallback, useRef, useState } from "react";
 import type { PointerEvent } from "react";
 import logoAsset from "@/assets/shift-logo.png";
 import transportesAykImage from "@/assets/TransportesAYK.png";
 import InovepImage from "@/assets/Inovep.png";
-import Beams from "@/components/Beams";
 import { SiteNav } from "@/components/SiteNav";
 import { SiteFooter } from "@/components/SiteFooter";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
@@ -17,6 +16,8 @@ import { useRevealOnScroll } from "@/hooks/use-reveal";
 import { siteStyles } from "@/lib/site-styles";
 import { getSiteContent, type Lang } from "@/lib/content.functions";
 import { pickBlock } from "@/lib/content-blocks";
+
+const Beams = lazy(() => import("@/components/Beams"));
 
 type HeroTrailCard =
   | { type: "text"; eyebrow: string; title: string; tone: "pink" | "green" | "white" }
