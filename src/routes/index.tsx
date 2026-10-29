@@ -206,7 +206,7 @@ function Index() {
               {Array.from({ length: 6 }, () => content.clients).flat().map((c, i) => (
                 <div key={`c-${i}`} className="flex h-16 sm:h-20 shrink-0 items-center justify-center">
                   {c.logo_url ? (
-                    <img src={c.logo_url} alt={`${t?.clientAlt ?? ""}: ${c.name}`} className="max-h-14 sm:max-h-16 max-w-[200px] object-contain client-logo-dark" loading="lazy" />
+                    <img src={c.logo_url} alt={`${t?.clientAlt ?? ""}: ${c.name}`} className="max-h-14 sm:max-h-16 max-w-[200px] object-contain" loading="lazy" />
                   ) : (
                     <span className="text-neutral-700 text-base font-semibold tracking-wide">{c.name}</span>
                   )}
