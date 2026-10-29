@@ -94,9 +94,15 @@ export const siteStyles = `
   .client-marquee-reverse { animation: clientMarqueeReverse 40s linear infinite; }
   .client-strip:hover .client-marquee,
   .client-strip:hover .client-marquee-reverse { animation-play-state: paused; }
-  .client-logo-white { filter: brightness(0) invert(1); opacity: 0.92; }
-  .client-logo-dark { filter: grayscale(0%) opacity(1); transition: filter 300ms ease; }
-.client-logo-dark:hover { filter: grayscale(0%) opacity(1); }
+  /* Logos de clientes: colores originales, sin filtros */
+.client-logo-dark,
+.client-logo-dark:hover,
+.client-logo-white {
+  filter: none !important;
+  opacity: 1 !important;
+  mix-blend-mode: normal !important;
+  transition: none;
+}
 
 
   @keyframes heroReveal {
